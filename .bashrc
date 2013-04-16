@@ -1,10 +1,13 @@
 #!/bin/bash
 
 # path
-export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:~/bin:/Applications/calibre.app/Contents/MacOS:~/bin/android-sdk-macosx/tools:~/bin/eclipse:~/bin/node/bin"
+export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:~/bin:~/bin/eclipse:~/bin/node/bin"
 
 # if not interactive, leave now
 [[ ! $- =~ i ]] && return
+
+# check the window size after each command
+shopt -s checkwinsize
 
 # auto set remote display
 if [ -z "$DISPLAY" ]; then
@@ -25,6 +28,8 @@ txtwhite=$(tput setaf 7)
 
 #HNAME=${HOSTNAME,,}
 HNAME=$(echo $HOSTNAME | tr '[A-Z]' '[a-z]')
+
+# Machine specific customizations
 case "$HNAME" in
 	marmot) 
 		txtcolor=$txtbold$txtblue
@@ -51,6 +56,15 @@ if [ $EUID = 0 ]; then
 else
 	export PS1="\u$txtcolor@$HNAME$txtreset\w> "
 fi
+
+case "$TERM" in
+	xterm*|rxvt*|screen*)
+    PROMPT_COMMAND='echo -ne "\033]0;${HNAME}:${PWD}\007"'
+    ;;
+	*)
+    ;;
+esac
+
 
 #Eclipse mouse button click fix - may not be required anymore
 export GDK_NATIVE_WINDOWS=true
