@@ -3,6 +3,10 @@
 # path
 export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:~/bin:~/bin/eclipse:~/bin/node/bin"
 
+# GO stuff
+export GOROOT=/usr/local/go
+export PATH=$PATH:$GOROOT/bin:$HOME/go
+
 # if not interactive, leave now
 [[ ! $- =~ i ]] && return
 
@@ -36,13 +40,13 @@ case "$HNAME" in
 		#emoji cat
 		if [ -z "$SSH_CONNECTION" ]; then HNAME="🐱 "; fi
 		;;
-	bear|walrus)
+	bear)
 		txtcolor=$txtbold$txtgreen
 		;;
-	nhardesty-wsl|moose)
+	nhardesty-wsl|badger|whistlepig|otter)
 		txtcolor=$txtbold$txtpurple
 		;;
-	otter|duck)
+	moose|mooses|walrus)
 		txtcolor=$txtbold$txtred
 		;;
 	*)
@@ -71,16 +75,22 @@ export GDK_NATIVE_WINDOWS=true
 
 set -o emacs
 
+if [ -f ~/.pass ]; then
+	PASS1=$(cat ~/.pass)
+else
+	PASS1=""
+fi
+
 alias ls="ls -F"
 alias otter="ssh 192.168.1.42"
 alias marmot-ubu="ssh 192.168.1.13"
 #alias open="xdg-open"
 alias bear="ssh -p 2222 -L 3390:192.168.1.20:3389 neal@roadwaffle.dyndns.org"
-alias walrus="rdesktop -m -z -g 1280x1024 -P -u neal localhost -p $(cat ~/.pass) 2> /dev/null "
-#alias otter="rdesktop -m -z -g 1280x1024 -P -u neal localhost:3390 -p $(cat ~/.pass) 2> /dev/null "
-alias moose="rdesktop -m -z -g 1280x1024 -P -u neal localhost:3390 -p $(cat ~/.pass) 2> /dev/null "
+alias walrus="rdesktop -m -z -g 1280x1024 -P -u neal localhost -p $PASS1 2> /dev/null "
+#alias otter="rdesktop -m -z -g 1280x1024 -P -u neal localhost:3390 -p $PASS1 2> /dev/null "
+alias moose="rdesktop -m -z -g 1280x1024 -P -u neal localhost:3390 -p $PASS1 2> /dev/null "
 #alias otterwinvnc="vncviewer -encodings Tight -quality 0 localhost:5901"
-#alias otterwin="rdesktop -m -z -g 1280x1024 -P -u neal localhost:3391 -p $(cat ~/.pass) 2> /dev/null "
+#alias otterwin="rdesktop -m -z -g 1280x1024 -P -u neal localhost:3391 -p $PASS1 2> /dev/null "
 #alias otter="vncviewer -encodings Tight -p ~/.pass -quality 4 localhost:5900"
 alias marmotvnc="vncviewer -encodings 'copyrect tight hextile zlib corre rre raw' -quality 0 localhost:5900"
-
+alias pig="ssh neal@whistlepig"
