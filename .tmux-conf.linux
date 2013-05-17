@@ -1,5 +1,5 @@
 # .tmux-conf -- Copyright 2013 Neal Hardesty
-# This version is specific for Mac OS X
+# Linux Specific Version
 
 # reload with 'tmux source-file ~/.tmux.conf'
 
@@ -23,7 +23,7 @@ set-window-option -g window-status-attr bright
 # active window title colors
 set-window-option -g window-status-current-fg red #orange
 set-window-option -g window-status-current-bg default
-set-window-option -g window-status-current-attr bright
+set-window-option -g window-status-current-attr dim
 
 # vi mode
 setw -g mode-keys vi
@@ -34,7 +34,8 @@ set -g visual-activity on
 set -g status-interval 1
 #set -g status-justify centre # center align window list
 set -g status-justify left
-set -g status-left-length 10
+set -g status-left-length 22
 set -g status-right-length 140
 set -g status-left '#[fg=green,bold]#H>>>'
-set -g status-right '#[fg=green,bg=default]<<< #[fg=white,bg=default,bright]"#T" #[fg=green,bg=default,dim]< #(uptime |cut -f 11-13 -d " ") < #[fg=blue,bg=default]%a%l:%M %p %Y-%m-%d'
+set -g status-right '#[fg=green,bg=default]<<< #[fg=white,bg=default,bright]"#T" #[fg=green,bg=default,dim]< #(uptime |cut -f 14-16 -d " ") < #[fg=blue,bg=default]%a%l:%M %p %Y-%m-%d'
+
