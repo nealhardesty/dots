@@ -9,6 +9,12 @@ set-option -g status-utf8 on
 
 # remap C-b back to C-a
 set-option -g prefix C-a
+bind-key C-a send-prefix
+unbind-key C-b
+
+# vi style keys in copy mode
+bind-key [ copy-mode
+setw -g mode-keys vi
 
 # https://github.com/seebi/tmux-colors-solarized/blob/master/tmuxcolors-256.conf
 set-option -g status-bg colour235 #base02
