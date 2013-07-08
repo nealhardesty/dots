@@ -1,7 +1,10 @@
 #!/bin/bash
 
+# JAVA_HOME
+export JAVA_HOME=/opt/jdk
+
 # path
-export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:~/bin:~/bin/eclipse:~/bin/node/bin"
+export PATH="$PATH:$JAVA_HOME/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:~/bin:~/bin/eclipse:~/bin/node/bin:/usr/NX/bin:/opt/idea/bin"
 
 # GO stuff
 export GOROOT=/usr/local/go
