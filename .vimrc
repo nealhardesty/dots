@@ -1,5 +1,5 @@
 " syntax highlighting
-syntax on
+"syntax on
 
 " 2 spaces per tab
 set tabstop=2

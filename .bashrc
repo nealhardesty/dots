@@ -39,12 +39,16 @@ HNAME=$(echo $HOSTNAME | tr '[A-Z]' '[a-z]')
 # Machine specific customizations
 case "$HNAME" in
 	marmot) 
-		txtcolor=$txtbold$txtblue
+		txtcolor=$txtbold$txtpurple
 		#emoji cat
 		if [ -z "$SSH_CONNECTION" ]; then HNAME="🐱 "; fi
 		;;
 	bear)
 		txtcolor=$txtbold$txtgreen
+		;;
+	whistlepig|pig)
+		txtcolor=$txtbold$txtblue
+		PS1BASE="\u$txtcolor@$HNAME$txtreset\w ^^^oo_ "
 		;;
 	nhardesty-wsl|badger|whistlepig|otter)
 		txtcolor=$txtbold$txtpurple
@@ -57,12 +61,18 @@ case "$HNAME" in
 		;;
 esac
 
+
 # prompt
 if [ $EUID = 0 ]; then
 	export PS1="\u$txtcolor@$HNAME$txtreset\w# "
 else
-	export PS1="\u$txtcolor@$HNAME$txtreset\w> "
+	if [ -z "$PS1BASE" ]; then
+		PS1="\u$txtcolor@$HNAME$txtreset\w> "
+	else
+		PS1="$PS1BASE"
+	fi
 fi
+
 
 case "$TERM" in
 	xterm*|rxvt*|screen*)
