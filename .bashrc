@@ -107,3 +107,6 @@ alias moose="rdesktop -m -z -g 1280x1024 -P -u neal localhost:3390 -p $PASS1 2> 
 #alias otter="vncviewer -encodings Tight -p ~/.pass -quality 4 localhost:5900"
 alias marmotvnc="vncviewer -encodings 'copyrect tight hextile zlib corre rre raw' -quality 0 localhost:5900"
 alias pig="ssh neal@whistlepig"
+alias chrome="google-chrome"
+alias note='python ~/src/geeknote/geeknote.py'
+alias cnote='python ~/src/geeknote/geeknote.py create --title "GEEKNOTE $(hostname) $(date +%F-%T)" --content'
