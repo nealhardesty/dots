@@ -4,6 +4,9 @@
 " 2 spaces per tab
 set tabstop=2
 
+" 2 spaces per indent
+set shiftwidth=2
+
 " better command-line completion
 set wildmenu
 
