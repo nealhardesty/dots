@@ -8,9 +8,9 @@
 set-option -g status-utf8 on
 
 # remap C-b back to C-a
-set-option -g prefix C-a
-bind-key C-a send-prefix
-unbind-key C-b
+#set-option -g prefix C-a
+#bind-key C-a send-prefix
+#unbind-key C-b
 
 # vi style keys in copy mode
 bind-key [ copy-mode
