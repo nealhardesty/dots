@@ -16,6 +16,9 @@ set showcmd
 " show search highlights
 set hlsearch
 
+" remove autoindent
+set noautoindent
+
 " ignore case in searches, except when capital letters are given
 set ignorecase
 set smartcase
