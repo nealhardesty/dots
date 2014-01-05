@@ -94,6 +94,10 @@ else
 	PASS1=""
 fi
 
+if [ -f ~/.bashrc.local ]; then
+	source ~/.bashrc.local
+fi
+
 alias ls="ls -F"
 alias otter="ssh 192.168.1.42"
 alias marmot-ubu="ssh 192.168.1.13"
