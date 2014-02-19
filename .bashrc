@@ -99,19 +99,3 @@ if [ -f ~/.bashrc.local ]; then
 fi
 
 alias ls="ls -F"
-alias otter="ssh 192.168.1.42"
-alias marmot-ubu="ssh 192.168.1.13"
-#alias open="xdg-open"
-alias bear="ssh -p 2222 -L 3390:192.168.1.20:3389 neal@roadwaffle.dyndns.org"
-alias walrus="rdesktop -m -z -g 1280x1024 -P -u neal localhost -p $PASS1 2> /dev/null "
-#alias otter="rdesktop -m -z -g 1280x1024 -P -u neal localhost:3390 -p $PASS1 2> /dev/null "
-alias moose="rdesktop -m -z -g 1280x1024 -P -u neal localhost:3390 -p $PASS1 2> /dev/null "
-#alias otterwinvnc="vncviewer -encodings Tight -quality 0 localhost:5901"
-#alias otterwin="rdesktop -m -z -g 1280x1024 -P -u neal localhost:3391 -p $PASS1 2> /dev/null "
-#alias otter="vncviewer -encodings Tight -p ~/.pass -quality 4 localhost:5900"
-alias marmotvnc="vncviewer -encodings 'copyrect tight hextile zlib corre rre raw' -quality 0 localhost:5900"
-alias pig="ssh neal@whistlepig"
-alias chrome="google-chrome"
-alias note='python ~/dev/geeknote/geeknote.py'
-alias geeknote='python ~/dev/geeknote/geeknote.py'
-alias cnote='python ~/dev/geeknote/geeknote.py create --title "GEEKNOTE $(hostname) $(date +%F-%T)" --content'
