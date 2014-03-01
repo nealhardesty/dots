@@ -69,3 +69,25 @@ set scrolloff=3
 
 " Set the terminal title
 set title
+
+"Set the colorscheme.
+" Builtins:
+"  blue.vim
+"  darkblue.vim
+"  default.vim
+"  delek.vim < NICE
+"  desert.vim
+"  elflord.vim
+"  evening.vim
+"  koehler.vim
+"  morning.vim
+"  murphy.vim
+"  pablo.vim
+"  peachpuff.vim
+"  ron.vim
+"  shine.vim
+"  slate.vim
+"  torte.vim < NICE FOR DARK
+"  zellner.vim
+" also see https://github.com/tpope/vim-vividchalk for vividchalk
+colorscheme torte
