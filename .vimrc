@@ -17,7 +17,7 @@ set showcmd
 set hlsearch
 
 " highlight search as you type
-set inctype
+set incsearch
 
 " ignore case in searches, except when capital letters are given
 set ignorecase
