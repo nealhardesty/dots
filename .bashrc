@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # JAVA_HOME
-export JAVA_HOME=/opt/jdk
+#export JAVA_HOME=/opt/jdk
 
 # path
 export PATH="$PATH:$JAVA_HOME/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:~/bin:~/bin/eclipse:~/bin/node/bin:/usr/NX/bin:/opt/idea/bin"
@@ -102,7 +102,7 @@ alias ls="ls -F"
 alias otter="ssh 192.168.1.42"
 alias marmot-ubu="ssh 192.168.1.13"
 #alias open="xdg-open"
-alias bear="ssh -p 2222 -L 3390:192.168.1.20:3389 neal@roadwaffle.dyndns.org"
+alias bear="ssh -p 22 -L 3390:192.168.1.21:3389 neal@bear.roadwaffle.com"
 alias walrus="rdesktop -m -z -g 1280x1024 -P -u neal localhost -p $PASS1 2> /dev/null "
 #alias otter="rdesktop -m -z -g 1280x1024 -P -u neal localhost:3390 -p $PASS1 2> /dev/null "
 alias moose="rdesktop -m -z -g 1280x1024 -P -u neal localhost:3390 -p $PASS1 2> /dev/null "
