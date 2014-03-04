@@ -1,11 +1,11 @@
 " syntax highlighting
-"syntax on
+syntax on
 
-" 2 spaces per tab
-set tabstop=2
+" 4 spaces per tab
+set tabstop=4
 
-" 2 spaces per indent
-set shiftwidth=2
+" 4 spaces per indent
+set shiftwidth=4
 
 " better command-line completion
 set wildmenu
@@ -15,6 +15,9 @@ set showcmd
 
 " show search highlights
 set hlsearch
+
+" highlight search as you type
+set incsearch
 
 " ignore case in searches, except when capital letters are given
 set ignorecase
@@ -56,5 +59,35 @@ set t_vb=
 "set cmdheight=2
 
 " Display line numbers on the left
-"set number
+set number
 
+" Turn on line wrapping
+set wrap
+
+" Always show 3 lines of context around the cursor line
+set scrolloff=3
+
+" Set the terminal title
+set title
+
+"Set the colorscheme.
+" Builtins:
+"  blue.vim
+"  darkblue.vim
+"  default.vim
+"  delek.vim < NICE
+"  desert.vim
+"  elflord.vim
+"  evening.vim
+"  koehler.vim
+"  morning.vim
+"  murphy.vim
+"  pablo.vim
+"  peachpuff.vim
+"  ron.vim
+"  shine.vim
+"  slate.vim
+"  torte.vim < NICE FOR DARK
+"  zellner.vim
+" also see https://github.com/tpope/vim-vividchalk for vividchalk
+colorscheme torte
