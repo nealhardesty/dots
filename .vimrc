@@ -1,5 +1,12 @@
+" iMproved powers activate!
+set nocompatible
+
+filetype off
+
 " syntax highlighting
 syntax on
+
+set shell=bash
 
 " 4 spaces per tab
 set tabstop=4
@@ -91,3 +98,6 @@ set title
 "  zellner.vim
 " also see https://github.com/tpope/vim-vividchalk for vividchalk
 colorscheme torte
+
+# Trim the end of the line for the entire doc
+command! Trim :%s/\s\+$//
