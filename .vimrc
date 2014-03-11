@@ -99,5 +99,5 @@ set title
 " also see https://github.com/tpope/vim-vividchalk for vividchalk
 colorscheme torte
 
-# Trim the end of the line for the entire doc
+" Trim the end of the line for the entire doc
 command! Trim :%s/\s\+$//
