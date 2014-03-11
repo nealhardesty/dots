@@ -99,15 +99,7 @@ if [ -f ~/.bashrc.local ]; then
 fi
 
 alias ls="ls -F"
-alias otter="ssh 192.168.1.42"
-alias marmot-ubu="ssh 192.168.1.13"
-#alias open="xdg-open"
-alias bear="ssh -p 22 -L 3390:192.168.1.21:3389 neal@bear.roadwaffle.com"
+alias bear="ssh -p 2222 -L 3390:192.168.1.11:3389 neal@bear.roadwaffle.com"
+alias squirrel="ssh -p 22 -L 3390:192.168.1.11:3389 neal@squirrel.roadwaffle.com"
 alias walrus="rdesktop -m -z -g 1280x1024 -P -u neal localhost -p $PASS1 2> /dev/null "
-#alias otter="rdesktop -m -z -g 1280x1024 -P -u neal localhost:3390 -p $PASS1 2> /dev/null "
-alias moose="rdesktop -m -z -g 1280x1024 -P -u neal localhost:3390 -p $PASS1 2> /dev/null "
-#alias otterwinvnc="vncviewer -encodings Tight -quality 0 localhost:5901"
-#alias otterwin="rdesktop -m -z -g 1280x1024 -P -u neal localhost:3391 -p $PASS1 2> /dev/null "
-#alias otter="vncviewer -encodings Tight -p ~/.pass -quality 4 localhost:5900"
-alias marmotvnc="vncviewer -encodings 'copyrect tight hextile zlib corre rre raw' -quality 0 localhost:5900"
-alias chrome="google-chrome"
+#alias marmotvnc="vncviewer -encodings 'copyrect tight hextile zlib corre rre raw' -quality 0 localhost:5900"
