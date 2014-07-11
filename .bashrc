@@ -3,8 +3,10 @@
 # JAVA_HOME
 #export JAVA_HOME=/opt/jdk
 
+export ANDROID_HOME=~/bin/android-sdk
+
 # path
-export PATH="$PATH:$JAVA_HOME/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:~/bin:~/bin/eclipse:~/bin/node/bin:/usr/NX/bin:/opt/idea/bin"
+export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$JAVA_HOME/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:~/bin:~/bin/eclipse:~/bin/node/bin:/usr/NX/bin:/opt/idea/bin"
 
 # GO stuff
 export GOROOT=/usr/local/go
@@ -100,6 +102,6 @@ fi
 
 alias ls="ls -F"
 alias bear="ssh -p 2222 -L 3390:192.168.1.11:3389 neal@bear.roadwaffle.com"
-alias squirrel="ssh -p 22 -L 3390:192.168.1.11:3389 neal@squirrel.roadwaffle.com"
-alias walrus="rdesktop -m -z -g 1280x1024 -P -u neal localhost -p $PASS1 2> /dev/null "
+alias owl="ssh -p 22 -L 3390:192.168.1.11:3389 neal@owl.roadwaffle.com"
+alias walrus="rdesktop -m -z -g 1280x768 -u neal localhost -p $PASS1 2> /dev/null "
 #alias marmotvnc="vncviewer -encodings 'copyrect tight hextile zlib corre rre raw' -quality 0 localhost:5900"
