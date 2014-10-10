@@ -6,7 +6,7 @@
 export ANDROID_HOME=~/bin/android-sdk
 
 # path
-export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$JAVA_HOME/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:~/bin:~/bin/eclipse:~/bin/node/bin:/usr/NX/bin:/opt/idea/bin"
+export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$JAVA_HOME/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:~/bin:~/bin/eclipse:~/bin/node/bin:/usr/NX/bin:/opt/idea/bin:/usr/games"
 
 # GO stuff
 export GOROOT=/usr/local/go
