@@ -8,11 +8,11 @@ syntax on
 
 set shell=bash
 
-" 4 spaces per tab
-set tabstop=4
+" 2 spaces per tab
+set tabstop=2
 
-" 4 spaces per indent
-set shiftwidth=4
+" 2 spaces per indent
+set shiftwidth=2
 
 " better command-line completion
 set wildmenu

@@ -100,6 +100,9 @@ if [ -f ~/.bashrc.local ]; then
 	source ~/.bashrc.local
 fi
 
+alias pd="pushd"
+alias p="popd"
+
 alias ls="ls -F"
 alias bear="ssh -p 2222 -L 3390:192.168.1.11:3389 neal@bear.roadwaffle.com"
 alias owl="ssh -p 22 -L 3390:192.168.1.11:3389 neal@owl.roadwaffle.com"
