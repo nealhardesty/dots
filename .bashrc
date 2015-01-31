@@ -10,6 +10,7 @@ export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$JAVA_HOME/bin:/us
 
 # GO stuff
 export GOROOT=/usr/local/go
+export GOPATH=~/dev/go
 export PATH=$PATH:$GOROOT/bin:$HOME/go
 
 # if not interactive, leave now
