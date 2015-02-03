@@ -8,6 +8,9 @@ export ANDROID_HOME=~/bin/android-sdk
 # path
 export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$JAVA_HOME/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:~/bin:~/bin/eclipse:~/bin/node/bin:/usr/NX/bin:/opt/idea/bin"
 
+export EDITOR=vim
+export VISUAL=vim
+
 # GO stuff
 export GOROOT=/usr/local/go
 export PATH=$PATH:$GOROOT/bin:$HOME/go
@@ -101,7 +104,7 @@ if [ -f ~/.bashrc.local ]; then
 fi
 
 alias ls="ls -F"
-alias bear="ssh -p 2222 -L 3390:192.168.1.11:3389 neal@bear.roadwaffle.com"
-alias owl="ssh -p 22 -L 3390:192.168.1.11:3389 neal@owl.roadwaffle.com"
+alias bear="ssh -p 2222 -L 3389:192.168.1.11:3389 neal@bear.roadwaffle.com"
+alias marmot="ssh -p 22 -L 3389:192.168.1.11:3389 neal@marmot.roadwaffle.com"
 alias walrus="rdesktop -m -z -g 1280x768 -u neal localhost -p $PASS1 2> /dev/null "
 #alias marmotvnc="vncviewer -encodings 'copyrect tight hextile zlib corre rre raw' -quality 0 localhost:5900"
