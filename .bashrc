@@ -10,8 +10,8 @@ export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$JAVA_HOME/bin:/us
 
 # GO stuff
 export GOROOT=/usr/local/go
-export GOPATH=~/dev/go
-export PATH=$PATH:$GOROOT/bin:$HOME/go
+export GOPATH=$HOME/gocode/
+export PATH=$PATH:$GOROOT/bin:$GOCODE/bin
 
 # if not interactive, leave now
 [[ ! $- =~ i ]] && return
@@ -110,3 +110,4 @@ alias owl="ssh -p 22 -L 3390:192.168.1.11:3389 neal@owl.roadwaffle.com"
 alias walrus="rdesktop -m -z -g 1280x768 -u neal localhost -p $PASS1 2> /dev/null "
 #alias marmotvnc="vncviewer -encodings 'copyrect tight hextile zlib corre rre raw' -quality 0 localhost:5900"
 alias emacs="emacs -nw"
+alias otter="ssh -p 2345 neal@badger.roadwaffle.com"
