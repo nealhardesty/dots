@@ -11,7 +11,7 @@ export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$JAVA_HOME/bin:/us
 # GO stuff
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/gocode/
-export PATH=$PATH:$GOROOT/bin:$GOCODE/bin
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 # if not interactive, leave now
 [[ ! $- =~ i ]] && return
