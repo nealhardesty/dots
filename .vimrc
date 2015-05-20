@@ -101,3 +101,8 @@ colorscheme torte
 
 " Trim the end of the line for the entire doc
 command! Trim :%s/\s\+$//
+
+"
+" Auto save when window loses focus -- crazy huh?
+"  http://ideasintosoftware.com/vim-productivity-tips/
+:au FocusLost * silent! wa
