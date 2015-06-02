@@ -47,3 +47,8 @@ set -g status-right '#[fg=green,bg=default]<<< #[fg=white,bg=default,bright]"#T"
 
 # Buffer size (default 2000)
 set-option -g history-limit 10000
+
+# bind 'b' to Clear Screen, and Clear scrollback
+bind-key C-b send-keys -R \; clear-history
+bind-key b send-keys -R \; clear-history
+
