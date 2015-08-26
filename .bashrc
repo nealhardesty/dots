@@ -64,18 +64,29 @@ case "$HNAME" in
 		;;
 esac
 
-
 # prompt
 function setPS1 {
 	if [ $EUID = 0 ]; then
 		export PS1="\u$txtcolor@$HNAME$txtreset\w# "
 	else
 		if [ -z "$PS1BASE" ]; then
-			PS1="\u$txtcolor@$HNAME$txtreset\w> "
+			PS1="\u$txtcolor@$HNAME$txtreset\w$GIT_CURRENT_BRANCH> "
 		else
-			PS1="$PS1BASE"
+			PS1="$PS1BASE$GIT_CURRENT_BRANCH"
 		fi
 	fi
+}
+
+
+function setWindowTitle {
+	case "$TERM" in
+		xterm*|rxvt*|screen*)
+			#PROMPT_COMMAND='echo -ne "\033]0;${HNAME}:${PWD}\007"'
+			echo -ne "\033]0;${HNAME}:${PWD}\007"
+			;;
+		*)
+			;;
+	esac
 }
 
 function getGitInfo {
@@ -88,21 +99,18 @@ function getGitInfo {
   if [ \! -z "$GIT_CURRENT_BRANCH" ]; then
     GIT_CURRENT_BRANCH=" [$GIT_CURRENT_BRANCH]"
   fi
-  setPS1
+	setPS1
 }
-PROMPT_COMMAND=getGitInfo
+
+function promptCommand {
+	getGitInfo
+	setWindowTitle
+	setPS1
+}
+PROMPT_COMMAND="promptCommand"
 
 setPS1
 
-
-
-case "$TERM" in
-	xterm*|rxvt*|screen*)
-    PROMPT_COMMAND='echo -ne "\033]0;${HNAME}:${PWD}\007"'
-    ;;
-	*)
-    ;;
-esac
 
 
 #Eclipse mouse button click fix - may not be required anymore
