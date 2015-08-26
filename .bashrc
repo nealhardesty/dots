@@ -66,15 +66,34 @@ esac
 
 
 # prompt
-if [ $EUID = 0 ]; then
-	export PS1="\u$txtcolor@$HNAME$txtreset\w# "
-else
-	if [ -z "$PS1BASE" ]; then
-		PS1="\u$txtcolor@$HNAME$txtreset\w> "
+function setPS1 {
+	if [ $EUID = 0 ]; then
+		export PS1="\u$txtcolor@$HNAME$txtreset\w# "
 	else
-		PS1="$PS1BASE"
+		if [ -z "$PS1BASE" ]; then
+			PS1="\u$txtcolor@$HNAME$txtreset\w> "
+		else
+			PS1="$PS1BASE"
+		fi
 	fi
-fi
+}
+
+function getGitInfo {
+  GIT_CURRENT_BRANCH=""
+  if [ $EUID != 0 ]; then
+    GIT_CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
+  else
+    GIT_CURRENT_BRANCH=""
+  fi
+  if [ \! -z "$GIT_CURRENT_BRANCH" ]; then
+    GIT_CURRENT_BRANCH=" [$GIT_CURRENT_BRANCH]"
+  fi
+  setPS1
+}
+PROMPT_COMMAND=getGitInfo
+
+setPS1
+
 
 
 case "$TERM" in
