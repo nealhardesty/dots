@@ -45,3 +45,10 @@ set -g status-right-length 140
 set -g status-left '#[fg=green,bold]#H>>>'
 set -g status-right '#[fg=green,bg=default]<<< #[fg=white,bg=default,bright]"#T" #[fg=green,bg=default,dim]< #(uptime |cut -f 14-16 -d " ") < #[fg=blue,bg=default]%a%l:%M %p %Y-%m-%d'
 
+# Buffer size (default 2000)
+set-option -g history-limit 10000
+
+# bind 'b' to Clear Screen, and Clear scrollback
+bind-key C-b send-keys -R \; clear-history
+bind-key b send-keys -R \; clear-history
+

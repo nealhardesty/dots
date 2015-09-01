@@ -3,17 +3,18 @@
 # JAVA_HOME
 #export JAVA_HOME=/opt/jdk
 
-export ANDROID_HOME=~/bin/android-sdk
+export ANDROID_HOME="~/bin/android-sdk"
 
 # path
-export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$JAVA_HOME/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:~/bin:~/bin/eclipse:~/bin/node/bin:/usr/NX/bin:/opt/idea/bin"
+export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$JAVA_HOME/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:~/bin:~/bin/eclipse:~/bin/node/bin:/usr/NX/bin:/opt/idea/bin:/usr/games"
 
 export EDITOR=vim
 export VISUAL=vim
 
 # GO stuff
 export GOROOT=/usr/local/go
-export PATH=$PATH:$GOROOT/bin:$HOME/go
+export GOPATH=$HOME/gocode/
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 # if not interactive, leave now
 [[ ! $- =~ i ]] && return
@@ -66,26 +67,53 @@ case "$HNAME" in
 		;;
 esac
 
-
 # prompt
-if [ $EUID = 0 ]; then
-	export PS1="\u$txtcolor@$HNAME$txtreset\w# "
-else
-	if [ -z "$PS1BASE" ]; then
-		PS1="\u$txtcolor@$HNAME$txtreset\w> "
+function setPS1 {
+	if [ $EUID = 0 ]; then
+		export PS1="\u$txtcolor@$HNAME$txtreset\w# "
 	else
-		PS1="$PS1BASE"
+		if [ -z "$PS1BASE" ]; then
+			PS1="$GIT_CURRENT_BRANCH\u$txtcolor@$HNAME$txtreset\w> "
+		else
+			PS1="$GIT_CURRENT_BRANCH$PS1BASE"
+		fi
 	fi
-fi
+}
 
 
-case "$TERM" in
-	xterm*|rxvt*|screen*)
-    PROMPT_COMMAND='echo -ne "\033]0;${HNAME}:${PWD}\007"'
-    ;;
-	*)
-    ;;
-esac
+function setWindowTitle {
+	case "$TERM" in
+		xterm*|rxvt*|screen*)
+			#PROMPT_COMMAND='echo -ne "\033]0;${HNAME}:${PWD}\007"'
+			echo -ne "\033]0;${HNAME}:${PWD}\007"
+			;;
+		*)
+			;;
+	esac
+}
+
+function getGitInfo {
+  GIT_CURRENT_BRANCH=""
+  if [ $EUID != 0 ]; then
+    GIT_CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
+  else
+    GIT_CURRENT_BRANCH=""
+  fi
+  if [ \! -z "$GIT_CURRENT_BRANCH" ]; then
+    GIT_CURRENT_BRANCH="[$GIT_CURRENT_BRANCH] "
+  fi
+	setPS1
+}
+
+function promptCommand {
+	getGitInfo
+	setWindowTitle
+	setPS1
+}
+PROMPT_COMMAND="promptCommand"
+
+setPS1
+
 
 
 #Eclipse mouse button click fix - may not be required anymore
@@ -103,8 +131,13 @@ if [ -f ~/.bashrc.local ]; then
 	source ~/.bashrc.local
 fi
 
+alias pd="pushd"
+alias p="popd"
+
 alias ls="ls -F"
 alias bear="ssh -p 2222 -L 3389:192.168.1.11:3389 neal@bear.roadwaffle.com"
 alias marmot="ssh -p 22 -L 3389:192.168.1.11:3389 neal@marmot.roadwaffle.com"
 alias walrus="rdesktop -m -z -g 1280x768 -u neal localhost -p $PASS1 2> /dev/null "
 #alias marmotvnc="vncviewer -encodings 'copyrect tight hextile zlib corre rre raw' -quality 0 localhost:5900"
+alias emacs="emacs -nw"
+alias otter="ssh -p 2345 neal@badger.roadwaffle.com"

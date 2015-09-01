@@ -8,11 +8,11 @@ syntax on
 
 set shell=bash
 
-" 4 spaces per tab
-set tabstop=4
+" 2 spaces per tab
+set tabstop=2
 
-" 4 spaces per indent
-set shiftwidth=4
+" 2 spaces per indent
+set shiftwidth=2
 
 " better command-line completion
 set wildmenu
@@ -101,3 +101,8 @@ colorscheme torte
 
 " Trim the end of the line for the entire doc
 command! Trim :%s/\s\+$//
+
+"
+" Auto save when window loses focus -- crazy huh?
+"  http://ideasintosoftware.com/vim-productivity-tips/
+:au FocusLost * silent! wa
