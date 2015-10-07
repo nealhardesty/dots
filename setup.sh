@@ -2,7 +2,7 @@
 
 GITREPO=$(cd $(dirname $0); pwd)
 
-find . -depth 1 \! -name '.git' \! -name '.ssh' -name '.*' -exec ln -sfv $GITREPO{} ~ \;
+find $GITREPO -depth 1 \! -name '.git' \! -name '.ssh' -name '.*' -exec ln -sfv {} ~ \;
 
 mkdir -p ~/.ssh
 ln -sfv $GITREPO/.ssh/config ~/.ssh/config
