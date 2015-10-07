@@ -1,0 +1,54 @@
+127.0.0.1	localhost
+127.0.1.1	marmot
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+# http://en.wikipedia.org/wiki/List_of_mammals_of_North_America
+#
+# porcupine duck woodchuck badger squirrel lobster whistlepig walrus opossum otter
+# armadillo gopher muskrat pika bat bobcat lynx ocelot coyote ringtail weasel skunk
+# sealion bison/buffalo muskox caribou
+# marmoset
+
+192.168.1.1     gw beaver  # Cisco LinkSys E4200 58:6d:8f:13:31:5
+
+192.168.1.5     owl
+
+192.168.1.10    marmot
+192.168.1.11    walrus
+192.168.1.12    skunk
+192.168.1.13    woodchuck whistlepig groundhog pig
+192.168.1.14    gopher
+192.168.1.15    marmotws
+
+192.168.1.20    moose    # Neal Desktop 20:cf:30:76:fc:36
+192.168.1.21    squirrel    # Ubuntu
+192.168.1.25    moosews
+
+192.168.1.30    bear # Media Center
+
+192.168.1.40    otter    # Neal Laptop
+192.168.1.41    diefledermaus maus
+192.168.1.42    turkey
+192.168.1.43    harry
+
+192.168.1.50    whistlepig pig groundhog # Neal Tablet
+
+192.168.1.60    nhardesty-ltm   # Neal Macbook Pro
+
+192.168.1.70    penguin # Kailey Desktop
+
+192.168.1.80    octopus # Work Table Laptop
+
+192.168.1.85    octoprint  # Printrbot
+
+192.168.1.5     nexus7 # Neal Tablet 2
+
+
+104.236.150.172 badgersf badger
+
