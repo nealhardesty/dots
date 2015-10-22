@@ -11,6 +11,9 @@ set shell=bash
 " 2 spaces per tab
 set tabstop=2
 
+" crazyness, map 'jjj' to escape
+imap jjj <esc>
+
 " 2 spaces per indent
 set shiftwidth=2
 
@@ -35,13 +38,29 @@ set backspace=indent,eol,start
 
 " When opening a new line and no filetype-specific indenting is enabled, keep
 " the same indent as the line you're currently on. Useful for READMEs, etc.
-"set autoindent
-set noautoindent
+set autoindent
+"set noautoindent
+set smartindent
 
 " Stop certain movements from always going to the first character of a line.
 " While this behaviour deviates from that of Vi, it does what most users
 " coming from other editors would expect.
 set nostartofline
+
+
+" code folding -- off
+set nofoldenable
+set foldcolumn=3
+set foldmethod=marker
+
+" no stupid swap file
+set noswapfile
+
+" backups .. with a '~'
+set nobackup
+
+" Add < and > to match pairs
+set matchpairs+=<:>
 
 " Display the cursor position on the last line of the screen or in the status
 " line of a window
@@ -49,6 +68,9 @@ set ruler
 
 " Always display the status line, even if only one window is displayed
 set laststatus=2
+
+" show all whitespace
+set nolist
 
 " Use visual bell instead of beeping when doing something wrong
 set visualbell
@@ -76,6 +98,12 @@ set scrolloff=3
 
 " Set the terminal title
 set title
+
+" show the line where the cursor is
+set nocursorline
+
+" auto reload the file when updated outside of vim
+set autoread
 
 "Set the colorscheme.
 " Builtins:
