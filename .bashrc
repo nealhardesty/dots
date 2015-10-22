@@ -40,23 +40,23 @@ txtlightblue=$(tput setaf 6)
 txtwhite=$(tput setaf 7)
 
 #HNAME=${HOSTNAME,,}
-HNAME=$(echo $HOSTNAME | tr '[A-Z]' '[a-z]')
+HNAME=$(echo $HOSTNAME | tr '[A-Z]' '[a-z]' | cut -d '.' -f 1)
 
 # Machine specific customizations
 case "$HNAME" in
-	marmot) 
+	marmot*) 
 		txtcolor=$txtbold$txtyellow
 		#emoji cat
 		if [ -z "$SSH_CONNECTION" ]; then HNAME="🐱 "; fi
 		;;
-	bear|otter)
+	bear*|otter*)
 		txtcolor=$txtbold$txtgreen
 		;;
-	whistlepig|pig|badger)
+	whistlepig*|pig*|badger*)
 		txtcolor=$txtbold$txtpurple
 		PS1BASE="\u$txtcolor@$HNAME$txtreset\w ^^^oo_ "
 		;;
-	moose|mooses|walrus)
+	moose*|mooses*|walrus*)
 		txtcolor=$txtbold$txtred
 		;;
 	*)
