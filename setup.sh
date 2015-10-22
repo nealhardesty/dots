@@ -8,3 +8,5 @@ find $GITREPO -maxdepth 1 \! -name .gitignore -type f -name '.*' -exec ln -sfv {
 mkdir -p ~/.ssh
 ln -sfv $GITREPO/.ssh/config ~/.ssh/config
 
+mkdir -p ~/bin
+
