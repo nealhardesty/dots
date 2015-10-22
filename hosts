@@ -27,18 +27,18 @@
 192.168.1.42    turkey
 192.168.1.43    harry
 
-192.168.1.50    whistlepig pig groundhog # Neal Tablet
+192.168.1.50    caribou # Work table desktop
 
 192.168.1.60    nhardesty-ltm   # Neal Macbook Pro
 
 192.168.1.70    penguin # Kailey Desktop
 
-192.168.1.80    octopus # Work Table Laptop
+192.168.1.80    octopus # Kailey Laptop
 
-192.168.1.85    octoprint  # Printrbot
+192.168.1.90    octoprint  # Printrbot
 
-192.168.1.5     nexus7 # Neal Tablet 2
-
+192.168.1.200		wombat	# Neal iPhone
+192.168.1.201		aardvark # Neal iPad
 
 104.236.150.172 badgersf badger
 
