@@ -1,55 +1,5 @@
 # .tmux-conf -- Copyright 2013 Neal Hardesty
 # Linux Specific Version
 
-# reload with 'tmux source-file ~/.tmux.conf'
-
-
-# status bar utf8 on
-set-option -g status-utf8 on
-
-# remap C-b back to C-a
-#set-option -g prefix C-a
-#bind-key C-a send-prefix
-#unbind-key C-b
-
-# vi style keys in copy mode
-bind-key [ copy-mode
-setw -g mode-keys vi
-
-# https://github.com/seebi/tmux-colors-solarized/blob/master/tmuxcolors-256.conf
-set-option -g status-bg "#222222" #colour235 #base02
-set-option -g status-fg colour136 #yellow
-set-option -g status-attr default
-
-# default window title colors
-set-window-option -g window-status-fg "#0040ff" #base0
-set-window-option -g window-status-bg default
-set-window-option -g window-status-attr bright
-
-# active window title colors
-set-window-option -g window-status-current-fg yellow #blue #red #purple #orange
-set-window-option -g window-status-current-bg "#3a3a3a"
-set-window-option -g window-status-current-attr bright
-
-# vi mode
-setw -g mode-keys vi
-setw -g monitor-activity on
-set -g visual-activity on
-
-# status bar
-set -g status-interval 1
-#set -g status-justify centre # center align window list
-set -g status-justify left
-set -g status-left-length 22
-set -g status-right-length 140
-#set -g status-left '#[fg=green,bg=default]#H>>>'
-set -g status-left '#[fg=green,bg=default]>>>'
 set -g status-right '#[fg=green,bg=default]<<< #[fg=white,bg=default]#T #[fg=green,bg=default]< #(uptime |cut -f 14-16 -d " ") < #[fg=#0040ff,bg=default]%a %l:%M %p %Y-%m-%d'
-
-# Buffer size (default 2000)
-set-option -g history-limit 10000
-
-# bind 'b' to Clear Screen, and Clear scrollback
-#bind-key C-b send-keys -R \; clear-history
-bind-key b send-keys -R \; clear-history
 
