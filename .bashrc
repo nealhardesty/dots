@@ -45,19 +45,16 @@ HNAME=$(echo $HOSTNAME | tr '[A-Z]' '[a-z]')
 # Machine specific customizations
 case "$HNAME" in
 	marmot) 
-		txtcolor=$txtbold$txtpurple
+		txtcolor=$txtbold$txtblue
 		#emoji cat
 		if [ -z "$SSH_CONNECTION" ]; then HNAME="🐱 "; fi
 		;;
-	bear)
+	bear|otter)
 		txtcolor=$txtbold$txtgreen
 		;;
-	whistlepig|pig)
-		txtcolor=$txtbold$txtblue
-		PS1BASE="\u$txtcolor@$HNAME$txtreset\w ^^^oo_ "
-		;;
-	nhardesty-wsl|badger|whistlepig|otter)
+	whistlepig|pig|badger)
 		txtcolor=$txtbold$txtpurple
+		PS1BASE="\u$txtcolor@$HNAME$txtreset\w ^^^oo_ "
 		;;
 	moose|mooses|walrus)
 		txtcolor=$txtbold$txtred
@@ -80,12 +77,16 @@ function setPS1 {
 	fi
 }
 
+function chxt {
+			echo -ne "\033]0;$*\007"
+}
 
 function setWindowTitle {
 	case "$TERM" in
 		xterm*|rxvt*|screen*)
 			#PROMPT_COMMAND='echo -ne "\033]0;${HNAME}:${PWD}\007"'
-			echo -ne "\033]0;${HNAME}:${PWD}\007"
+			#echo -ne "\033]0;${HNAME}:${PWD}\007"
+			chxt "${HNAME}:${PWD}"
 			;;
 		*)
 			;;
