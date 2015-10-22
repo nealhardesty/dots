@@ -45,7 +45,7 @@ HNAME=$(echo $HOSTNAME | tr '[A-Z]' '[a-z]')
 # Machine specific customizations
 case "$HNAME" in
 	marmot) 
-		txtcolor=$txtbold$txtblue
+		txtcolor=$txtbold$txtyellow
 		#emoji cat
 		if [ -z "$SSH_CONNECTION" ]; then HNAME="🐱 "; fi
 		;;
@@ -101,7 +101,7 @@ function getGitInfo {
     GIT_CURRENT_BRANCH=""
   fi
   if [ \! -z "$GIT_CURRENT_BRANCH" ]; then
-    GIT_CURRENT_BRANCH="[$GIT_CURRENT_BRANCH] "
+    GIT_CURRENT_BRANCH="[$txtred$GIT_CURRENT_BRANCH$txtreset] "
   fi
 	setPS1
 }
