@@ -134,3 +134,6 @@ command! Trim :%s/\s\+$//
 " Auto save when window loses focus -- crazy huh?
 "  http://ideasintosoftware.com/vim-productivity-tips/
 :au FocusLost * silent! wa
+
+" Sets the tab search path to the dir with the current file, the current dir '', and all dirs under the current dir
+set path=.,,**
