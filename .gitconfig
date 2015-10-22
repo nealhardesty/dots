@@ -1,0 +1,14 @@
+[user]
+	email = nealhardesty@yahoo.com
+	name = Neal Hardesty
+[github]
+	user = nealhardesty
+[core]
+	editor = vim
+[diff]
+	tool = vimdiff
+[alias]
+	remotes = remote -v
+	branches = branch -a
+[push]
+	default = matching
