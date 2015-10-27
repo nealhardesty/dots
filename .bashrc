@@ -52,9 +52,9 @@ case "$HNAME" in
 	bear*|otter*)
 		txtcolor=$txtbold$txtgreen
 		;;
-	whistlepig*|pig*|badger*)
+	whistlepig*|pig*|badger*|woodchuck*)
 		txtcolor=$txtbold$txtpurple
-		PS1BASE="\u$txtcolor@$HNAME$txtreset\w ^^^oo_ "
+		PS1BASE="\u$txtcolor@$HNAME$txtreset\w ^^^oO_ "
 		;;
 	moose*|mooses*|walrus*)
 		txtcolor=$txtbold$txtred
