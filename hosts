@@ -24,10 +24,10 @@
 
 192.168.1.40    otter    # Neal Laptop
 192.168.1.41    diefledermaus maus
-192.168.1.42    turkey
+#192.168.1.42    turkey
 192.168.1.43    harry
 
-192.168.1.50    caribou # Work table desktop
+192.168.1.50    turkey	# Neal Work Laptop
 
 192.168.1.60    nhardesty-ltm   # Neal Macbook Pro
 
