@@ -6,7 +6,7 @@
 export ANDROID_HOME="~/bin/android-sdk"
 
 # path
-export PATH="~/bin:/usr/local/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$JAVA_HOME/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/opt/idea/bin:/usr/games"
+export PATH="~/bin:/usr/local/bin:~/.rvm/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$JAVA_HOME/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/opt/idea/bin:/usr/games"
 
 export EDITOR=vim
 export VISUAL=vim
@@ -136,9 +136,4 @@ alias pd="pushd"
 alias p="popd"
 
 alias ls="ls -F"
-alias bear="ssh -p 2222 -L 3389:192.168.1.11:3389 neal@bear.roadwaffle.com"
-alias marmot="ssh -p 22 -L 3389:192.168.1.11:3389 neal@marmot.roadwaffle.com"
-alias walrus="rdesktop -m -z -g 1280x768 -u neal localhost -p $PASS1 2> /dev/null "
-#alias marmotvnc="vncviewer -encodings 'copyrect tight hextile zlib corre rre raw' -quality 0 localhost:5900"
 alias emacs="emacs -nw"
-alias otter="ssh -p 2345 neal@badger.roadwaffle.com"
