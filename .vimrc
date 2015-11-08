@@ -1,3 +1,11 @@
+" Pathogen: https://github.com/tpope/vim-pathogen
+execute pathogen#infect()
+
+" NERDtree: https://github.com/scrooloose/nerdtree
+autocmd vimenter * NERDTree
+map <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
 " iMproved powers activate!
 set nocompatible
 
@@ -88,7 +96,7 @@ set t_vb=
 "set cmdheight=2
 
 " Display line numbers on the left
-set number
+set nonumber
 
 " Turn on line wrapping
 set wrap
