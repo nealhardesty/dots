@@ -2,7 +2,7 @@
 execute pathogen#infect()
 
 " NERDtree: https://github.com/scrooloose/nerdtree
-autocmd vimenter * NERDTree
+"autocmd vimenter * NERDTree
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
@@ -58,7 +58,7 @@ set nostartofline
 
 " code folding -- off
 set nofoldenable
-set foldcolumn=3
+"set foldcolumn=3
 set foldmethod=marker
 
 " no stupid swap file
