@@ -11,6 +11,10 @@ ln -sf $GITREPO/.vim ~/.vim
 
 
 mkdir -p ~/.ssh
-ln -sfv $GITREPO/.ssh/config ~/.ssh/config
+if [ -f ~/.ssh/config ]; then
+	echo Cowardly refusing to overwrite .ssh/config
+else
+	ln -sfv $GITREPO/.ssh/config ~/.ssh/config
+fi
 
 mkdir -p ~/bin
