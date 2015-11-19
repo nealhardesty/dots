@@ -142,3 +142,4 @@ alias p="popd"
 
 alias ls="ls -F"
 alias emacs="emacs -nw"
+alias marmot="autossh -M 0 -L 3390:192.168.1.11:3389 -L 3391:192.168.1.12:3389 -t neal@marmot.roadwaffle.com 'tmux attach || tmux new'"
