@@ -1,4 +1,4 @@
 # .tmux-conf -- Copyright 2013 Neal Hardesty
 # This version is specific for Mac OS X
 
-set -g status-right '#[fg=green,bg=default]<<< #[fg=white,bg=default]#T #[fg=green,bg=default]< #(uptime |cut -f 11-13 -d " ") < #[fg=#0040ff,bg=default]%a %l:%M %p %Y-%m-%d'
+set -g status-right '#[fg=green,bg=default]<<< #[fg=white,bg=default]#T #[fg=green,bg=default]< #(uptime |cut -f 12-14 -d " ") < #[fg=#0040ff,bg=default]%H:%M %Y-%m-%d'
