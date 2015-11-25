@@ -91,7 +91,11 @@ function setWindowTitle {
 		xterm*|rxvt*|screen*)
 			#PROMPT_COMMAND='echo -ne "\033]0;${HNAME}:${PWD}\007"'
 			#echo -ne "\033]0;${HNAME}:${PWD}\007"
-			chxt "${HNAME}:${PWD}"
+			if [ "$TITLE" ]; then
+				chxt "$TITLE"
+			else
+				chxt "${HNAME}:${PWD}"
+			fi
 			;;
 		*)
 			;;
