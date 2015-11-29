@@ -1,5 +1,5 @@
 # .tmux-conf -- Copyright 2013 Neal Hardesty
 # Linux Specific Version
 
-set -g status-right '#[fg=green,bg=default]<<< #[fg=white,bg=default]#T #[fg=green,bg=default]< #(uptime |cut -f 14-16 -d " ") < #[fg=#0040ff,bg=default]%a %H:%M %Y-%m-%d'
+set -g status-right '#[fg=green,bg=default]<<< #[fg=white,bg=default]#T #[fg=green,bg=default]< #(uptime |cut -f 14-16 -d " ") < #[fg=#0040ff,bg=default]%Y-%m-%d %H:%M'
 
