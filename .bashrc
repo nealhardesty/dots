@@ -17,8 +17,10 @@ export EDITOR=vim
 export VISUAL=vim
 
 # GO stuff
+# homebrew install location: /usr/local/opt/go/libexec/bin
 export GOROOT=/usr/local/go
-export GOPATH=$HOME/gocode/
+export GOPATH=$HOME/go/
+mkdir -p $GOPATH
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 # if not interactive, leave now
