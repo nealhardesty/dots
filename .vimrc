@@ -18,12 +18,16 @@ set shell=bash
 
 " 2 spaces per tab
 set tabstop=2
+" 2 spaces per indent
+set shiftwidth=2
+" use spaces instead of tabs
+set expandtab
+
+" use ':retab' to fix borked tabs -> spaces
+
 
 " crazyness, map 'jjj' to escape
 imap jjj <esc>
-
-" 2 spaces per indent
-set shiftwidth=2
 
 " better command-line completion
 set wildmenu
