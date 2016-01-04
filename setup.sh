@@ -12,6 +12,8 @@ ln -sfv $GITREPO/.vim ~/.vim
 rm -rf ~/.i3
 ln -sfv $GITREPO/.i3 ~/.i3
 
+touch ~/.bashrc.local
+
 
 mkdir -p ~/.ssh
 if [ -f ~/.ssh/config ]; then
