@@ -50,6 +50,7 @@ txtwhite=$(tput setaf 7)
 HNAME=$(echo $HOSTNAME | tr '[A-Z]' '[a-z]' | cut -d '.' -f 1)
 
 # Machine specific customizations
+# More emoticons: ☠ 🐱 🐙 👀 🐿 🐽 🐻 🐳 🐮 🐯 🐷 🐭 🐢 🐝 🐡 🐠 🐞 🐟 🐘 🐌 🐊 🐈 🐉 💩 💥 👾 
 case "$HNAME" in
 	marmot*) 
 		txtcolor=$txtbold$txtyellow
