@@ -78,7 +78,8 @@ function setPS1 {
 		export PS1="\u$txtcolor@$HNAME$txtreset\w# "
 	else
 		if [ -z "$PS1BASE" ]; then
-			PS1="$GIT_CURRENT_BRANCH\u$txtcolor@$HNAME$txtreset\w> "
+			#PS1="$GIT_CURRENT_BRANCH\u$txtcolor@$HNAME$txtreset\w> "
+			PS1="(\u$txtcolor@$HNAME$txtreset \w$GIT_CURRENT_BRANCH)👾 "
 		else
 			PS1="$GIT_CURRENT_BRANCH$PS1BASE"
 		fi
@@ -113,7 +114,7 @@ function getGitInfo {
     GIT_CURRENT_BRANCH=""
   fi
   if [ \! -z "$GIT_CURRENT_BRANCH" ]; then
-    GIT_CURRENT_BRANCH="[$txtred$GIT_CURRENT_BRANCH$txtreset] "
+    GIT_CURRENT_BRANCH=" $txtred$GIT_CURRENT_BRANCH$txtreset"
   fi
 	setPS1
 }
