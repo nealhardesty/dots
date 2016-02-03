@@ -49,7 +49,8 @@ txtwhite=$(tput setaf 7)
 #HNAME=${HOSTNAME,,}
 HNAME=$(echo $HOSTNAME | tr '[A-Z]' '[a-z]' | cut -d '.' -f 1)
 
-# More emoticons: ☠ 🐱 🐙 👀 🐿 🐽 🐻 🐳 🐮 🐯 🐷 🐭 🐢 🐝 🐡 🐠 🐞 🐟 🐘 🐌 🐊 🐈 🐉 💩 💥 👾 
+# Animals: 🐱 🐙 🐿 🐽 🐻 🐳 🐮 🐯 🐷 🐭 🐢 🐝 🐡 🐠 🐞 🐟 🐘 🐌 🐊 🐈 🐉 🦃 🦁 🦀
+# Symbols: ᚬ ☠ 💩 💥 👾 🤖 🤓 👀 ⎇ » ▶ « ◀ 
 
 # Machine specific customizations
 #case "$HNAME" in
@@ -75,12 +76,31 @@ HNAME=$(echo $HOSTNAME | tr '[A-Z]' '[a-z]' | cut -d '.' -f 1)
 
 # prompt
 function setPS1 {
-	if [ $EUID = 0 ]; then
-		#export PS1="\u$txtcolor@$HNAME$txtreset\w# "
-	  export PS1="☠\u$txtgreen@$HNAME$txtreset$GIT_CURRENT_BRANCH \w☠ "
-	else
-	  export PS1="(\u$txtgreen@$HNAME$txtreset$GIT_CURRENT_BRANCH \w) "
-	fi
+  case "$HNAME" in 
+    marmot*)
+      PCHAR="🐯"
+      ;;
+    bear*)
+      PCHAR="🐻"
+      ;;
+    otter*)
+      PCHAR="🐱"
+      ;;
+    turkey*)
+      PCHAR="🦃"
+      ;;
+    *)
+      PCHAR="👾"
+      ;;
+  esac
+  if [[ $EUID = 0 ]]; then
+    PCHAR="☠"
+  fi
+  if [[ "$LAST_EXITCODE" -gt 0 ]]; then
+    PCHAR="💥"
+  fi
+
+	export PS1="($txtpurple\u$txtreset@$txtgreen$txtbold$HNAME$txtreset$GIT_CURRENT_BRANCH $txtlightblue\w$txtreset)$PCHAR "
 }
 
 function chxt {
@@ -104,7 +124,7 @@ function setWindowTitle {
 function getGitInfo {
   GIT_CURRENT_BRANCH=""
   if [ $EUID != 0 ]; then
-    branch="$txtpurple$(git rev-parse --abbrev-ref HEAD 2>/dev/null)$txtreset"
+    branch="$txtred$(git rev-parse --abbrev-ref HEAD 2>/dev/null)$txtreset"
     if [ "$?" -eq 0 ]; then
       GIT_CURRENT_BRANCH=" $branch"
     else
@@ -114,6 +134,7 @@ function getGitInfo {
 }
 
 function promptCommand {
+  LAST_EXITCODE=$?
 	getGitInfo
 	setWindowTitle
 	setPS1
