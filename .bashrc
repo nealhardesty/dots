@@ -79,7 +79,7 @@ function setPS1 {
 	else
 		if [ -z "$PS1BASE" ]; then
 			#PS1="$GIT_CURRENT_BRANCH\u$txtcolor@$HNAME$txtreset\w> "
-			PS1="(\u$txtcolor@$HNAME$txtreset \w$GIT_CURRENT_BRANCH)👾 "
+			PS1="(\u$txtcolor@$HNAME$txtreset$GIT_CURRENT_BRANCH \w) "
 		else
 			PS1="$GIT_CURRENT_BRANCH$PS1BASE"
 		fi
