@@ -34,6 +34,8 @@ if [ -z "$DISPLAY" ]; then
   export DISPLAY=`who am i|awk '{print $5}'|sed -e 's/[\(\)]//g'`:0.0
 fi
 
+tput init
+
 # some text colors
 txtbold=$(tput bold)
 txtunderline=$(tput sgr 0 1)
@@ -52,52 +54,20 @@ HNAME=$(echo $HOSTNAME | tr '[A-Z]' '[a-z]' | cut -d '.' -f 1)
 # Animals: 🐱 🐙 🐿 🐽 🐻 🐳 🐮 🐯 🐷 🐭 🐢 🐝 🐡 🐠 🐞 🐟 🐘 🐌 🐊 🐈 🐉 🦃 🦁 🦀
 # Symbols: ᚬ ☠ 💩 💥 👾 🤖 🤓 👀 ⎇ » ▶ « ◀ 
 
-# Machine specific customizations
-#case "$HNAME" in
-#	marmot*) 
-#		txtcolor=$txtbold$txtyellow
-#		#emoji cat
-#		if [ -z "$SSH_CONNECTION" ]; then HNAME="🐱 "; fi
-#		;;
-#	bear*|otter*)
-#		txtcolor=$txtbold$txtgreen
-#		;;
-#	whistlepig*|pig*|badger*|woodchuck*)
-#		txtcolor=$txtbold$txtpurple
-#		PS1BASE="\u$txtcolor@$HNAME$txtreset\w ^^^oO_ "
-#		;;
-#	moose*|mooses*|walrus*)
-#		txtcolor=$txtbold$txtred
-#		;;
-#	*)
-#		txtcolor=$txtbold
-#		;;
-#esac
-
 # prompt
 function setPS1 {
   case "$HNAME" in 
-    marmot*)
-      PCHAR="🐯"
-      ;;
-    bear*)
-      PCHAR="🐻"
-      ;;
-    otter*)
-      PCHAR="🐱"
-      ;;
-    turkey*)
-      PCHAR="🦃"
-      ;;
-    *)
-      PCHAR="👾"
-      ;;
+    marmot*) PCHAR="🐯" ;;
+    bear*) PCHAR="🐻" ;;
+    otter*) PCHAR="🐱" ;;
+    turkey*) PCHAR="🦃" ;;
+    *) PCHAR="👾" ;;
   esac
-  if [[ $EUID = 0 ]]; then
-    PCHAR="☠"
+  if [[ "$EUID" = 0 ]]; then 
+      PCHAR="☠" 
   fi
-  if [[ "$LAST_EXITCODE" -gt 0 ]]; then
-    PCHAR="💥"
+  if [[ "$LAST_EXITCODE" -gt 0 ]]; then 
+    PCHAR="💥" 
   fi
 
 	export PS1="($txtpurple\u$txtreset@$txtgreen$txtbold$HNAME$txtreset$GIT_CURRENT_BRANCH $txtlightblue\w$txtreset)$PCHAR "
@@ -121,21 +91,19 @@ function setWindowTitle {
 	esac
 }
 
-function getGitInfo {
+function getGitBranchString {
   GIT_CURRENT_BRANCH=""
   if [ $EUID != 0 ]; then
-    branch="$txtred$(git rev-parse --abbrev-ref HEAD 2>/dev/null)$txtreset"
-    if [ "$?" -eq 0 ]; then
-      GIT_CURRENT_BRANCH=" $branch"
-    else
-      GIT_CURRENT_BRANCH=""
+    branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
+    if [[ "$?" -eq 0 ]]; then
+      GIT_CURRENT_BRANCH=" ⎇$txtred$branch$txtreset"
     fi
   fi
 }
 
 function promptCommand {
   LAST_EXITCODE=$?
-	getGitInfo
+	getGitBranchString
 	setWindowTitle
 	setPS1
 }
@@ -156,9 +124,6 @@ else
 	PASS1=""
 fi
 
-if [ -f ~/.bashrc.local ]; then
-	source ~/.bashrc.local
-fi
 
 alias pd="pushd"
 alias p="popd"
@@ -166,3 +131,7 @@ alias p="popd"
 alias ls="ls -F"
 alias emacs="emacs -nw"
 alias marmot="autossh -M 0 -L 3390:192.168.1.11:3389 -L 3391:192.168.1.12:3389 -t neal@marmot.roadwaffle.com 'tmux attach || tmux new'"
+
+if [ -f ~/.bashrc.local ]; then
+	source ~/.bashrc.local
+fi
