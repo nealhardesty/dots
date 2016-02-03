@@ -31,7 +31,7 @@ shopt -s checkwinsize
 
 # auto set remote display
 if [ -z "$DISPLAY" ]; then
-        export DISPLAY=`who am i|awk '{print $5}'|sed -e 's/[\(\)]//g'`:0.0
+  export DISPLAY=`who am i|awk '{print $5}'|sed -e 's/[\(\)]//g'`:0.0
 fi
 
 # some text colors
@@ -84,7 +84,7 @@ function setPS1 {
 }
 
 function chxt {
-			echo -ne "\033]0;$*\007"
+	echo -ne "\033]0;$*\007"
 }
 
 function setWindowTitle {
@@ -104,9 +104,12 @@ function setWindowTitle {
 function getGitInfo {
   GIT_CURRENT_BRANCH=""
   if [ $EUID != 0 ]; then
-    GIT_CURRENT_BRANCH=" $txtpurple$(git rev-parse --abbrev-ref HEAD 2>/dev/null)$txtreset"
-  else
-    GIT_CURRENT_BRANCH=""
+    branch="$txtpurple$(git rev-parse --abbrev-ref HEAD 2>/dev/null)$txtreset"
+    if [ "$?" -eq 0 ]; then
+      GIT_CURRENT_BRANCH=" $branch"
+    else
+      GIT_CURRENT_BRANCH=""
+    fi
   fi
 }
 
