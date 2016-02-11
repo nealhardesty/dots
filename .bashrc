@@ -97,7 +97,7 @@ function getGitBranchString {
   if [ $EUID != 0 ]; then
     branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
     if [[ "$?" -eq 0 ]]; then
-      GIT_CURRENT_BRANCH=" ⎇$txtred$branch$txtreset"
+      GIT_CURRENT_BRANCH=" ⎇\[$txtred\]$branch\[$txtreset\]"
     fi
   fi
 }
