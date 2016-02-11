@@ -56,13 +56,14 @@ HNAME=$(echo $HOSTNAME | tr '[A-Z]' '[a-z]' | cut -d '.' -f 1)
 
 # prompt
 function setPS1 {
-  case "$HNAME" in 
-    marmot*) PCHAR="🐯" ;;
-    bear*) PCHAR="🐻" ;;
-    otter*) PCHAR="🐱" ;;
-    turkey*) PCHAR="🦃" ;;
-    *) PCHAR="👾" ;;
-  esac
+  PCHAR=""
+  #case "$HNAME" in 
+  #  marmot*) PCHAR="🐯" ;;
+  #  bear*) PCHAR="🐻" ;;
+  #  otter*) PCHAR="🐱" ;;
+  #  turkey*) PCHAR="🦃" ;;
+  #  *) PCHAR="👾" ;;
+  #esac
   if [[ "$EUID" = 0 ]]; then 
       PCHAR="☠" 
   fi
@@ -70,7 +71,7 @@ function setPS1 {
     PCHAR="💥" 
   fi
 
-	export PS1="($txtpurple\u$txtreset@$txtgreen$txtbold$HNAME$txtreset$GIT_CURRENT_BRANCH $txtlightblue\w$txtreset)$PCHAR "
+	export PS1="$txtlightblue($txtreset$PCHAR$txtpurple\u$txtreset@$txtgreen$txtbold$HNAME$txtreset$GIT_CURRENT_BRANCH $txtwhite\w$txtreset$PCHAR$txtlightblue)$txtreset "
 }
 
 function chxt {
