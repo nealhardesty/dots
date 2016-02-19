@@ -71,7 +71,7 @@ function setPS1 {
     PCHAR=" 💥" 
   fi
 
-	export PS1="\[$txtlightblue\](\[$txtreset\]\[$txtpurple\]\u\[$txtreset\]@\[$txtgreen$txtbold\]$HNAME\[$txtreset\]$GIT_CURRENT_BRANCH \[$txtwhite\]\w\[$txtreset\]$PCHAR\[$txtlightblue\])\[$txtreset\] "
+	export PS1="\[$txtwhite\](\[$txtreset\]\[$txtpurple\]\u\[$txtreset\]@\[$txtgreen$txtbold\]$HNAME\[$txtreset\]$GIT_CURRENT_BRANCH \[$txtlightblue\]\w\[$txtreset\]$PCHAR\[$txtwhite\])\[$txtreset\] "
 }
 
 function chxt {
