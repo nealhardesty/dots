@@ -13,10 +13,13 @@
   w = whatchanged
   s = status
   a = add
+  cim = commit -a -m nomessage
+  pom = push origin master
+  pod = push origin develop
 	remotes = remote -v
 	branches = branch -a
   crap = reset HEAD --hard
-  history = log --oneline --decorate --first-parent -n 100
+  history = log --oneline --decorate --first-parent -n 20
   graph = log --graph --oneline --decorate
 [push]
 	default = matching
