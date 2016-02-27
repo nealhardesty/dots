@@ -58,11 +58,11 @@ HNAME=$(echo $HOSTNAME | tr '[A-Z]' '[a-z]' | cut -d '.' -f 1)
 function setPS1 {
   PCHAR=""
   #case "$HNAME" in 
-  #  marmot*) PCHAR="🐯" ;;
-  #  bear*) PCHAR="🐻" ;;
-  #  otter*) PCHAR="🐱" ;;
-  #  turkey*) PCHAR="🦃" ;;
-  #  *) PCHAR="👾" ;;
+  #  marmot*) PCHAR="🐯 " ;;
+  #  bear*) PCHAR="🐻 " ;;
+  #  otter*) PCHAR="🐱 " ;;
+  #  turkey*) PCHAR="🦃 " ;;
+  #  *) PCHAR="👾 " ;;
   #esac
   if [[ "$EUID" = 0 ]]; then 
       PCHAR=" ☠" 
