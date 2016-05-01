@@ -64,14 +64,21 @@ function setPS1 {
   #  turkey*) PCHAR="🦃 " ;;
   #  *) PCHAR="👾 " ;;
   #esac
-  if [[ "$EUID" = 0 ]]; then 
-      PCHAR=" ☠" 
-  fi
-  if [[ "$LAST_EXITCODE" -gt 0 ]]; then 
-    PCHAR=" 💥" 
+  #if [[ "$EUID" = 0 ]]; then 
+  #    PCHAR=" ☠" 
+  #fi
+  #if [[ "$LAST_EXITCODE" -gt 0 ]]; then 
+  #  PCHAR=" 💥" 
+  #fi
+  if [[ "$EUID" = 0 ]]; then
+    LEFT="###"
+    RIGHT="###"
+  else
+    LEFT="("
+    RIGHT=")"
   fi
 
-	export PS1="\[$txtwhite\](\[$txtreset\]\[$txtpurple\]\u\[$txtreset\]@\[$txtgreen$txtbold\]$HNAME\[$txtreset\]$GIT_CURRENT_BRANCH \[$txtlightblue\]\w\[$txtreset\]$PCHAR\[$txtwhite\])\[$txtreset\] "
+	export PS1="\[$txtwhite\]$LEFT\[$txtreset\]\[$txtpurple\]\u\[$txtreset\]@\[$txtgreen$txtbold\]$HNAME\[$txtreset\]$GIT_CURRENT_BRANCH \[$txtlightblue\]\w\[$txtreset\]$PCHAR\[$txtwhite\]$RIGHT\[$txtreset\] "
 }
 
 function chxt {
