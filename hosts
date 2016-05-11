@@ -13,10 +13,11 @@
 192.168.1.11    walrus
 192.168.1.12    skunk
 192.168.1.13    marmot
-192.168.1.14    woodchuck whistlepig groundhog pig
+192.168.1.14    mammoth
 192.168.1.15    marmot-ws
-#192.168.1.16    gopher
-#192.168.1.17    squirrel
+192.168.1.16    woodchuck whistlepig groundhog pig
+#192.168.1.17    gopher
+#192.168.1.18    squirrel
 
 192.168.1.30    bear
 
@@ -25,7 +26,7 @@
 192.168.1.42    turkey
 192.168.1.43    harry
 
-192.168.1.50    marmot	# Neal Work Laptop
+192.168.1.50    badger  # Neal Work Laptop
 
 192.168.1.60    nhardesty-ltm   # Neal Macbook Pro
 
@@ -38,5 +39,5 @@
 192.168.1.200		wombat	# Neal iPhone
 192.168.1.201		aardvark # Neal iPad
 
-107.170.207.210 badgersf badger
+#107.170.207.210 badgersf badger
 
