@@ -5,23 +5,19 @@
 # sealion bison/buffalo muskox caribou
 # marmoset mammoth
 
-192.168.1.1     gw beaver  # Cisco LinkSys E4200 58:6d:8f:13:31:5
+192.168.1.1     gw beaver 
 
 192.168.1.5     owl
 
-192.168.1.10    moose   # Neal Desktop 20:cf:30:76:fc:36
+192.168.1.10    moose
 192.168.1.11    walrus
-192.168.1.12    skunk
-192.168.1.13    marmot
-192.168.1.14    mammoth
-192.168.1.15    marmot-ws
-192.168.1.16    woodchuck whistlepig groundhog pig
-#192.168.1.17    gopher
-#192.168.1.18    squirrel
+192.168.1.12    marmot
+192.168.1.15    bear-ws
 
-192.168.1.30    bear
+192.168.1.20    moose
+192.168.1.21    mammoth
 
-192.168.1.40    otter    # Neal Laptop
+192.168.1.40    otter
 192.168.1.41    diefledermaus maus bat
 192.168.1.42    turkey
 192.168.1.43    harry
