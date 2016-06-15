@@ -18,9 +18,9 @@
 192.168.1.21    mammoth
 
 192.168.1.40    otter
-192.168.1.41    diefledermaus maus bat
-192.168.1.42    turkey
-192.168.1.43    harry
+#192.168.1.41    diefledermaus maus bat
+#192.168.1.42    turkey
+#192.168.1.43    harry
 
 192.168.1.50    badger  # Neal Work Laptop
 
@@ -36,4 +36,4 @@
 192.168.1.201		aardvark # Neal iPad
 
 #107.170.207.210 badgersf badger
-192.168.123.123 docker gateway
+192.168.123.123 docker gateway turkey
