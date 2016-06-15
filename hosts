@@ -9,7 +9,7 @@
 
 192.168.1.5     owl
 
-192.168.1.10    moose
+192.168.1.10    bear
 192.168.1.11    walrus
 192.168.1.12    marmot
 192.168.1.15    bear-ws
@@ -36,4 +36,4 @@
 192.168.1.201		aardvark # Neal iPad
 
 #107.170.207.210 badgersf badger
-
+192.168.123.123 docker gateway
