@@ -71,14 +71,18 @@ function setPS1 {
   #  PCHAR=" 💥" 
   #fi
   if [[ "$EUID" = 0 ]]; then
-    LEFT="###"
+    #LEFT="###"
+    #RIGHT="###"
+    LEFT=""
     RIGHT="###"
   else
-    LEFT="("
-    RIGHT=")"
+    #LEFT="("
+    #RIGHT=")"
+    LEFT=""
+    RIGHT=">"
   fi
 
-	export PS1="\[$txtwhite\]$LEFT\[$txtreset\]\[$txtpurple\]\u\[$txtreset\]@\[$txtgreen$txtbold\]$HNAME\[$txtreset\]$GIT_CURRENT_BRANCH \[$txtlightblue\]\w\[$txtreset\]$PCHAR\[$txtwhite\]$RIGHT\[$txtreset\] "
+	export PS1="\[$txtwhite\]$LEFT\[$txtreset\]\[$txtpurple\]\u\[$txtreset\]@\[$txtgreen$txtbold\]$HNAME\[$txtreset\]$GIT_CURRENT_BRANCH\[$txtlightblue\]\w\[$txtreset\]$PCHAR\[$txtwhite\]$RIGHT\[$txtreset\] "
 }
 
 function chxt {
@@ -104,7 +108,7 @@ function getGitBranchString {
   if [ $EUID != 0 ]; then
     branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
     if [[ "$?" -eq 0 ]]; then
-      GIT_CURRENT_BRANCH=" ⎇\[$txtred\]$branch\[$txtreset\]"
+      GIT_CURRENT_BRANCH=" ⎇\[$txtred\]$branch\[$txtreset\] "
     fi
   fi
 }
