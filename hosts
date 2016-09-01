@@ -3,31 +3,26 @@
 # porcupine duck woodchuck badger squirrel lobster whistlepig walrus opossum otter
 # armadillo gopher muskrat pika bat bobcat lynx ocelot coyote ringtail weasel skunk
 # sealion bison/buffalo muskox caribou
-# marmoset
+# marmoset mammoth
 
-192.168.1.1     gw beaver  # Cisco LinkSys E4200 58:6d:8f:13:31:5
+192.168.1.1     gw beaver 
 
 192.168.1.5     owl
 
-192.168.1.10    marmot
+192.168.1.10    bear
 192.168.1.11    walrus
-192.168.1.12    skunk
-192.168.1.13    woodchuck whistlepig groundhog pig
-192.168.1.14    gopher
-192.168.1.15    marmotws
+192.168.1.12    marmot
+192.168.1.15    bear-ws
 
-192.168.1.20    moose    # Neal Desktop 20:cf:30:76:fc:36
-192.168.1.21    squirrel    # Ubuntu
-192.168.1.25    moosews
+192.168.1.20    moose
+192.168.1.21    mammoth
 
-192.168.1.30    bear # Media Center
-
-192.168.1.40    otter    # Neal Laptop
-192.168.1.41    diefledermaus maus
+192.168.1.40    otter
+#192.168.1.41    diefledermaus maus bat
 #192.168.1.42    turkey
-192.168.1.43    harry
+#192.168.1.43    harry
 
-192.168.1.50    turkey	# Neal Work Laptop
+192.168.1.50    badger  # Neal Work Laptop
 
 192.168.1.60    nhardesty-ltm   # Neal Macbook Pro
 
@@ -40,5 +35,5 @@
 192.168.1.200		wombat	# Neal iPhone
 192.168.1.201		aardvark # Neal iPad
 
-107.170.207.210 badgersf badger
-
+#107.170.207.210 badgersf badger
+192.168.123.123 docker gateway turkey

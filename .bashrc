@@ -58,20 +58,31 @@ HNAME=$(echo $HOSTNAME | tr '[A-Z]' '[a-z]' | cut -d '.' -f 1)
 function setPS1 {
   PCHAR=""
   #case "$HNAME" in 
-  #  marmot*) PCHAR="🐯" ;;
-  #  bear*) PCHAR="🐻" ;;
-  #  otter*) PCHAR="🐱" ;;
-  #  turkey*) PCHAR="🦃" ;;
-  #  *) PCHAR="👾" ;;
+  #  marmot*) PCHAR="🐯 " ;;
+  #  bear*) PCHAR="🐻 " ;;
+  #  otter*) PCHAR="🐱 " ;;
+  #  turkey*) PCHAR="🦃 " ;;
+  #  *) PCHAR="👾 " ;;
   #esac
-  if [[ "$EUID" = 0 ]]; then 
-      PCHAR=" ☠" 
-  fi
-  if [[ "$LAST_EXITCODE" -gt 0 ]]; then 
-    PCHAR=" 💥" 
+  #if [[ "$EUID" = 0 ]]; then 
+  #    PCHAR=" ☠" 
+  #fi
+  #if [[ "$LAST_EXITCODE" -gt 0 ]]; then 
+  #  PCHAR=" 💥" 
+  #fi
+  if [[ "$EUID" = 0 ]]; then
+    #LEFT="###"
+    #RIGHT="###"
+    LEFT=""
+    RIGHT="###"
+  else
+    #LEFT="("
+    #RIGHT=")"
+    LEFT=""
+    RIGHT=">"
   fi
 
-	export PS1="\[$txtwhite\](\[$txtreset\]\[$txtpurple\]\u\[$txtreset\]@\[$txtgreen$txtbold\]$HNAME\[$txtreset\]$GIT_CURRENT_BRANCH \[$txtlightblue\]\w\[$txtreset\]$PCHAR\[$txtwhite\])\[$txtreset\] "
+	export PS1="\[$txtwhite\]$LEFT\[$txtreset\]\[$txtpurple\]\u\[$txtreset\]@\[$txtgreen$txtbold\]$HNAME\[$txtreset\]$GIT_CURRENT_BRANCH\[$txtlightblue\]\w\[$txtreset\]$PCHAR\[$txtwhite\]$RIGHT\[$txtreset\] "
 }
 
 function chxt {
@@ -97,7 +108,7 @@ function getGitBranchString {
   if [ $EUID != 0 ]; then
     branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
     if [[ "$?" -eq 0 ]]; then
-      GIT_CURRENT_BRANCH=" ⎇\[$txtred\]$branch\[$txtreset\]"
+      GIT_CURRENT_BRANCH=" ⎇\[$txtred\]$branch\[$txtreset\] "
     fi
   fi
 }
