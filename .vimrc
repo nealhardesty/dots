@@ -50,9 +50,9 @@ set backspace=indent,eol,start
 
 " When opening a new line and no filetype-specific indenting is enabled, keep
 " the same indent as the line you're currently on. Useful for READMEs, etc.
-set autoindent
+"set autoindent
 "set noautoindent
-set smartindent
+"set smartindent
 
 " Stop certain movements from always going to the first character of a line.
 " While this behaviour deviates from that of Vi, it does what most users
@@ -137,7 +137,8 @@ set autoread
 "  torte.vim < NICE FOR DARK
 "  zellner.vim
 " also see https://github.com/tpope/vim-vividchalk for vividchalk
-colorscheme torte
+"colorscheme torte
+colorscheme desert
 
 " Trim the end of the line for the entire doc
 command! Trim :%s/\s\+$//
