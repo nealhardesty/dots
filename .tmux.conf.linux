@@ -4,5 +4,5 @@
 set -g status-right '#[fg=green,bg=default]<<< #[fg=white,bg=default]#T #[fg=green,bg=default]< #(uptime |cut -f 14-16 -d " ") < #[fg=#0040ff,bg=default]%Y-%m-%d %H:%M'
 
 # Allow mouse to resize panes
-set -g mode-mouse on
-set -g mouse-resize-pane on
+#set -g mode-mouse on
+#set -g mouse-resize-pane on
