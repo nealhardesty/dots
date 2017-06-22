@@ -4,4 +4,4 @@
 set -g status-right '#[fg=green,bg=default]<<< #[fg=white,bg=default]#T #[fg=green,bg=default]< #(uptime |cut -f 12 -d " ") < #[fg=#0040ff,bg=default]%Y-%m-%d %H:%M'
 
 # Turn on mouse for resizing and such
-set-option -g mouse on
+#set-option -g mouse on
