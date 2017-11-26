@@ -16,10 +16,20 @@ syntax on
 
 set shell=bash
 
+if has("autocmd")
+    " Use filetype detection and file-based automatic indenting.
+    filetype plugin indent on
+
+    " Use actual tab chars in Makefiles.
+    autocmd FileType make set tabstop=4 shiftwidth=4 softtabstop=0 noexpandtab
+endif
+
 " 2 spaces per tab
 set tabstop=2
 " 2 spaces per indent
 set shiftwidth=2
+" number of columns for a tab
+set softtabstop=2
 " use spaces instead of tabs
 set expandtab
 
