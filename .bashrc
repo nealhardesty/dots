@@ -53,6 +53,7 @@ HNAME=$(echo $HOSTNAME | tr '[A-Z]' '[a-z]' | cut -d '.' -f 1)
 
 # Animals: 🐱 🐙 🐿 🐽 🐻 🐳 🐮 🐯 🐷 🐭 🐢 🐝 🐡 🐠 🐞 🐟 🐘 🐌 🐊 🐈 🐉 🦃 🦁 🦀
 # Symbols: ᚬ ☠ 💩 💥 👾 🤖 🤓 👀 ⎇ » ▶ « ◀ 
+# Kubernetes: ⚙
 
 # prompt
 function setPS1 {
@@ -82,7 +83,7 @@ function setPS1 {
     RIGHT=">"
   fi
 
-	export PS1="\[$txtwhite\]$LEFT\[$txtreset\]\[$txtpurple\]\u\[$txtreset\]@\[$txtgreen$txtbold\]$HNAME\[$txtreset\]$GIT_CURRENT_BRANCH\[$txtlightblue\]\w\[$txtreset\]$PCHAR\[$txtwhite\]$RIGHT\[$txtreset\] "
+	export PS1="\[$txtwhite\]$LEFT\[$txtreset\]\[$txtpurple\]\u\[$txtreset\]@\[$txtgreen$txtbold\]$HNAME\[$txtreset\] $KUBERNETES_CURRENT_NAMESPACE$GIT_CURRENT_BRANCH\[$txtlightblue\]\w\[$txtreset\]$PCHAR\[$txtwhite\]$RIGHT\[$txtreset\] "
 }
 
 function chxt {
@@ -103,18 +104,29 @@ function setWindowTitle {
 	esac
 }
 
+function getKubeNamespace {
+  KUBERNETES_CURRENT_NAMESPACE=""
+  #if [ $EUID != 0 ]; then
+    namespace="$(kubectl config get-contexts | grep '^*' | awk '{print $5}' )"
+    if [[ "$?" -eq 0 && "$namespace" != "default" ]]; then
+      KUBERNETES_CURRENT_NAMESPACE="⚙\[$txtyellow\]$namespace\[$txtreset\] "
+    fi
+  #fi
+}
+
 function getGitBranchString {
   GIT_CURRENT_BRANCH=""
   if [ $EUID != 0 ]; then
     branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
     if [[ "$?" -eq 0 ]]; then
-      GIT_CURRENT_BRANCH=" ⎇\[$txtred\]$branch\[$txtreset\] "
+      GIT_CURRENT_BRANCH="⎇\[$txtred\]$branch\[$txtreset\] "
     fi
   fi
 }
 
 function promptCommand {
   LAST_EXITCODE=$?
+  getKubeNamespace
 	getGitBranchString
 	setWindowTitle
 	setPS1
