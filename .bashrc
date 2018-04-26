@@ -110,7 +110,7 @@ function getKubeNamespace {
     ctx="$(kubectl config current-context)"
     namespace="$(kubectl config get-contexts | grep '^*' | awk '{print $5}' )"
     if [[ "$?" -eq 0 && "$namespace" != "default" ]]; then
-      KUBERNETES_CURRENT_NAMESPACE="⚙\[$txtyellow\]$ctx:$namespace\[$txtreset\] "
+      KUBERNETES_CURRENT_NAMESPACE="⎈\[$txtyellow\]$ctx:$namespace\[$txtreset\] "
     fi
   fi
 }
