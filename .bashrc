@@ -53,7 +53,7 @@ HNAME=$(echo $HOSTNAME | tr '[A-Z]' '[a-z]' | cut -d '.' -f 1)
 
 # Animals: 🐱 🐙 🐿 🐽 🐻 🐳 🐮 🐯 🐷 🐭 🐢 🐝 🐡 🐠 🐞 🐟 🐘 🐌 🐊 🐈 🐉 🦃 🦁 🦀
 # Symbols: ᚬ ☠ 💩 💥 👾 🤖 🤓 👀 ⎇ » ▶ « ◀ 
-# Kubernetes: ⚙
+# Kubernetes: ⚙ ⎈
 
 # prompt
 function setPS1 {
@@ -106,12 +106,13 @@ function setWindowTitle {
 
 function getKubeNamespace {
   KUBERNETES_CURRENT_NAMESPACE=""
-  #if [ $EUID != 0 ]; then
+  if [[ -f $HOME/.kube/config && $EUID != 0 ]]; then
+    ctx="$(kubectl config current-context)"
     namespace="$(kubectl config get-contexts | grep '^*' | awk '{print $5}' )"
     if [[ "$?" -eq 0 && "$namespace" != "default" ]]; then
-      KUBERNETES_CURRENT_NAMESPACE="⚙\[$txtyellow\]$namespace\[$txtreset\] "
+      KUBERNETES_CURRENT_NAMESPACE="⚙\[$txtyellow\]$ctx:$namespace\[$txtreset\] "
     fi
-  #fi
+  fi
 }
 
 function getGitBranchString {
