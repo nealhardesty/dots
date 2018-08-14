@@ -107,7 +107,8 @@ function setWindowTitle {
 function getKubeNamespace {
   KUBERNETES_CURRENT_NAMESPACE=""
   if [[ -f $HOME/.kube/config && $EUID != 0 ]]; then
-    eval $(python3 -c 'import sys, yaml; y=yaml.load(sys.stdin); ctx=y.get("current-context"); ns=next(iter([c.get("context", {}).get("namespace", "") for c in y.get("contexts", {}) if c.get("name", "") == ctx]), "foo"); print("current_context={0}; current_namespace={1}".format(ctx, ns))' < ~/.kube/config)
+    current_context=$(kubectl config current-context)
+    current_namespace=$(kubectl config get-contexts $current_context |grep '^*' |awk '{print $5}')
     if [[ "$?" -eq 0 && "$current_namespace" != "default" ]]; then
       KUBERNETES_CURRENT_NAMESPACE="⎈\[$txtyellow\]$current_context:$current_namespace\[$txtreset\] "
     fi
