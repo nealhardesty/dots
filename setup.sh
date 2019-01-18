@@ -14,6 +14,11 @@ ln -sfv $GITREPO/.i3 ~/.i3
 
 touch ~/.bashrc.local
 
+if [ $(uname) == "Darwin" ]; then
+  echo Must be a mac, installing hammerspoon config
+  ln -sfv $GITREPO/.hammerspoon ~/.hammerspoon
+fi
+
 
 mkdir -p ~/.ssh
 if [ -f ~/.ssh/config ]; then
