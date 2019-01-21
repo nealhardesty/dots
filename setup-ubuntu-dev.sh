@@ -29,7 +29,8 @@ sudo apt install -y \
   apt-transport-https \
   ca-certificates \
   software-properties-common 
-  rxvt-unicode
+  rxvt-unicode \
+  autokey
 
 sudo pip3 install --upgrade pip
 sudo pip3 install awscli
