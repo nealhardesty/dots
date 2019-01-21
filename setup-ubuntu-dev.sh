@@ -28,13 +28,16 @@ sudo apt install -y \
   rsync \
   apt-transport-https \
   ca-certificates \
-  software-properties-common \
-  termite
+  software-properties-common 
+  rxvt-unicode
 
 sudo pip3 install --upgrade pip
 sudo pip3 install awscli
 
 setxkbmap -option caps:swapescape
+
+git config --global user.email "neal@crunchbase.com"
+git config --global user.name "Neal Hardesty"
 
 # Docker time
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -47,6 +50,6 @@ sudo apt-get install -y docker-ce
 sudo usermod -G docker neal
 
 # Don't need no fancy login manager
-sudo systemctl set-default multi-user.target
+#sudo systemctl set-default multi-user.target
 
 
