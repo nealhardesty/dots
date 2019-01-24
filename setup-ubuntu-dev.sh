@@ -30,7 +30,8 @@ sudo apt install -y \
   ca-certificates \
   software-properties-common 
   rxvt-unicode \
-  autokey
+  autokey \
+  autossh
 
 sudo pip3 install --upgrade pip
 sudo pip3 install awscli
