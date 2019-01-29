@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo apt install -y yarn sudo curl
+
 echo Installing Nodejs 10.15.0
 cd /var/tmp
 wget https://nodejs.org/dist/v10.15.0/node-v10.15.0-linux-x64.tar.xz
