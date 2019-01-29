@@ -1,7 +1,7 @@
 #!/bin/bash -x
 
-echo  'neal    ALL=(ALL:ALL) NOPASSWD:ALL' | sudo tee /etc/sudoers.d/neal 
-sudo chmod 0440 /etc/sudoers.d/neal
+#echo  'neal    ALL=(ALL:ALL) NOPASSWD:ALL' | sudo tee /etc/sudoers.d/neal 
+#sudo chmod 0440 /etc/sudoers.d/neal
 
 sudo apt update
 # Kill it with fire
@@ -36,7 +36,7 @@ sudo apt install -y \
 sudo pip3 install --upgrade pip
 sudo pip3 install awscli
 
-setxkbmap -option caps:swapescape
+#setxkbmap -option caps:swapescape
 
 git config --global user.email "neal@crunchbase.com"
 git config --global user.name "Neal Hardesty"
