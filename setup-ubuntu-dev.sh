@@ -49,7 +49,7 @@ sudo add-apt-repository \
    stable"
 sudo apt update 
 sudo apt-get install -y docker-ce
-sudo usermod -G docker neal
+sudo usermod -aG docker neal
 
 # Don't need no fancy login manager
 #sudo systemctl set-default multi-user.target
