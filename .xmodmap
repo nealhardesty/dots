@@ -1,0 +1,6 @@
+! apply with:
+!   xmodmap ~/.xmodmap
+!
+! Caps Lock is now Escape
+clear Lock
+keycode 0x42 = Escape
