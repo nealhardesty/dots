@@ -27,6 +27,8 @@
  # Enable core dumps in case something goes wrong
  ulimit -c unlimited
 
+xmodmap ~/.xmodmap
+
  # Start i3 and log to ~/.i3/logfile
- echo "Starting at $(date)" >> ~/.i3/logfile
- exec /usr/bin/i3 -V -d all >> ~/.i3/logfile
+ echo "Starting at $(date)" >> /var/tmp/i3logfile
+ exec /usr/bin/i3 -V -d all >> /var/tmp/i3logfile
