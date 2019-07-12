@@ -29,7 +29,6 @@ sudo apt install -y \
   apt-transport-https \
   ca-certificates \
   software-properties-common 
-  rxvt-unicode \
   autokey \
   autossh
 
