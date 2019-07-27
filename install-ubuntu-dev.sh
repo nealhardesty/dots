@@ -34,6 +34,7 @@ sudo apt install -y \
 
 sudo pip3 install --upgrade pip
 sudo pip3 install awscli
+sudo pip3 install virtualenv
 
 #setxkbmap -option caps:swapescape
 
