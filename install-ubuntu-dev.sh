@@ -37,6 +37,12 @@ sudo pip3 install awscli
 
 #setxkbmap -option caps:swapescape
 
+# Install firefox
+$(dirname $0)/install-ubuntu-firefox.sh
+
+# Install slack client
+#sudo snap install --classic slack
+
 mkdir -p ~/.ssh
 git config --global user.email "neal@crunchbase.com"
 git config --global user.name "Neal Hardesty"
