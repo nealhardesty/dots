@@ -1,7 +1,7 @@
 #!/bin/bash -x
 
-#echo  'neal    ALL=(ALL:ALL) NOPASSWD:ALL' | sudo tee /etc/sudoers.d/neal 
-#sudo chmod 0440 /etc/sudoers.d/neal
+echo  'neal    ALL=(ALL:ALL) NOPASSWD:ALL' | sudo tee /etc/sudoers.d/neal 
+sudo chmod 0440 /etc/sudoers.d/neal
 
 sudo apt update
 # Kill it with fire
@@ -28,17 +28,19 @@ sudo apt install -y \
   rsync \
   apt-transport-https \
   ca-certificates \
-  software-properties-common 
-  autokey \
-  autossh
+  software-properties-common \
+  autossh \
+  openvpn
 
 sudo pip3 install --upgrade pip
 sudo pip3 install awscli
 
 #setxkbmap -option caps:swapescape
 
+mkdir -p ~/.ssh
 git config --global user.email "neal@crunchbase.com"
 git config --global user.name "Neal Hardesty"
+ssh-keyscan github.com > ~/.ssh/known_hosts
 
 # Docker time
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
