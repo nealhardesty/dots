@@ -154,9 +154,20 @@ alias pd="pushd"
 alias p="popd"
 
 alias ls="ls -F"
-alias emacs="emacs -nw"
-alias marmot="autossh -M 0 -L 3390:192.168.1.11:3389 -L 3391:192.168.1.12:3389 -t neal@marmot.roadwaffle.com 'tmux attach || tmux new'"
-alias kc=kubectl
+
+alias k=kubectl
+
+alias bc='bc -l'
+
+alias cd..='cd ..'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias .2='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+
+
+alias ports="netstat -tulanp"
 
 if [ -f ~/.bashrc.local ]; then
 	source ~/.bashrc.local
