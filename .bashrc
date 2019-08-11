@@ -6,7 +6,7 @@
 export ANDROID_HOME="~/bin/android-sdk"
 
 # path
-export PATH="~/bin:/usr/local/bin:~/.rvm/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$JAVA_HOME/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/opt/idea/bin:/usr/games:~/Dropbox/bin"
+export PATH="~/Dropbox/bin:~/bin:/usr/local/bin:~/.rvm/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$JAVA_HOME/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/opt/idea/bin:/usr/games"
 
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 if [ -f ~/.rvm/scripts/rvm ]; then
@@ -169,6 +169,7 @@ alias .4='cd ../../../..'
 
 alias ports="netstat -tulanp"
 
+alias kindinit="kind create cluster && kindconfig && kubectl create serviceaccount tiller && kubectl create clusterrolebinding tiller --serviceaccount=kube-system:tiller --clusterrole=cluster-admin && helm init --serviceaccount tiller"
 alias kindconfig="export KUBECONFIG=$(kind get kubeconfig-path)"
 
 if [ -f ~/.bashrc.local ]; then
