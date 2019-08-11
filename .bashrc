@@ -169,6 +169,8 @@ alias .4='cd ../../../..'
 
 alias ports="netstat -tulanp"
 
+alias kindconfig="export KUBECONFIG=$(kind get kubeconfig-path)"
+
 if [ -f ~/.bashrc.local ]; then
 	source ~/.bashrc.local
 fi
