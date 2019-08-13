@@ -6,7 +6,13 @@
 export ANDROID_HOME="~/bin/android-sdk"
 
 # path
-export PATH="~/Dropbox/bin:~/bin:/usr/local/bin:~/.rvm/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$JAVA_HOME/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/opt/idea/bin:/usr/games"
+export PATH="~/bin:/usr/local/bin:~/.rvm/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$JAVA_HOME/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/opt/idea/bin:/usr/games"
+
+if [ $(uname) == "Darwin" ]; then
+  PATH="~/Dropbox/macbin:$PATH"
+elif [ $(uname) == "Linux" ]; then
+  PATH="~/Dropbox/bin:$PATH"
+fi
 
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 if [ -f ~/.rvm/scripts/rvm ]; then
