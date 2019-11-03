@@ -147,6 +147,8 @@ setPS1
 #Eclipse mouse button click fix - may not be required anymore
 export GDK_NATIVE_WINDOWS=true
 
+export AWS_PROFILE=default
+
 set -o emacs
 
 if [ -f ~/.pass ]; then
