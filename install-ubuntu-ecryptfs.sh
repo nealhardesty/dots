@@ -2,5 +2,5 @@
 
 # https://help.ubuntu.com/community/EncryptedPrivateDirectory
 
-sudo apt install ecryptfs-utils
-encryptfs-setup-private
+sudo apt install -y ecryptfs-utils
+ecryptfs-setup-private
