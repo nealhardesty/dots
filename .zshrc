@@ -48,11 +48,38 @@ autoload -Uz compinit
 compinit
 
 # Prompt stuff
-if [[ $EUID == 0 ]]; then
-  export PS1='%m%~# '
-else
-  export PS1='%m%~> '
-fi
+
+# Animals: 🐱 🐙 🐿  🐽 🐻 🐳 🐮 🐯 🐷 🐭 🐢 🐝 🐡 🐠 🐞 🐟 🐘 🐌 >🐊 🐈 🐉 🦃 🦁 🦀
+# Symbols: ᚬ ☠ 💩 💥 👾 🤖 🤓 👀 ⎇ » ▶ « ◀ 
+# Kubernetes: ⚙ ⎈
+
+function getGitBranchString {
+  GIT_CURRENT_BRANCH=""
+  if [ $EUID != 0 ]; then
+    branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
+    if [[ "$?" -eq 0 ]]; then
+      GIT_CURRENT_BRANCH="%B⎇%b%F{red}${branch}%f "
+    fi
+  fi
+}
+
+function getKubeNamespaceString {
+  KUBERNETES_CURRENT_NAMESPACE=""
+  if [[ -f $HOME/.kube/config && $EUID != 0 ]]; then
+    current_context=$(kubectl config current-context)
+    current_namespace=$(kubectl config get-contexts $current_context |grep '^*' |awk '{print $5}')
+    if [[ "$?" -eq 0 && "$current_namespace" != "default" ]]; then
+      KUBERNETES_CURRENT_NAMESPACE="%B⎈%b%F{yellow}${current_context}:${current_namespace}%f "
+    fi
+  fi
+}
+
+precmd() {
+	getGitBranchString
+	getKubeNamespaceString
+	export PS1='%B%F{blue}%m%b %F{green}%~%(!.%F{red}#.%F{white}>)%f '
+	export RPS1="${GIT_CURRENT_BRANCH} ${KUBERNETES_CURRENT_NAMESPACE}"
+}
 
 # Change terminal title
 chxt() {
@@ -97,6 +124,11 @@ rationalise-dot() {
 zle -N rationalise-dot
 bindkey . rationalise-dot
 bindkey -M isearch . self-insert 2>/dev/null
+
+# Extra environment
+export AWS_PROFILE=default
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go:.
 
 # Aliases:
 alias ls='ls -F'
