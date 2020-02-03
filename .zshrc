@@ -69,7 +69,7 @@ function getKubeNamespaceString {
     current_context=$(kubectl config current-context)
     current_namespace=$(kubectl config get-contexts $current_context |grep '^*' |awk '{print $5}')
     if [[ "$?" -eq 0 && "$current_namespace" != "default" ]]; then
-      KUBERNETES_CURRENT_NAMESPACE="%B⎈%b%F{yellow}${current_context}:${current_namespace}%f "
+      KUBERNETES_CURRENT_NAMESPACE="%B⎈%b%F{green}${current_context}:${current_namespace}%f "
     fi
   fi
 }
@@ -86,45 +86,6 @@ chxt() {
   echo -ne "\033]30;$*\007"
 }
 
-# https://matt.blissett.me.uk/linux/zsh/zshrc
-# Quick ../../.. from https://github.com/blueyed/oh-my-zsh
-resolve-alias() {
-    # Recursively resolve aliases and echo the command.
-    typeset -a cmd
-    cmd=(${(z)1})
-    while (( ${+aliases[$cmd[1]]} )) \
-	      && [[ ${aliases[$cmd[1]]} != $cmd ]]; do
-	cmd=(${(z)aliases[${cmd[1]}]})
-    done
-    echo $cmd
-}
-rationalise-dot() {
-    # Auto-expand "..." to "../..", "...." to "../../.." etc.
-    # It skips certain commands (git, tig, p4).
-    #
-    # resolve-alias is defined in a separate function.
-
-    local MATCH # keep the regex match from leaking to the environment.
-
-    # Skip pasted text.
-    if (( PENDING > 0 )); then
-	zle self-insert
-	return
-    fi
-
-    if [[ $LBUFFER =~ '(^|/| ||'$'\n''|\||;|&)\.\.$' ]] \
-	   && ! [[ $(resolve-alias $LBUFFER) =~ '(git|tig|p4)' ]]; then
-	LBUFFER+=/
-	zle self-insert
-	zle self-insert
-    else
-	zle self-insert
-    fi
-}
-zle -N rationalise-dot
-bindkey . rationalise-dot
-bindkey -M isearch . self-insert 2>/dev/null
-
 # Extra environment
 export AWS_PROFILE=default
 export GOROOT=/usr/local/go
@@ -134,6 +95,11 @@ export GOPATH=$HOME/go:.
 alias ls='ls -F'
 alias k=kubectl
 alias 'cd..= cd ..'
+alias '..= cd ..'
+alias '...= cd ...'
+alias '....= cd ....'
+alias '.....= cd .....'
+alias '......= cd ......'
 
 # Local overrides
 if [ -f $HOME/.zshrc.local ]; then
