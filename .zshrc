@@ -58,7 +58,7 @@ function getGitBranchString {
   if [ $EUID != 0 ]; then
     branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
     if [[ "$?" -eq 0 ]]; then
-      GIT_CURRENT_BRANCH="%B⎇%b%F{red}${branch}%f "
+      GIT_CURRENT_BRANCH="%F{grey}[%K{blue}%f%B⎇%b %F{green}${branch}%k%F{grey}]%f"
     fi
   fi
 }
@@ -68,17 +68,23 @@ function getKubeNamespaceString {
   if [[ -f $HOME/.kube/config && $EUID != 0 ]]; then
     current_context=$(kubectl config current-context)
     current_namespace=$(kubectl config get-contexts $current_context |grep '^*' |awk '{print $5}')
-    if [[ "$?" -eq 0 && "$current_namespace" != "default" ]]; then
-      KUBERNETES_CURRENT_NAMESPACE="%B⎈%b%F{green}${current_context}:${current_namespace}%f "
+    #if [[ "$?" -eq 0 && "$current_namespace" != "default" ]]; then
+    if [[ "$?" -eq 0 ]]; then
+      if [[ "$current_context" =~ "^prod" ]]; then
+        KUBERNETES_CURRENT_NAMESPACE="%F{grey}[%K{yellow}%f%B⎈%b%F{red}${current_context}:${current_namespace}%k%F{grey}]%f"
+      else
+        KUBERNETES_CURRENT_NAMESPACE="%F{grey}[%K{blue}%B⎈%b%F{green}${current_context}:${current_namespace}%k%F{grey}]%f"
+      fi
     fi
   fi
 }
 
 precmd() {
+  local last_exit=$?
 	getGitBranchString
 	getKubeNamespaceString
-	export PS1='%B%F{blue}%m%b %F{green}%~%(!.%F{red}#.%F{white}>)%f '
-	export RPS1="${GIT_CURRENT_BRANCH} ${KUBERNETES_CURRENT_NAMESPACE}"
+	export PS1='%F{magenta}%n%f@%B%F{blue}%m%b %F{green}%~%(!.%F{red}#.%F{white}>)%f '
+	export RPS1="%(?..%F{grey}[%B%F{red}${last_exit}%b%F{grey}]%f )${GIT_CURRENT_BRANCH} ${KUBERNETES_CURRENT_NAMESPACE}"
 }
 
 # Change terminal title
