@@ -42,6 +42,7 @@ setopt HIST_EXPIRE_DUPS_FIRST
 export EDITOR="vi"
 export PAGER="less"
 export VISUAL=$EDITOR
+bindkey -v
 
 # Completions
 autoload -Uz compinit
