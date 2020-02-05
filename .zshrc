@@ -42,7 +42,9 @@ setopt HIST_EXPIRE_DUPS_FIRST
 export EDITOR="vi"
 export PAGER="less"
 export VISUAL=$EDITOR
-bindkey -v
+#bindkey -v
+# Too used to emacs keybindings for now...
+bindkey -e
 
 # Completions
 autoload -Uz compinit
