@@ -28,6 +28,7 @@ if [ -f ~/.ssh/config ]; then
 	echo Cowardly refusing to overwrite .ssh/config
 else
 	ln -sfv $GITREPO/.ssh/config ~/.ssh/config
+  ls -1 ~/.ssh/*.pem |xargs -I{} -n 1 echo IdentityFile={} | tee -a ~/.ssh/config.local
 fi
 
 mkdir -p ~/bin
