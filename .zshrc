@@ -2,7 +2,7 @@
 [[ -z "$PS1" ]] && return
 
 # Run after .zprofile for all interactive shells
-export PATH=${HOME}/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+export PATH=${HOME}/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/snap/bin
 
 # Do not immediately notify on subprocess exit
 setopt NO_NOTIFY
