@@ -1,8 +1,13 @@
 
 [[ -z "$PS1" ]] && return
 
+# Extra environment
+export AWS_PROFILE=default
+#export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+
 # Run after .zprofile for all interactive shells
-export PATH=${HOME}/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/snap/bin
+export PATH=${HOME}/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/snap/bin:$GOPATH/bin
 
 # Do not immediately notify on subprocess exit
 setopt NO_NOTIFY
@@ -94,11 +99,6 @@ precmd() {
 chxt() {
   echo -ne "\033]30;$*\007"
 }
-
-# Extra environment
-export AWS_PROFILE=default
-export GOROOT=/usr/local/go
-export GOPATH=$HOME/go:.
 
 # Aliases:
 alias ls='ls -F'
