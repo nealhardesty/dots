@@ -23,7 +23,9 @@ setopt NOCLOBBER
 setopt NO_BG_NICE
 
 # Confirm after rm *
-setopt RM_STAR_WAIT
+#setopt RM_STAR_WAIT
+#http://zsh.sourceforge.net/Doc/Release/Options.html#index-RM_005fSTAR_005fSILENT
+set RM_STAR_SILENT
 
 # Shut up
 setopt NO_BEEP
