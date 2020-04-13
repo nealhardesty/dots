@@ -9,6 +9,9 @@ export GOPATH=$HOME/go
 # Run after .zprofile for all interactive shells
 export PATH=${HOME}/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/snap/bin:$GOPATH/bin
 
+
+# Options follow - https://linux.die.net/man/1/zshoptions
+
 # Do not immediately notify on subprocess exit
 setopt NO_NOTIFY
 
@@ -16,8 +19,8 @@ setopt NO_NOTIFY
 setopt NO_HUP
 setopt AUTO_CONTINUE
 
-# Use >! instead of clobbering on file redirect
-setopt NOCLOBBER
+# Do Not use >! instead of clobbering on file redirect
+setopt CLOBBER
 
 # Do not nice background processes
 setopt NO_BG_NICE
@@ -25,13 +28,34 @@ setopt NO_BG_NICE
 # Confirm after rm *
 #setopt RM_STAR_WAIT
 #http://zsh.sourceforge.net/Doc/Release/Options.html#index-RM_005fSTAR_005fSILENT
-set RM_STAR_SILENT
+setopt RM_STAR_SILENT
 
 # Shut up
 setopt NO_BEEP
 
 # Automaticaly Change Directory
 setopt AUTO_CD
+
+# cd is pushd as well
+setopt AUTO_PUSHD
+# pushd prints nothing
+setopt PUSHD_SILENT
+# allow pushd to just push home
+setopt PUSHD_TO_HOME
+
+# Just list the choices
+setopt AUTO_LIST
+
+# automatically show a menu on second tab if ambiguous
+setopt AUTO_MENU
+
+# don't drop the final /
+setopt NO_AUTO_REMOVE_SLASH
+
+# GLOB_COMPLETE - allow '*' etc to complete (with menu)
+setopt GLOB_COMPLETE
+
+setopt LIST_TYPES
 
 # History options
 export HISTSIZE=2000
