@@ -176,8 +176,8 @@ alias .4='cd ../../../..'
 
 alias ports="sudo netstat -tulanp"
 
-alias kindconfig="export KUBECONFIG=$(kind get kubeconfig-path)"
-alias kindinit="kind create cluster && export KUBECONFIG=$(kind get kubeconfig-path) && kubectl --context=kubernetes-admin@kind && get ns && kubectl --context=kubernetes-admin@kind create serviceaccount tiller && kubectl --context=kubernetes-admin@kind create clusterrolebinding tiller --serviceaccount=kube-system:tiller --clusterrole=cluster-admin && helm --kube-context=kubernetes-admin@kind init --service-account tiller"
+#alias kindconfig="export KUBECONFIG=$(kind get kubeconfig-path)"
+#alias kindinit="kind create cluster && export KUBECONFIG=$(kind get kubeconfig-path) && kubectl --context=kubernetes-admin@kind && get ns && kubectl --context=kubernetes-admin@kind create serviceaccount tiller && kubectl --context=kubernetes-admin@kind create clusterrolebinding tiller --serviceaccount=kube-system:tiller --clusterrole=cluster-admin && helm --kube-context=kubernetes-admin@kind init --service-account tiller"
 
 if [ -f ~/.bashrc.local ]; then
 	source ~/.bashrc.local
