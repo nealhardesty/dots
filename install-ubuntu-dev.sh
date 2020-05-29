@@ -7,6 +7,7 @@ sudo apt update
 # Kill it with fire
 sudo apt remove -y nano
 sudo apt install -y \
+  zsh \
   openjdk-11-jdk \
   build-essential \
   python3 \
