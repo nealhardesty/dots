@@ -12,7 +12,7 @@ choco install -y inkscape
 choco install -y visualstudiocode 
 choco install -y vlc 
 choco install -y chrome 
-choco install -y battle.net 
+#choco install -y battle.net 
 #choco install -y spotify 
 #choco install -y dropbox
 choco install -y microsoft-windows-terminal
@@ -27,9 +27,10 @@ Invoke-Expression "cmd.exe /C start capsToEscape.reg"
 
 # windows subsystem
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+# Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 
 # wsl 2
-#dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
-#wsl --set-default-version 2
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+wsl --set-default-version 2
 
 Invoke-Expression "cmd.exe /C start https://aka.ms/wslstore"
