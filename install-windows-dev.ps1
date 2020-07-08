@@ -16,6 +16,7 @@ choco install -y chrome
 #choco install -y spotify 
 #choco install -y dropbox
 choco install -y microsoft-windows-terminal
+choco install -y powertoys
 
 
 # swap capslock to escape
