@@ -6,7 +6,7 @@
 export ANDROID_HOME="~/bin/android-sdk"
 
 # path
-export PATH="~/bin:/usr/local/bin:~/.rvm/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$JAVA_HOME/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/opt/idea/bin:/usr/games:/snap/bin"
+export PATH="~/bin:/usr/local/bin:~/.rvm/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$JAVA_HOME/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/opt/idea/bin:/usr/games:/snap/bin:/usr/local/go/bin"
 
 if [ $(uname) == "Darwin" ]; then
   PATH="~/Dropbox/macbin:$PATH"
@@ -174,6 +174,8 @@ alias .3='cd ../../..'
 alias .4='cd ../../../..'
 
 alias oplogin='eval $(op signin my)'
+
+alias ff="firefox"
 
 
 alias ports="sudo netstat -tulanp"
