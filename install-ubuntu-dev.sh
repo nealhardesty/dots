@@ -34,6 +34,8 @@ sudo apt install -y \
   autossh \
   openvpn
 
+$(dirname $0)/install-ubuntu-golang.sh
+
 sudo pip3 install --upgrade pip
 sudo pip3 install awscli
 
