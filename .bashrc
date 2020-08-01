@@ -173,6 +173,8 @@ alias .2='cd ../..'
 alias .3='cd ../../..'
 alias .4='cd ../../../..'
 
+alias oplogin='eval $(op signin my)'
+
 
 alias ports="sudo netstat -tulanp"
 
