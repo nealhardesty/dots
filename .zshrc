@@ -136,6 +136,13 @@ alias '....= cd ....'
 alias '.....= cd .....'
 alias '......= cd ......'
 
+
+# Suffix Aliases
+alias -s {yml,yaml}=vim
+
+# Global Aliases
+alias -g G='|grep -i'
+
 # Local overrides
 if [ -f $HOME/.zshrc.local ]; then
   . $HOME/.zshrc.local
