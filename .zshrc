@@ -42,12 +42,26 @@ setopt AUTO_PUSHD
 setopt PUSHD_SILENT
 # allow pushd to just push home
 setopt PUSHD_TO_HOME
+# remove directory history duplicates
+setopt PUSHD_IGNORE_DUPS
+# dirs -v | ~# is cool
+alias d='dirs -v |head -20'
+alias 1='cd ~1'
+alias 2='cd ~2'
+alias 3='cd ~3'
+alias 4='cd ~4'
+alias 5='cd ~5'
+alias 6='cd ~6'
+alias 7='cd ~7'
+alias 8='cd ~8'
+alias 9='cd ~9'
 
 # Just list the choices
 setopt AUTO_LIST
 
-# automatically show a menu on second tab if ambiguous
-setopt AUTO_MENU
+# automatically cycle through directories on second tab
+# don't like it, turn it off
+setopt NO_AUTO_MENU
 
 # don't drop the final /
 setopt NO_AUTO_REMOVE_SLASH
