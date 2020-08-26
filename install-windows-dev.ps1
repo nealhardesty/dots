@@ -17,6 +17,7 @@ choco install -y chrome
 #choco install -y dropbox
 choco install -y microsoft-windows-terminal
 choco install -y powertoys
+choco install -y lxrunoffline
 
 
 # swap capslock to escape
