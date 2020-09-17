@@ -36,3 +36,6 @@ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /nores
 wsl --set-default-version 2
 
 Invoke-Expression "cmd.exe /C start https://aka.ms/wslstore"
+
+
+copy settings.json C:\Users\neal\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json
