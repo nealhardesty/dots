@@ -35,6 +35,7 @@
             {
                 "guid": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
                 "hidden": false,
+                "startingDirectory": "//wsl$/Ubuntu-20.04/home/neal",
                 "name": "Ubuntu-20.04-tmux",
                 "tabTitle": "Ubuntu TMUX",
                 "fontFace": "DejaVu Sans Mono",
@@ -47,12 +48,13 @@
                 "guid": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c274}",
                 "hidden": false,
                 "name": "Ubuntu-20.04-bash",
+                "startingDirectory": "//wsl$/Ubuntu-20.04/home/neal",
                 "tabTitle": "Ubuntu bash",
                 "fontFace": "DejaVu Sans Mono",
                 "colorScheme": "Nord",
                 "fontWeight": "bold",
                 "fontSize": 14,
-                "commandline": "wsl.exe -d Ubuntu-20.04 -e tmux new-session -A -s main"
+                "commandline": "wsl.exe -d Ubuntu-20.04 -e bash"
             },
             {
                 "guid": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c275}",
@@ -60,7 +62,7 @@
                 "name": "192.168.1.10",
                 "tabTitle": "192.168.1.10",
                 "fontFace": "DejaVu Sans Mono",
-                "colorScheme": "Nord",
+                "colorScheme": "Vintage",
                 "fontWeight": "bold",
                 "fontSize": 14,
                 "commandline": "wsl.exe -d Ubuntu-20.04 -e ssh 192.168.1.10"
@@ -68,6 +70,7 @@
             {
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "name": "Windows PowerShell",
+                "colorScheme": "Campbell Powershell",
                 "commandline": "powershell.exe",
                 "cursorShape": "vintage",
                 "scrollbarState": "hidden",
@@ -76,6 +79,7 @@
             {
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "name": "Command Prompt",
+                "colorScheme": "Vintage",
                 "commandline": "cmd.exe",
                 "hidden": false
             },
@@ -129,6 +133,8 @@
 
         // Press Ctrl+Shift+F to open the search box
         { "command": "find", "keys": "ctrl+shift+f" },
+
+        { "command": "commandPalette", "keys": "ctrl+alt+p" },
 
         // https://aka.ms/terminal-panes
         { "command": { "action": "splitPane", "split": "auto", "splitMode": "duplicate" }, "keys": "alt+shift+d" }
