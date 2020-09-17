@@ -3,11 +3,11 @@
 
 # Extra environment
 export AWS_PROFILE=default
-#export GOROOT=/usr/local/go
+export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
 
 # Run after .zprofile for all interactive shells
-export PATH=${HOME}/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/snap/bin:$GOPATH/bin
+export PATH=${HOME}/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/snap/bin:$GOROOT/bin:$GOPATH/bin
 
 
 # Options follow - https://linux.die.net/man/1/zshoptions
