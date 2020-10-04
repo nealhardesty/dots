@@ -113,7 +113,7 @@ function getGitBranchString {
 
 function getKubeNamespaceString {
   KUBERNETES_CURRENT_NAMESPACE=""
-  if (uname -r |grep -i microsoft >/dev/null); then
+  if (uname -r |grep -i microsoft >/dev/null 2>&1); then
     # Too slow in WSL ¯\_(ツ)_/¯
     return
   fi
