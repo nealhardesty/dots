@@ -113,6 +113,10 @@ function getGitBranchString {
 
 function getKubeNamespaceString {
   KUBERNETES_CURRENT_NAMESPACE=""
+  if (uname -r |grep -i microsoft >/dev/null); then
+    # Too slow in WSL ¯\_(ツ)_/¯
+    return
+  fi
   if [[ -f $HOME/.kube/config && $EUID != 0 ]]; then
     current_context=$(kubectl config current-context)
     current_namespace=$(kubectl config get-contexts $current_context |grep '^*' |awk '{print $5}')
