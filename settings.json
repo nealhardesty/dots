@@ -21,6 +21,8 @@
 
     "confirmCloseAllTabs": false,
 
+    "multilinePasteWarning": false,
+
     // https://aka.ms/terminal-profile-settings
     "profiles":
     {
