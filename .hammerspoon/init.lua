@@ -1,1 +1,2 @@
 require("win")
+require("minimize")
