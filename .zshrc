@@ -118,7 +118,7 @@ function setHostPrompt {
       HOSTPROMPT="🦦 "
       ;;
     marmot*)
-      HOSTPROMPT="🐿" # Yes, that's really a chipmunk
+      HOSTPROMPT="🐿 " # Yes, that's really a chipmunk
       ;;
     bearx)
       HOSTPROMPT="🐻x" 
