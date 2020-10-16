@@ -98,8 +98,51 @@ compinit
 # Prompt stuff
 
 # Animals: 🐱 🐙 🐿  🐽 🐻 🐳 🐮 🐯 🐷 🐭 🐢 🐝 🐡 🐠 🐞 🐟 🐘 🐌 >🐊 🐈 🐉 🦃 🦁 🦀
+# More animals: see emoji.md
 # Symbols: ᚬ ☠ 💩 💥 👾 🤖 🤓 👀 ⎇ » ▶ « ◀ 
 # Kubernetes: ⚙ ⎈
+#
+#
+
+
+function setHostPrompt {
+  HOSTPROMPT=$(hostname -s)
+  case "${HOSTPROMPT}" in
+    moose*)
+      HOSTPROMPT="🐃" # Yes, that's really a water buffalo
+      ;;
+    otter*)
+      HOSTPROMPT="🦦"
+      ;;
+    marmot*)
+      HOSTPROMPT="🐿" # Yes, that's really a chipmunk
+      ;;
+    bearx)
+      HOSTPROMPT="🐻x" 
+      ;;
+    bear*)
+      HOSTPROMPT="🐻" 
+      ;;
+    badger*)
+      HOSTPROMPT="🦡"
+      ;;
+    skunk*)
+      HOSTPROMPT="🦨"
+      ;;
+    turkey*)
+      HOSTPROMPT="🦃"
+      ;;
+    owl*)
+      HOSTPROMPT="🦉"
+      ;;
+    turtle*)
+      HOSTPROMPT="🐢"
+      ;;
+    *)
+      ;;
+  esac
+}
+setHostPrompt
 
 function getGitBranchString {
   GIT_CURRENT_BRANCH=""
@@ -135,7 +178,8 @@ precmd() {
   local last_exit=$?
 	getGitBranchString
 	getKubeNamespaceString
-	export PS1='%F{magenta}%n%f@%B%F{blue}%m%b %F{green}%~%(!.%F{red}#.%F{white}>)%f '
+	#export PS1='%F{magenta}%n%f@%B%F{blue}%m%b %F{green}%~%(!.%F{red}#.%F{white}>)%f '
+	export PS1='%B%F{blue}'${HOSTPROMPT}' %b %F{green}%~%(!.%F{red}#.%F{white}>)%f '
 	export RPS1="%(?..%F{grey}[%B%F{red}${last_exit}%b%F{grey}]%f )${GIT_CURRENT_BRANCH} ${KUBERNETES_CURRENT_NAMESPACE}"
 }
 
