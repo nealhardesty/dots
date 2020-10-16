@@ -69,6 +69,9 @@ setopt NO_AUTO_REMOVE_SLASH
 # GLOB_COMPLETE - allow '*' etc to complete (with menu)
 setopt GLOB_COMPLETE
 
+# extended glob matches 
+setopt extendedglob
+
 setopt LIST_TYPES
 
 # History options
@@ -109,10 +112,10 @@ function setHostPrompt {
   HOSTPROMPT=$(hostname -s)
   case "${HOSTPROMPT}" in
     moose*)
-      HOSTPROMPT="🐃" # Yes, that's really a water buffalo
+      HOSTPROMPT="🐃 " # Yes, that's really a water buffalo
       ;;
-    otter*)
-      HOSTPROMPT="🦦"
+    (#i)otter*)
+      HOSTPROMPT="🦦 "
       ;;
     marmot*)
       HOSTPROMPT="🐿" # Yes, that's really a chipmunk
@@ -121,22 +124,22 @@ function setHostPrompt {
       HOSTPROMPT="🐻x" 
       ;;
     bear*)
-      HOSTPROMPT="🐻" 
+      HOSTPROMPT="🐻 " 
       ;;
     badger*)
-      HOSTPROMPT="🦡"
+      HOSTPROMPT="🦡 "
       ;;
     skunk*)
-      HOSTPROMPT="🦨"
+      HOSTPROMPT="🦨 "
       ;;
     turkey*)
-      HOSTPROMPT="🦃"
+      HOSTPROMPT="🦃 "
       ;;
     owl*)
-      HOSTPROMPT="🦉"
+      HOSTPROMPT="🦉 "
       ;;
     turtle*)
-      HOSTPROMPT="🐢"
+      HOSTPROMPT="🐢 "
       ;;
     *)
       ;;
@@ -179,7 +182,7 @@ precmd() {
 	getGitBranchString
 	getKubeNamespaceString
 	#export PS1='%F{magenta}%n%f@%B%F{blue}%m%b %F{green}%~%(!.%F{red}#.%F{white}>)%f '
-	export PS1='%B%F{blue}'${HOSTPROMPT}' %b %F{green}%~%(!.%F{red}#.%F{white}>)%f '
+	export PS1='%B%F{blue}'${HOSTPROMPT}'%b %F{green}%~%(!.%F{red}#.%F{white}>)%f '
 	export RPS1="%(?..%F{grey}[%B%F{red}${last_exit}%b%F{grey}]%f )${GIT_CURRENT_BRANCH} ${KUBERNETES_CURRENT_NAMESPACE}"
 }
 
