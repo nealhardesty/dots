@@ -112,7 +112,7 @@ function setHostPrompt {
   HOSTPROMPT=$(hostname -s)
   case "${HOSTPROMPT}" in
     moose*)
-      HOSTPROMPT="🐃 " # Yes, that's really a water buffalo
+      HOSTPROMPT="🦌 "
       ;;
     (#i)otter*)
       HOSTPROMPT="🦦 "
