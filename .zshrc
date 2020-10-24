@@ -133,7 +133,7 @@ function setHostPrompt {
       HOSTPROMPT="🦨 "
       ;;
     turkey*)
-      HOSTPROMPT="🦃 "
+      HOSTPROMPT="🦃"
       ;;
     owl*)
       HOSTPROMPT="🦉 "
