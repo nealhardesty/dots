@@ -50,6 +50,7 @@ $(dirname $0)/install-ubuntu-firefox.sh
 mkdir -p ~/.ssh
 git config --global user.email "neal@crunchbase.com"
 git config --global user.name "Neal Hardesty"
+git config --global core.fileMode false
 ssh-keyscan github.com > ~/.ssh/known_hosts
 
 # Docker time
