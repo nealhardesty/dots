@@ -112,34 +112,34 @@ function setHostPrompt {
   HOSTPROMPT=$(hostname -s)
   case "${HOSTPROMPT}" in
     moose*)
-      HOSTPROMPT="🦌 "
+      HOSTPROMPT="🦌"
       ;;
     (#i)otter*)
-      HOSTPROMPT="🦦 "
+      HOSTPROMPT="🦦"
       ;;
     marmot*)
-      HOSTPROMPT="🐿 " # Yes, that's really a chipmunk
+      HOSTPROMPT="🐿" # Yes, that's really a chipmunk
       ;;
     bearx)
       HOSTPROMPT="🐻x" 
       ;;
     bear*)
-      HOSTPROMPT="🐻 " 
+      HOSTPROMPT="🐻" 
       ;;
     badger*)
-      HOSTPROMPT="🦡 "
+      HOSTPROMPT="🦡"
       ;;
     skunk*)
-      HOSTPROMPT="🦨 "
+      HOSTPROMPT="🦨"
       ;;
     turkey*)
       HOSTPROMPT="🦃"
       ;;
     owl*)
-      HOSTPROMPT="🦉 "
+      HOSTPROMPT="🦉"
       ;;
     turtle*)
-      HOSTPROMPT="🐢 "
+      HOSTPROMPT="🐢"
       ;;
     *)
       ;;
