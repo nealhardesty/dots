@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -e
+
+usage() {
+  echo Usage: $0 '<IMAGE FILENAME>'
+  exit 1
+}
+
+[ ! -z "$1" ] || usage
+
+REALPATH=$(realpath $1)
+gsettings set org.gnome.desktop.background picture-uri ${REALPATH}

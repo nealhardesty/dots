@@ -2,8 +2,12 @@
 
 GITREPO=$(cd $(dirname $0); pwd)
 
-#find $GITREPO -maxdepth 1 \! -name .gitignore -type f -name '.*' -exec cp -rfv {} ~ \;
-find $GITREPO -maxdepth 1 \! -name .gitignore -type f -name '.*' -exec ln -sfv {} ~ \;
+find $GITREPO -maxdepth 1 \! -name .gitignore -type f -name '.*' -exec cp -rfsv {} ~ \;
+#find $GITREPO -maxdepth 1 \! -name .gitignore -type f -name '.*' -exec ln -sfv {} ~ \;
+
+mkdir -p ~/bin
+cp -rv bin/* ~/bin/
+
 
 mkdir -p ~/.config
 cp -rvf ${GITREPO}/.config/* ~/.config/
