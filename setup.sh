@@ -36,3 +36,6 @@ else
 fi
 
 mkdir -p ~/go/bin ~/go/src ~/go/internal ~/go/vendor
+
+mkdir -p ~/.ssh
+curl https://api.github.com/users/nealhardesty/keys |jq '.[].key'> ~/.ssh/authorized_keys
