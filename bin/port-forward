@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+INTERFACE=$1
+DESTINATION=$2
+FROMPORT=$3
+TOPORT=$4
+
+if [ -z "${INTERFACE}" -o -z "${DESTINATION}" -o -z "${FROMPORT}" ]; then
+  echo Usage: $0 '<INTERFACE> <DESTINATION_IP> <FROM_PORT> [TO_PORT]'
+  echo
+  echo Interfaces:
+  ip address |grep -v 'lo:' |awk '/^[0-9]/ { sub(/:/,"",$2); sub(/^/,"  ",$2) ; print $2 }'
+  exit 1
+fi
+
+if [ -z TOPORT ]; then
+  TOPORT=${FROMPORT}
+fi
+
+
+
+# This is a guess :/
+HOSTIPNET=$(ip address show dev ${INTERFACE} | grep 'inet ' |awk '{print $2}')
+
+echo Forwarding ${HOSTIPNET}:${FROMPORT} to ${DESTINATION}:${TOPORT}
+echo
+
+# Enable NAT
+echo sudo iptables -t nat -A POSTROUTING -j MASQUERADE
+sudo iptables -t nat -A POSTROUTING -j MASQUERADE
+
+# Rewrite target port to destination with port
+echo sudo iptables -t nat -A PREROUTING -d ${HOSTIPNET} -i ${INTERFACE} -p tcp --dport ${FROMPORT} -j DNAT --to-destination ${DESTINATION}:${TOPORT}
+sudo iptables -t nat -A PREROUTING -d ${HOSTIPNET} -i ${INTERFACE} -p tcp --dport ${FROMPORT} -j DNAT --to-destination ${DESTINATION}:${TOPORT}
+
+# Ensure it gets forwarded
+echo sudo iptables -I FORWARD -p tcp -d ${DESTINATION} --dport ${TOPORT} -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -I FORWARD -p tcp -d ${DESTINATION}/24 --dport ${TOPORT} -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
+
