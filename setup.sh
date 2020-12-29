@@ -32,7 +32,7 @@ if [ -f ~/.ssh/config ]; then
   echo Cowardly refusing to overwrite .ssh/config
 else
   cp -rfv $GITREPO/.ssh/config ~/.ssh/config
-  ls -1 ~/.ssh/id_rsa ~/.ssh/*.pem |xargs -I{} -n 1 echo IdentityFile={} | tee -a ~/.ssh/config.local
+  #ls -1 ~/.ssh/id_rsa ~/.ssh/*.pem |xargs -I{} -n 1 echo IdentityFile={} | tee -a ~/.ssh/config.local
 fi
 
 mkdir -p ~/go/bin ~/go/src ~/go/internal ~/go/vendor
