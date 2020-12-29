@@ -1,2 +1,0 @@
-require("win")
-require("minimize")
