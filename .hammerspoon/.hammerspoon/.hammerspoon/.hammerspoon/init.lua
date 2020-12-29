@@ -1,0 +1,2 @@
+require("win")
+require("minimize")

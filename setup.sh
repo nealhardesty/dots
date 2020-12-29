@@ -9,21 +9,22 @@ mkdir -p ~/bin
 cp -rv bin/* ~/bin/
 
 
-mkdir -p ~/.config
-cp -rvf ${GITREPO}/.config/* ~/.config/
+#mkdir -p ~/.config
+#cp -rvf ${GITREPO}/.config/* ~/.config/
 
 rm -rv ~/.vim
 cp -rfv $GITREPO/.vim ~/.vim
 #(mkdir -p $GITREPO/.vim/bundle && cd $GITREPO/.vim/bundle/ && rm -rf nerdtree && git clone https://github.com/scrooloose/nerdtree)
 
-rm -rf ~/.i3
-cp -rfv $GITREPO/.i3 ~/.i3
+#rm -rf ~/.i3
+#cp -rfv $GITREPO/.i3 ~/.i3
 
 touch ~/.bashrc.local
 
 if [ $(uname) == "Darwin" ]; then
   echo Must be a mac, installing hammerspoon config
-  cp -rfv $GITREPO/.hammerspoon ~/.hammerspoon
+  #cp -rfv $GITREPO/.hammerspoon ~/.hammerspoon
+  [ -e ~/.hammerspoon ] || ln -fv $GITREPO/.hammerspoon ~/.hammerspoon
 fi
 
 
