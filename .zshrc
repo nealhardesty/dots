@@ -113,6 +113,7 @@ compinit
 
 function setHostPrompt {
   HOSTPROMPT=$(hostname -s)
+  # Disabling for now
   return
   case "${HOSTPROMPT}" in
     moose*)
