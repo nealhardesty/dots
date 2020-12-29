@@ -160,7 +160,8 @@ function getGitBranchString {
   if [ $EUID != 0 ]; then
     branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
     if [[ "$?" -eq 0 ]]; then
-      GIT_CURRENT_BRANCH="%F{grey}[%K{blue}%f%B⎇%b %F{green}${branch}%k%F{grey}]%f"
+      #GIT_CURRENT_BRANCH="%F{grey}[%K{blue}%f%B⎇%b %F{green}${branch}%k%F{grey}]%f"
+      GIT_CURRENT_BRANCH="%F{grey}[%K{blue}%f%Bgit:%b%F{green}${branch}%k%F{grey}]%f"
     fi
   fi
 }
@@ -177,9 +178,11 @@ function getKubeNamespaceString {
     #if [[ "$?" -eq 0 && "$current_namespace" != "default" ]]; then
     if [[ "$?" -eq 0 ]]; then
       if [[ "$current_context" =~ "^prod" ]]; then
-        KUBERNETES_CURRENT_NAMESPACE="%F{grey}[%K{yellow}%f%B⎈%b%F{red}${current_context}:${current_namespace}%k%F{grey}]%f"
+        #KUBERNETES_CURRENT_NAMESPACE="%F{grey}[%K{yellow}%f%B⎈%b%F{red}${current_context}:${current_namespace}%k%F{grey}]%f"
+        KUBERNETES_CURRENT_NAMESPACE="%F{grey}[%K{yellow}%f%Bk8s:%b%F{red}${current_context}:${current_namespace}%k%F{grey}]%f"
       else
-        KUBERNETES_CURRENT_NAMESPACE="%F{grey}[%K{blue}%B⎈%b%F{green}${current_context}:${current_namespace}%k%F{grey}]%f"
+        #KUBERNETES_CURRENT_NAMESPACE="%F{grey}[%K{blue}%B⎈%b%F{green}${current_context}:${current_namespace}%k%F{grey}]%f"
+        KUBERNETES_CURRENT_NAMESPACE="%F{grey}[%K{blue}%Bk8s:%b%F{green}${current_context}:${current_namespace}%k%F{grey}]%f"
       fi
     fi
   fi

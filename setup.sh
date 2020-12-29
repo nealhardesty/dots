@@ -2,7 +2,7 @@
 
 GITREPO=$(cd $(dirname $0); pwd)
 
-find $GITREPO -maxdepth 1 \! -name .gitignore -type f -name '.*' -exec cp -rfsv {} ~ \;
+find $GITREPO -maxdepth 1 \! -name .gitignore -type f -name '.*' -exec cp -rfv {} ~ \;
 #find $GITREPO -maxdepth 1 \! -name .gitignore -type f -name '.*' -exec ln -sfv {} ~ \;
 
 mkdir -p ~/bin
@@ -38,4 +38,4 @@ fi
 mkdir -p ~/go/bin ~/go/src ~/go/internal ~/go/vendor
 
 mkdir -p ~/.ssh
-curl https://api.github.com/users/nealhardesty/keys |jq '.[].key'> ~/.ssh/authorized_keys
+#curl https://api.github.com/users/nealhardesty/keys |jq '.[].key'> ~/.ssh/authorized_keys
