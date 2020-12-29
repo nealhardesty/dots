@@ -75,14 +75,16 @@ setopt extendedglob
 setopt LIST_TYPES
 
 # History options
-export HISTSIZE=2000
-export SAVEHIST=2000
+export HISTSIZE=10000
+export SAVEHIST=10000
 export HISTFILE=~/.zhistory
 setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
-setopt SHARE_HISTORY
+
+# Set this if you want a unified history between shells
+setopt NO_SHARE_HISTORY
 setopt EXTENDED_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST
 

@@ -33,4 +33,4 @@ kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 
 kubectl taint nodes --all node-role.kubernetes.io/master-
 
-
+echo export KUBECONFIG=$KUBECONFIG
