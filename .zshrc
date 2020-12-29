@@ -1,4 +1,4 @@
-
+# See http://zsh.sourceforge.net/Doc/Release/Options.html
 [[ -z "$PS1" ]] && return
 
 # Extra environment
@@ -58,6 +58,7 @@ alias 9='cd ~9'
 
 # Just list the choices
 setopt AUTO_LIST
+setopt BASH_AUTO_LIST
 
 # automatically cycle through directories on second tab
 # don't like it, turn it off
@@ -112,7 +113,11 @@ compinit
 
 function setHostPrompt {
   HOSTPROMPT=$(hostname -s)
+  return
   case "${HOSTPROMPT}" in
+    moose*)
+      HOSTPROMPT="🦌"
+      ;;
     moose*)
       HOSTPROMPT="🦌"
       ;;
