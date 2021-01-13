@@ -1,13 +1,18 @@
 #!/bin/bash
 
+set -e
+
 
 
 echo Installing Homebrew...
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
-brew install tmux yq wget unrar socat python3 openssl go coreutils autossh gor htop nmap
+#git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core fetch --unshallow
+#brew update
 
-brew cask install iterm2 hammerspoon docker dropbox visual-studio-code firefox brave-browser 1password 1password-cli jetbrains-toolbox vlc evernote adoptopenjdk xquartz slack skype zoomus github kindle viscosity
+brew install tmux yq wget rar socat python3 openssl go coreutils autossh gor htop nmap
+
+brew install --cask iterm2 hammerspoon docker dropbox visual-studio-code firefox brave-browser 1password 1password-cli jetbrains-toolbox vlc evernote adoptopenjdk xquartz slack skype zoomus github kindle viscosity joplin
 
 #brew cask install wine-stable wireshark inkscape macdown joplin aerial vmware-fusion parallels datagrip veracrypt spotify jump
 
