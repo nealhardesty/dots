@@ -10,3 +10,6 @@ tar xzvfC /tmp/helm.tgz /tmp/helm
 sudo mv /tmp/helm/*/helm /usr/local/bin/helm3
 chmod 755 /usr/local/bin/helm3
 rm -r /tmp/helm
+
+helm3 repo add stable https://charts.helm.sh/stable
+helm3 repo update
