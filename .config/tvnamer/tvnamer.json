@@ -41,6 +41,9 @@
                 "match": "[ ]",
                         "replacement": "."},
       {"is_regex": true,
+                "match": "[:]",
+                        "replacement": ""},
+      {"is_regex": true,
                 "match": "['\"]",
                         "replacement": ""}
     ],
