@@ -2,7 +2,8 @@
 
 set -e
 
-
+echo Triggering xcode tools install...
+git --help
 
 echo Installing Homebrew...
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
@@ -12,8 +13,8 @@ echo Installing Homebrew...
 
 brew install tmux yq wget rar socat python3 openssl go coreutils autossh gor htop nmap
 
-brew install --cask iterm2 hammerspoon docker dropbox visual-studio-code firefox brave-browser 1password 1password-cli jetbrains-toolbox vlc evernote adoptopenjdk xquartz slack skype zoomus github kindle viscosity joplin
+brew install --cask iterm2 hammerspoon docker visual-studio-code firefox brave-browser 1password-cli jetbrains-toolbox vlc adoptopenjdk xquartz slack skype zoomus github kindle viscosity joplin
 
-#brew cask install wine-stable wireshark inkscape macdown joplin aerial vmware-fusion parallels datagrip veracrypt spotify jump
+#brew install --cask install wine-stable wireshark inkscape macdown joplin aerial vmware-fusion parallels datagrip veracrypt spotify jump 1password evernote dropbox
 
 
