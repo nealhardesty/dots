@@ -54,14 +54,7 @@ git config --global core.fileMode false
 ssh-keyscan github.com > ~/.ssh/known_hosts
 
 # Docker time
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
-sudo apt update 
-sudo apt-get install -y docker-ce
-sudo usermod -aG docker neal
+source $(dirname $0)/install-ubuntu-docker.sh
 
 # Don't need no fancy login manager
 #sudo systemctl set-default multi-user.target
