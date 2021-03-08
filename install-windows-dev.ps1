@@ -23,6 +23,7 @@ choco install -y chrome
 choco install -y microsoft-windows-terminal
 choco install -y powertoys
 choco install -y lxrunoffline
+choco install -y autohotkey
 
 
 # swap capslock to escape
