@@ -4,6 +4,8 @@ autohotkey key bindings, mostly window control stuff
 Quickref -> https://www.autohotkey.com/docs/AutoHotkey.htm
 Hotkeyref -> https://www.autohotkey.com/docs/Hotkeys.htm
 
+icon -> https://iconarchive.com/show/meow-icons-by-iconka.html
+
 ^ -> Control
 ! -> Alt
 + -> Shift
