@@ -49,8 +49,11 @@ Hotkeyref -> https://www.autohotkey.com/docs/Hotkeys.htm
 ^!l::
 ^!+l::MoveWindowByPercent(50.0, 0, 50.0, 100.0)
 
+^!Up::
 ^!+Up::MoveWindowByPercent(0, 0, 100.0, 50.0 )
+^!Down::
 ^!+Down::MoveWindowByPercent(0, 50.0, 100.0, 50.0 )
+^!Enter::
 ^!+Enter::ToggleMaximize()
 
 ; *** SCREEN CONTROL BINDINGS ***
