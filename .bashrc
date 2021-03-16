@@ -186,3 +186,4 @@ alias ports="sudo netstat -tulanp"
 if [ -f ~/.bashrc.local ]; then
 	source ~/.bashrc.local
 fi
+source "$HOME/.cargo/env"
