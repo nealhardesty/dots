@@ -5,6 +5,7 @@
 	user = nealhardesty
 [core]
 	editor = vim
+	fileMode = false
 [diff]
 	tool = vimdiff
 [alias]
