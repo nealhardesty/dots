@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+  echo Usage: $0 '<contextName>'
+  echo
+  echo Current config contexts:
+  kubectl config get-contexts
+  exit 1
+fi
+
+kubectl config use-context "$1"
+
+

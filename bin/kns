@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+    echo Usage: $0 '<namespace>'
+
+    echo
+    echo Current namespace:
+    kubectl config get-contexts | grep '^*' | awk '{print $5}'
+
+    echo
+    echo Available namespaces:
+    kubectl get ns
+    exit 1
+fi
+
+kubectl config set-context $(kubectl config current-context) --namespace="$1"
+
+echo Set namespace to "'$1'"
