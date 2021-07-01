@@ -1,3 +1,4 @@
 .*~
 .netrwhist
 packages.microsoft.gpg
+.DS_Store
