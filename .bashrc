@@ -110,6 +110,7 @@ function setWindowTitle {
 }
 
 function getKubeNamespace {
+  which kubectl || return
   KUBERNETES_CURRENT_NAMESPACE=""
   if [[ -f $HOME/.kube/config && $EUID != 0 ]]; then
     current_context=$(kubectl config current-context)
@@ -186,4 +187,6 @@ alias ports="sudo netstat -tulanp"
 if [ -f ~/.bashrc.local ]; then
 	source ~/.bashrc.local
 fi
-source "$HOME/.cargo/env"
+if [ -f "$HOME/.cargo/env" ]; then
+  source "$HOME/.cargo/env"
+fi
