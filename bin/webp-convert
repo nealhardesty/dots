@@ -1,0 +1,5 @@
+#!/bin/bash
+
+for file in *.webp; do 
+  ffmpeg -i $file $file.jpg && rm $file
+done
