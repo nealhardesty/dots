@@ -73,6 +73,9 @@ setopt GLOB_COMPLETE
 # extended glob matches 
 setopt extendedglob
 
+# Don't complain about no glob matches
+unsetopt nomatch
+
 setopt LIST_TYPES
 
 # History options
