@@ -149,6 +149,8 @@ export GDK_NATIVE_WINDOWS=true
 
 export AWS_PROFILE=default
 
+export AUTOSSH_PORT=0
+
 set -o emacs
 
 if [ -f ~/.pass ]; then
