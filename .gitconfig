@@ -24,3 +24,5 @@
   graph = log --graph --oneline --decorate
 [push]
 	default = matching
+[pull]
+	rebase = false
