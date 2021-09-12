@@ -26,7 +26,7 @@ export VISUAL=vim
 # homebrew install location: /usr/local/opt/go/libexec/bin
 #export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:$GOPATH
 
 # if not interactive, leave now
 [[ ! $- =~ i ]] && return
