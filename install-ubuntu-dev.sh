@@ -1,5 +1,7 @@
 #!/bin/bash -x
 
+set -ex
+
 echo  'neal    ALL=(ALL:ALL) NOPASSWD:ALL' | sudo tee /etc/sudoers.d/neal 
 sudo chmod 0440 /etc/sudoers.d/neal
 
@@ -44,8 +46,18 @@ sudo pip3 install awscli
 # Install firefox
 $(dirname $0)/install-ubuntu-firefox.sh
 
-# Install slack client
-#sudo snap install --classic slack
+# Install Chrome
+$(dirname $0)/install-ubuntu-chrome.sh
+
+# Install Slack
+$(dirname $0)/install-ubuntu-slack.sh
+
+# Install Kubectl/Helm3
+$(dirname $0)/install-ubuntu-kubectl.sh
+$(dirname $0)/install-ubuntu-helm3.sh
+
+# Install vscode
+$(dirname $0)/install-ubuntu-vscode.sh
 
 mkdir -p ~/.ssh
 git config --global user.email "neal@crunchbase.com"
@@ -61,3 +73,5 @@ source $(dirname $0)/install-ubuntu-docker.sh
 #sudo systemctl set-default multi-user.target
 
 
+# junk directories on ubuntu
+rmdir Documents/ Music/ Pictures/ Public/ Templates/ Videos/ || true

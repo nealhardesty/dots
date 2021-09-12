@@ -2,8 +2,8 @@
 
 GITREPO=$(cd $(dirname $0); pwd)
 
-find $GITREPO -maxdepth 1 \! -name .gitignore -type f -name '.*' -exec cp -rfv {} ~ \;
-#find $GITREPO -maxdepth 1 \! -name .gitignore -type f -name '.*' -exec ln -sfv {} ~ \;
+#find $GITREPO -maxdepth 1 \! -name .gitignore -type f -name '.*' -exec cp -rfv {} ~ \;
+find $GITREPO -maxdepth 1 \! -name .gitignore -type f -name '.*' -exec ln -sfv {} ~ \;
 
 mkdir -p ~/bin
 cp -rv bin/* ~/bin/
@@ -20,6 +20,7 @@ cp -rfv $GITREPO/.vim ~/.vim
 #cp -rfv $GITREPO/.i3 ~/.i3
 
 touch ~/.bashrc.local
+touch ~/.zshrc.local
 
 if [ $(uname) == "Darwin" ]; then
   echo Must be a mac, installing hammerspoon config

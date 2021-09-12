@@ -6,7 +6,7 @@
 export ANDROID_HOME="~/bin/android-sdk"
 
 # path
-export PATH="~/Dropbox/bin:~/bin:/usr/local/bin:~/.rvm/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$JAVA_HOME/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/opt/idea/bin:/usr/games:/snap/bin:/usr/local/go/bin"
+export PATH="~/bin:/usr/local/bin:~/.rvm/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools:$JAVA_HOME/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/opt/idea/bin:/usr/games:/snap/bin:/usr/local/go/bin"
 
 if [ $(uname) == "Darwin" ]; then
   PATH="~/Dropbox/macbin:$PATH"
@@ -110,7 +110,7 @@ function setWindowTitle {
 }
 
 function getKubeNamespace {
-  which kubectl || return
+  which kubectl > /dev/null || return
   KUBERNETES_CURRENT_NAMESPACE=""
   if [[ -f $HOME/.kube/config && $EUID != 0 ]]; then
     current_context=$(kubectl config current-context)
@@ -179,6 +179,7 @@ alias .4='cd ../../../..'
 alias oplogin='eval $(op signin my)'
 
 alias ff="firefox"
+alias chrome="google-chrome-stable"
 
 
 alias ports="sudo netstat -tulanp"
