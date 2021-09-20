@@ -13,7 +13,7 @@ echo Installing Homebrew...
 
 brew install tmux yq wget rar socat python3 openssl go coreutils autossh gor htop nmap
 
-brew install --cask iterm2 hammerspoon docker visual-studio-code firefox brave-browser 1password-cli jetbrains-toolbox vlc adoptopenjdk xquartz slack skype zoomus github kindle viscosity joplin
+brew install --cask iterm2 hammerspoon docker visual-studio-code firefox brave-browser 1password-cli jetbrains-toolbox vlc adoptopenjdk xquartz slack skype zoomus github kindle viscosity alt-tab google-drive
 
 #brew install --cask install wine-stable wireshark inkscape macdown joplin aerial vmware-fusion parallels datagrip veracrypt spotify jump 1password evernote dropbox
 
