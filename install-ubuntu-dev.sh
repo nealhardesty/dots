@@ -59,12 +59,7 @@ $(dirname $0)/install-ubuntu-helm3.sh
 # Install vscode
 $(dirname $0)/install-ubuntu-vscode.sh
 
-mkdir -p ~/.ssh
-git config --global user.email "neal@crunchbase.com"
-git config --global user.name "Neal Hardesty"
-git config --global core.fileMode false
-git config pull.rebase true
-ssh-keyscan github.com > ~/.ssh/known_hosts
+$(dirname $0)/install-git-settings.sh
 
 # Docker time
 source $(dirname $0)/install-ubuntu-docker.sh

@@ -17,4 +17,4 @@ brew install --cask iterm2 hammerspoon docker visual-studio-code firefox brave-b
 
 #brew install --cask install wine-stable wireshark inkscape macdown joplin aerial vmware-fusion parallels datagrip veracrypt spotify jump 1password evernote dropbox
 
-
+$(dirname $0)/install-git-settings.sh
