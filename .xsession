@@ -1,2 +1,1 @@
-export $(dbus-launch)
-exec xfce4-session
+/usr/bin/gnome-session >> /tmp/gnome-session.log 2>&1
