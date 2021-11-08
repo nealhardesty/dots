@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=3.9.7
+VERSION=3.9.8
 
 sudo apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-de make
 
