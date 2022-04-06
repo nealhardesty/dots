@@ -4,6 +4,11 @@ set -e
 
 # See https://medium.com/mkdir-awesome/how-to-install-x86-64-homebrew-packages-on-apple-m1-macbook-54ba295230f
 
+if [ -d /usr/local/homebrew ]; then
+  echo /usr/local/homebrew already exists, exiting
+  exit 0
+fi
+
 if [ $(arch) == "arm64" ]; then
   softwareupdate --install-rosetta --agree-to-license
   echo Installing Homebrew AMD64 on ARM64...
