@@ -62,7 +62,7 @@ $(dirname $0)/install-ubuntu-vscode.sh
 $(dirname $0)/install-git-settings.sh
 
 # Docker time
-source $(dirname $0)/install-ubuntu-docker.sh
+#source $(dirname $0)/install-ubuntu-docker.sh
 
 # Don't need no fancy login manager
 #sudo systemctl set-default multi-user.target
