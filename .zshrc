@@ -196,6 +196,7 @@ precmd() {
   local last_exit=$?
 	getGitBranchString
 	getKubeNamespaceString
+  HOSTPROMPT=$(echo "${HOSTPROMPT}" | tr '[:upper:]' '[:lower:]')
 	#export PS1='%F{magenta}%n%f@%B%F{blue}%m%b %F{green}%~%(!.%F{red}#.%F{white}>)%f '
 	export PS1='%B%F{blue}'${HOSTPROMPT}'%b %F{green}%~%(!.%F{red}#.%F{white}>)%f '
 	export RPS1="%(?..%F{grey}[%B%F{red}${last_exit}%b%F{grey}]%f )${GIT_CURRENT_BRANCH} ${KUBERNETES_CURRENT_NAMESPACE}"
