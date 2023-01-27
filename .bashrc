@@ -110,7 +110,7 @@ function setWindowTitle {
 }
 
 function getKubeNamespace {
-  which kubectl > /dev/null || return
+  which kubectl > /dev/null 2>&1 || return
   KUBERNETES_CURRENT_NAMESPACE=""
   if [[ -f $HOME/.kube/config && $EUID != 0 ]]; then
     current_context=$(kubectl config current-context)
