@@ -69,4 +69,4 @@ $(dirname $0)/install-git-settings.sh
 
 
 # junk directories on ubuntu
-rmdir Documents/ Music/ Pictures/ Public/ Templates/ Videos/ || true
+(cd ~ && rmdir Documents/ Music/ Pictures/ Public/ Templates/ Videos/ || true)
