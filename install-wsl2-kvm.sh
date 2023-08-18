@@ -14,7 +14,7 @@ sudo apt install -y virt-manager qemu-kvm
 mkdir -p ~/src/ 
 cd ~/src
 
-curl -s https://api.github.com/repos/microsoft/WSL2-Linux-Kernel/releases/latest | jq -r '.name' | sed 's/$/.tar.gz/' | sed 's#^#https://github.com/microsoft/WSL2-Linux-Kernel/archive/refs/tags/#' | aria2c -i -
+curl -s https://api.github.com/repos/microsoft/WSL2-Linux-Kernel/releases/latest | jq -r '.name' | sed 's/$/.tar.gz/' | sed 's#^#https://github.com/microsoft/WSL2-Linux-Kernel/archive/refs/tags/#' |sed -e 's/ //g' | aria2c -i -
 
 tar -xf WSL2-*.tar.gz
 
@@ -48,5 +48,11 @@ powershell.exe /C 'Copy-Item .\arch\x86\boot\bzImage $env:USERPROFILE'
 
 powershell.exe /C 'Write-Output [wsl2]`nkernel=$env:USERPROFILE\bzImage | % {$_.replace("\","\\")} | Out-File $env:USERPROFILE\.wslconfig -encoding ASCII'
 
+echo
+echo Note, additional .wslconfig options docs:
+echo 'https://learn.microsoft.com/en-us/windows/wsl/wsl-config#configure-global-options-with-wslconfig'
+echo
+
 echo Now run from powershell:
 echo wsl.exe --shutdown
+echo
