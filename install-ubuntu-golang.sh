@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
-VERSION=1.17.1
+VERSION=1.21.0
 
-curl -sL https://golang.org/dl/go${VERSION}.linux-amd64.tar.gz |sudo tar -C /usr/local -xzvf -
+DOWNLOAD=https://go.dev/dl/go${VERSION}.linux-amd64.tar.gz
+
+curl -sL ${DOWNLOAD} |sudo tar -C /usr/local -xzvf -
