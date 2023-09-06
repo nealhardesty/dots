@@ -1,10 +1,14 @@
 #!/bin/bash
 
+set -e
+
+VERSION=18.17.1
+
 sudo apt install -y yarn sudo curl
 
-echo Installing Nodejs 10.15.0
+echo Installing Nodejs ${VERSION}
 cd /var/tmp
-wget https://nodejs.org/dist/v10.15.0/node-v10.15.0-linux-x64.tar.xz
+wget https://nodejs.org/dist/v${VERSION}/node-v${VERSION}-linux-x64.tar.xz
 xz -dc node*.tar.xz | sudo tar xvfC - /opt
 sudo ln -svf /opt/node-v* /opt/node
 
@@ -15,4 +19,6 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 sudo apt update -y
 sudo apt install -y yarn
 
-echo 'export PATH=/opt/node/bin:$PATH' >> ~/.bashrc.local
+[ -e ~/.bashrc.local ] && echo 'export PATH=/opt/node/bin:$PATH' >> ~/.bashrc.local
+[ -e ~/.zshrc.local ] && echo 'export PATH=/opt/node/bin:$PATH' >> ~/.zshrc.local
+
