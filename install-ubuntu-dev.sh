@@ -44,20 +44,20 @@ sudo pip3 install awscli
 #setxkbmap -option caps:swapescape
 
 # Install firefox
-$(dirname $0)/install-ubuntu-firefox.sh
+#$(dirname $0)/install-ubuntu-firefox.sh
 
 # Install Chrome
-$(dirname $0)/install-ubuntu-chrome.sh
+#$(dirname $0)/install-ubuntu-chrome.sh
 
 # Install Slack
-$(dirname $0)/install-ubuntu-slack.sh
+#$(dirname $0)/install-ubuntu-slack.sh
 
 # Install Kubectl/Helm3
 $(dirname $0)/install-ubuntu-kubectl.sh
 $(dirname $0)/install-ubuntu-helm3.sh
 
 # Install vscode
-$(dirname $0)/install-ubuntu-vscode.sh
+#$(dirname $0)/install-ubuntu-vscode.sh
 
 $(dirname $0)/install-git-settings.sh
 
