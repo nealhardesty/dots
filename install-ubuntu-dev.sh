@@ -24,6 +24,7 @@ sudo apt install -y \
   wget \
   curl \
   jq \
+  yq \
   net-tools \
   dnsutils \
   nmap \
@@ -38,8 +39,8 @@ sudo apt install -y \
 
 $(dirname $0)/install-ubuntu-golang.sh
 
-sudo pip3 install --upgrade pip
-sudo pip3 install awscli
+#sudo pip3 install --upgrade pip
+#sudo pip3 install awscli
 
 #setxkbmap -option caps:swapescape
 
@@ -53,8 +54,8 @@ sudo pip3 install awscli
 #$(dirname $0)/install-ubuntu-slack.sh
 
 # Install Kubectl/Helm3
-$(dirname $0)/install-ubuntu-kubectl.sh
-$(dirname $0)/install-ubuntu-helm3.sh
+#$(dirname $0)/install-ubuntu-kubectl.sh
+#$(dirname $0)/install-ubuntu-helm3.sh
 
 # Install vscode
 #$(dirname $0)/install-ubuntu-vscode.sh
