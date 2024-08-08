@@ -1,3 +1,6 @@
 #!/bin/sh
 
-sudo hwclock -s
+#sudo hwclock -s
+#
+
+sudo timedatectl set-local-rtc 1
