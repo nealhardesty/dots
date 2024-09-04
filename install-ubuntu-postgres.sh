@@ -13,4 +13,4 @@ echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" 
 echo 
 
 sudo apt-get update
-sudo apt-get install -y postgresql-13
+sudo apt-get install -y postgresql-14
