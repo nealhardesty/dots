@@ -8,8 +8,10 @@ dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux 
 
 # STEP 3: Restart Win 10 Machine
 write-host "You should install the wsl2 kernel via 'https://aka.ms/wsl2kernel'"
-start-process "https://aka.ms/wsl2kernel"
-start-process "https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi"
+(New-Object Net.WebClient).DownloadFile("https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi","C:\Windows\Temp\wsl_update_x64.msi")
+start-process c:\Windows\Temp\wsl_update_x64.msi
+#start-process "https://aka.ms/wsl2kernel"
+#start-process "https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi"
 write-host ""
 write-host "You must then restart windows..."
 restart-computer -Confirm
