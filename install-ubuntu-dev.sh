@@ -24,7 +24,6 @@ sudo apt install -y \
   wget \
   curl \
   jq \
-  yq \
   net-tools \
   dnsutils \
   nmap \
