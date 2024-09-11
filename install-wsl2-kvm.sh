@@ -2,6 +2,9 @@
 
 # https://boxofcables.dev/kvm-optimized-custom-kernel-wsl2-2022/
 
+# /mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe
+export PATH=$PATH:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/
+
 
 sudo sed -i.bak -e 's/# deb-src/deb-src/g' /etc/apt/sources.list
 
@@ -46,7 +49,7 @@ export PATH=$PATH:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/
 
 powershell.exe /C 'Copy-Item .\arch\x86\boot\bzImage $env:USERPROFILE'
 
-powershell.exe /C 'Write-Output [wsl2]`nkernel=$env:USERPROFILE\bzImage | % {$_.replace("\","\\")} | Out-File $env:USERPROFILE\.wslconfig -encoding ASCII'
+powershell.exe /C 'Write-Output [wsl2]`nkernel=$env:USERPROFILE\bzImage`nmemory=16GB`nprocessors=4`nnestedVirtualization=true| % {$_.replace("\","\\")} | Out-File $env:USERPROFILE\.wslconfig -encoding ASCII'
 
 echo
 echo Note, additional .wslconfig options docs:
