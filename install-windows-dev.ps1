@@ -7,16 +7,17 @@ sc.exe config wsearch start=disabled
 
 choco feature enable -n allowGlobalConfirmation
 
+choco install -y googlechrome 
 choco install -y firefox 
 choco install -y sumatrapdf 
 choco install -y 7zip 
 choco install -y sharpkeys
-choco install -y paint.net 
+choco install -y paint.net
 choco install -y irfanview 
 choco install -y inkscape 
 choco install -y visualstudiocode 
 choco install -y vlc 
-choco install -y googlechrome 
+
 #choco install -y battle.net 
 #choco install -y spotify 
 #choco install -y dropbox
