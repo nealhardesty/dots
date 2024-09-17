@@ -19,3 +19,6 @@ gh auth login
 echo "Install copilot CLI ..."
 gh extension install github/gh-copilot
 gh extension upgrade gh-copilot
+
+echo "Install copilot zsh aliases ..."
+echo 'eval "$(gh copilot alias -- zsh)"' >> ~/.zshrc.local
