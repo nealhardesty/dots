@@ -9,4 +9,4 @@ start-process c:\Windows\Temp\wsl_update_x64.msi
 wsl --set-default-version 2
 wsl --list --online
 
-wsl --install --no-launch -d Ubuntu-22.04
+wsl --install -d Ubuntu-22.04

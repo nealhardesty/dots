@@ -1,5 +1,3 @@
-#!/bin/bash
-
 mkdir -p ~/.ssh
 
 git config --global user.email "nealhardesty@yahoo.com"
