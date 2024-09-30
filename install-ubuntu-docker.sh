@@ -4,7 +4,7 @@
 
 set -ex
 
-for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc
+for pkg in docker.io docker-doc docker-compose podman-docker containerd runc
 do 
   sudo apt-get remove -y $pkg
 done
@@ -31,9 +31,9 @@ EOF
 
 sudo systemctl restart docker
 
-echo Installing docker-compose
-sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
+#echo Installing docker-compose
+#sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+#sudo chmod +x /usr/local/bin/docker-compose
 
 echo
 echo add this to /etc/docker/daemon.json to open external ports:

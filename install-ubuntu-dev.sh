@@ -10,7 +10,7 @@ sudo apt update
 sudo apt remove -y nano
 sudo apt install -y \
   zsh \
-  openjdk-11-jdk \
+  openjdk-17-jdk \
   build-essential \
   python3 \
   python3-pip \
