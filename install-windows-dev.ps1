@@ -30,6 +30,8 @@ choco install -y python311
 choco install -y git.install
 #choco install -y wsl-ubuntu-2204
 
+choco install -y flow-launcher
+
 
 # swap capslock to escape
 Invoke-Expression "cmd.exe /C start capsToEscape.reg"
