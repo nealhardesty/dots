@@ -14,7 +14,8 @@ container_name=codeserver-$(basename $(pwd))
 #(sleep 5 && grep password $HOME/.config/code-server/config.yaml) &
 mkdir -p ~/.config/code-server
 echo Password in ~/.config/code-server/config.json
-docker run --rm -it --name ${container_name} -p 8080:8080 \
+docker run --rm -it --name "${container_name}" -p 8080:8080 \
+  --hostname "$(hostname)-${container_name}" \
   -v "$HOME/.local:/home/coder/.local" \
   -v "$HOME/.config:/home/coder/.config" \
   -v "$PWD:/home/coder/project" \
@@ -23,5 +24,5 @@ docker run --rm -it --name ${container_name} -p 8080:8080 \
   -v "/var/run/docker.sock:/var/run/docker.sock" \
   -u "$(id -u):$(id -g)" \
   -e "DOCKER_USER=$USER" \
-  codercom/code-server:latest --cert '' /home/coder/project
+  codercom/code-server:latest --cert '' --disable-getting-started-override /home/coder/project
 
