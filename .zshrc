@@ -5,6 +5,7 @@
 export AWS_PROFILE=default
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
+export COMPOSE_PROFILES=all
 
 # Run after .zprofile for all interactive shells
 export PATH=${HOME}/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/snap/bin:$GOROOT/bin:$GOPATH/bin:$GOPATH
