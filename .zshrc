@@ -178,17 +178,21 @@ function getKubeNamespaceString {
     return
   fi
   if [[ -f $HOME/.kube/config && $EUID != 0 ]]; then
-    current_context=$(kubectl config current-context)
-    current_namespace=$(kubectl config get-contexts $current_context |grep '^*' |awk '{print $5}')
+    current_context=$(kubectl config current-context 2>/dev/null)
+    if [ $? -ne 0 ]; then 
+      return
+    fi
+    current_namespace=$(kubectl config get-contexts $current_context 2>/dev/null |grep '^*' |awk '{print $5}')
+    if [ $? -ne 0 ]; then 
+      return
+    fi
     #if [[ "$?" -eq 0 && "$current_namespace" != "default" ]]; then
-    if [[ "$?" -eq 0 ]]; then
-      if [[ "$current_context" =~ "^prod" ]]; then
-        #KUBERNETES_CURRENT_NAMESPACE="%F{grey}[%K{yellow}%f%B⎈%b%F{red}${current_context}:${current_namespace}%k%F{grey}]%f"
-        KUBERNETES_CURRENT_NAMESPACE="%F{grey}[%K{yellow}%f%Bk8s:%b%F{red}${current_context}:${current_namespace}%k%F{grey}]%f"
-      else
-        #KUBERNETES_CURRENT_NAMESPACE="%F{grey}[%K{blue}%B⎈%b%F{green}${current_context}:${current_namespace}%k%F{grey}]%f"
-        KUBERNETES_CURRENT_NAMESPACE="%F{grey}[%K{blue}%Bk8s:%b%F{green}${current_context}:${current_namespace}%k%F{grey}]%f"
-      fi
+    if [[ "$current_context" =~ "^prod" ]]; then
+      #KUBERNETES_CURRENT_NAMESPACE="%F{grey}[%K{yellow}%f%B⎈%b%F{red}${current_context}:${current_namespace}%k%F{grey}]%f"
+      KUBERNETES_CURRENT_NAMESPACE="%F{grey}[%K{yellow}%f%Bk8s:%b%F{red}${current_context}:${current_namespace}%k%F{grey}]%f"
+    else
+      #KUBERNETES_CURRENT_NAMESPACE="%F{grey}[%K{blue}%B⎈%b%F{green}${current_context}:${current_namespace}%k%F{grey}]%f"
+      KUBERNETES_CURRENT_NAMESPACE="%F{grey}[%K{blue}%Bk8s:%b%F{green}${current_context}:${current_namespace}%k%F{grey}]%f"
     fi
   fi
 }
