@@ -216,10 +216,6 @@ if [[ -e /proc/sys/fs/binfmt_misc/WSLInterop ]]; then
   # WSL
   alias c="clip.exe"
   alias p="powershell.exe Get-Clipboard"
-elif grep -q -i cygwin $(uname -a); then
-  # CYGWIN
-  alias c="/dev/clipboard"
-  alias p="cat /dev/clipboard"
 elif [[ $(uname) = "Darwin" ]]; then
   # MAC
   alias c="pbcopy"
