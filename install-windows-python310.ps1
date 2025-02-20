@@ -4,4 +4,4 @@ $webClient = New-Object System.Net.webClient
 
 $webClient.DownloadFile($url, $destination)
 
-Start-Process $destination
+Start-Process $destination -Verb RunAs
