@@ -216,6 +216,9 @@ if [[ -e /proc/sys/fs/binfmt_misc/WSLInterop ]]; then
   # WSL
   alias c="clip.exe"
   alias p="powershell.exe Get-Clipboard"
+
+  alias clip.exe='/mnt/c/Windows/System32/clip.exe'
+  alias code='/mnt/c/Program\ Files/Microsoft\ VS\ Code/bin/code'
 elif [[ $(uname) = "Darwin" ]]; then
   # MAC
   alias c="pbcopy"
