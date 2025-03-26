@@ -8,3 +8,4 @@ aider-install
 
 
 ollama run qwen2.5-coder:14b ""
+ollama run codellama:13b ""
