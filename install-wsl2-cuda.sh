@@ -25,17 +25,17 @@ sudo apt-get update
 sudo apt-get -y install cuda-toolkit-12-8
 
 # Set up environment variables if ~/.bashrc exists
-if [ -f ~/.bashrc ]; then
-    echo 'export PATH=/usr/local/cuda/bin:$PATH' >> ~/.bashrc
-    echo 'export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
-    echo 'export CUDA_HOME=/usr/local/cuda' >> ~/.bashrc
+if [ -f ~/.bashrc.local ]; then
+    echo 'export PATH=/usr/local/cuda/bin:$PATH' >> ~/.bashrc.local
+    echo 'export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc.local
+    echo 'export CUDA_HOME=/usr/local/cuda' >> ~/.bashrc.local
 fi
 
 # add the environment variables to ~/.zshrc if it exists
-if [ -f ~/.zshrc ]; then
-    echo 'export PATH=/usr/local/cuda/bin:$PATH' >> ~/.zshrc
-    echo 'export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH' >> ~/.zshrc
-    echo 'export CUDA_HOME=/usr/local/cuda' >> ~/.zshrc
+if [ -f ~/.zshrc.local ]; then
+    echo 'export PATH=/usr/local/cuda/bin:$PATH' >> ~/.zshrc.local
+    echo 'export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH' >> ~/.zshrc.local
+    echo 'export CUDA_HOME=/usr/local/cuda' >> ~/.zshrc.local
 fi
 
 export PATH=/usr/local/cuda/bin:$PATH
