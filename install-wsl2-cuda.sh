@@ -53,4 +53,4 @@ nvcc --version
 
 
 # Install cuDNN
-sudo apt install -y nvidia-cudnn
+#sudo apt install -y nvidia-cudnn
