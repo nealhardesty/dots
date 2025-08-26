@@ -12,3 +12,6 @@ ollama pull llama3.1
 echo https://ollama.com/library/codellama
 ollama pull codellama
 # ollama pull codellama:34b
+
+echo https://ollama.com/library/gpt-oss
+ollama pull gpt-oss
