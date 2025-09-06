@@ -2,7 +2,7 @@
 
 set -e
 
-VERSION=22.17.0
+VERSION=$(curl -s https://nodejs.org/dist/index.json | grep -o '"version":"[^"]*"' | head -1 | cut -d'"' -f4 | sed 's/^v//')
 
 sudo apt install -y yarn sudo curl
 
