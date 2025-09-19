@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -ex
+
+HOSTNAME=$(hostname | tr 'A-Z' 'a-z')
+IP=$(curl -s http://ipecho.net/plain)
+
+$(dirname $0)/cloudflaredns --name=${HOSTNAME} --target=${IP} --type=A --proxy

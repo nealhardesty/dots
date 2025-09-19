@@ -1,0 +1,174 @@
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.10"
+# dependencies = [
+#     "requests",
+# ]
+# ///
+import argparse
+import logging
+import sys
+import requests
+import os
+
+ZONES_URL="https://api.cloudflare.com/client/v4/zones"
+RECORDS_URL="https://api.cloudflare.com/client/v4/zones/{zone_id}/dns_records"
+RECORD_URL="https://api.cloudflare.com/client/v4/zones/{zone_id}/dns_records/{dns_record_id}"
+
+def upsert(token, name, dnstype, target, zone, ttl=120, proxy=False):
+    logging.debug("Resolving cloudflare name {0}".format(name))
+    headers={
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {token}"
+    }
+    #enable_verbose_requests()
+
+    # First, find the zone
+    logging.debug("find the zone id")
+    zones_response=requests.get(ZONES_URL, headers=headers).json()
+    logging.debug(zones_response)
+
+    if not zones_response["success"]:
+        logging.fatal("Failed to list zones: {0}".format(zones_response))
+        sys.exit(1)
+
+    zone_id = None
+    for z in zones_response["result"]:
+        if z["name"] == zone:
+            zone_id = z["id"]
+            break
+
+    if not zone_id:
+        logging.fatal("Did not find a zone id for {0}".format(zone))
+        sys.exit(1)
+
+    logging.debug("zone id {0}".format(zone_id))
+
+    # Second, find the record
+    logging.debug("find the dns record id")
+
+    dns_record_response = requests.get(RECORDS_URL.format(zone_id=zone_id), params={"name": name}, headers=headers).json()
+    logging.debug(dns_record_response)
+
+    if dns_record_response["success"] and dns_record_response["result"]:
+        dns_record_id = dns_record_response["result"][0]["id"]
+        logging.debug("dns record id {0}".format(dns_record_id))
+        logging.debug("dns record already exists, will delete first")
+
+        delete_response = requests.delete(RECORD_URL.format(zone_id=zone_id, dns_record_id=dns_record_id), headers=headers).json()
+        logging.debug(delete_response)
+
+        if not delete_response["success"]:
+            logging.fatal("Failed to delete record: {0}".format(delete_response))
+            sys.exit(1)
+
+    # now (re)create the record
+    logging.debug("(re)create record")
+
+    recreate_response = requests.post(RECORDS_URL.format(zone_id=zone_id), json={
+        "type": dnstype,
+        "name": name,
+        "content": target,
+        "ttl": ttl,
+        "proxied": proxy
+    }, headers=headers).json()
+    logging.debug(recreate_response)
+
+    if not recreate_response["success"]:
+        logging.fatal(recreate_response)
+        # Note, not exiting with failure here to avoid k8s job restart
+
+    return recreate_response
+
+
+
+
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-v", "--verbose",
+                                      help="Be more verbose.",
+                                      dest="verbose",
+                                      action="store_true",
+                                      required=False)
+    parser.add_argument("-k", "--token",
+                                      help="Cloudflare API Token.  Required, or use 'CLOUDFLARE_API_TOKEN' environment instead.",
+                                      dest="token",
+                                      action="store",
+                                      required=False)
+    parser.add_argument("-n", "--name",
+                                      help="DNS Name to associate.  Required. May be repeated.",
+                                      dest="names",
+                                      action="append",
+                                      required=True)
+    parser.add_argument("-t", "--target",
+                                      help="DNS Target to associate.",
+                                      dest="target",
+                                      action="store",
+                                      required=True)
+    parser.add_argument("-p", "--type",
+                                      help="DNS Type.  Default 'A'",
+                                      dest="type",
+                                      default="A",
+                                      choices=["A", "CNAME"],
+                                      action="store")
+    parser.add_argument("-z", "--zone",
+                                      help="Cloudflare Zone name.  Default 'roadwaffle.com'",
+                                      dest="zone",
+                                      default="roadwaffle.com",
+                                      action="store")
+    parser.add_argument("-l", "--ttl",
+                                      help="DNS TTL.  Default '120'.  Must be >= 120",
+                                      default=120,
+                                      type=int,
+                                      dest="ttl",
+                                      action="store")
+    parser.add_argument("-P", "--proxy",
+                                      help="Turn on Cloudflare Proxy",
+                                      dest="proxy",
+                                      action="store_true")
+
+    args = parser.parse_args()
+
+    names = args.names
+    target = args.target
+    dnstype = args.type
+    zone = args.zone
+    ttl = args.ttl
+    proxy = args.proxy
+    token = args.token
+    verbose = args.verbose
+
+    loglevel = "INFO"
+    if args.verbose:
+        loglevel = "DEBUG"
+    logging.basicConfig(level=loglevel, format="%(asctime)s:%(levelname)s:%(name)s:%(funcName)s:%(msg)s")
+
+    if ttl < 120:
+        logging.fatal("Cloudflare requires record time to live (ttl) >= 120")
+        sys.exit(1)
+
+    if not token:
+        token = os.getenv("CLOUDFLARE_API_TOKEN", None)
+
+    if not token:
+        logging.fatal("Neither '--token' set or environment CLOUDFLARE_API_TOKEN set.  Can not continue.")
+        sys.exit(1)
+
+    logging.debug("names={0}".format(names))
+    logging.debug("dnstype={0}".format(dnstype))
+    logging.debug("target={0}".format(target))
+    logging.debug("zone={0}".format(zone))
+    logging.debug("ttl={0}".format(ttl))
+    logging.debug("proxy={0}".format(proxy))
+
+    # Do it
+    for name in names:
+        logging.info(f"Setting '{name}' to '{target}'")
+        try:
+            response = upsert(token=token, name=name, dnstype=dnstype, target=target, zone=zone, ttl=ttl, proxy=proxy)
+            logging.info(response)
+        except Exception as ex:
+            logging.error(ex)
+
+
