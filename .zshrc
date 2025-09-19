@@ -246,7 +246,11 @@ alias -s {yml,yaml}=vim
 # Global Aliases
 alias -g G='|grep -i'
 
+# ping a port without nc
+alias pingport='f(){ h=${1:-google.com}; p=${2:-80}; (echo >/dev/tcp/$h/$p) &>/dev/null && echo "Port $p on $h is open" || echo "Port $p on $h is closed"; }; f'
+
 # Local overrides
 if [ -f $HOME/.zshrc.local ]; then
   . $HOME/.zshrc.local
 fi
+
