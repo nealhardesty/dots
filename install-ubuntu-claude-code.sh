@@ -17,10 +17,12 @@ touch ~/.bashrc.local ~/.zshrc.local
 # Add alias for claude-code using npx
 if ! grep -q "claude=" ~/.bashrc.local 2>/dev/null; then
     echo 'alias claude="npx -y @anthropic-ai/claude-code"' >> ~/.bashrc.local
+    echo '#alias claude="npx -y @anthropic-ai/claude-code --dangerously-skip-permissions"' >> ~/.bashrc.local
 fi
 
 if ! grep -q "claude=" ~/.zshrc.local 2>/dev/null; then
     echo 'alias claude="npx -y @anthropic-ai/claude-code"' >> ~/.zshrc.local
+    echo '#alias claude="npx -y @anthropic-ai/claude-code --dangerously-skip-permissions"' >> ~/.zshrc.local
 fi
 
 # Source the local configs from main rc files if not already done
