@@ -77,12 +77,11 @@ sudo lxd waitready
 
 # Create a profile for containers with home and Windows mount
 echo "Creating profile with home and Windows mounts..."
-lxc profile create dev-profile
+sudo lxc profile create dev-profile
 
 # Configure the dev-profile with network, storage, and mounts
-lxc profile device add dev-profile eth0 nic nictype=bridged parent=lxdbr0
-lxc profile device add dev-profile root disk path=/ pool=default
-lxc profile device add dev-profile home disk source=/home path=/mnt/home
+sudo lxc profile device add dev-profile eth0 nic nictype=bridged parent=lxdbr0
+sudo lxc profile device add dev-profile root disk path=/ pool=default
 
 # Add Windows drive mounts for any detected WSL mounts
 echo "Scanning for WSL drive mounts in /mnt/..."
@@ -91,7 +90,7 @@ for mount_point in /mnt/*; do
     if [ -d "$mount_point" ] && [ "$(basename "$mount_point")" != "wsl" ] && [ "$(basename "$mount_point")" != "wslg" ]; then
         drive_letter=$(basename "$mount_point")
         echo "Found $mount_point - adding Windows $drive_letter: drive mount..."
-        lxc profile device add dev-profile "mnt-$drive_letter" disk source="$mount_point" path="$mount_point"
+        sudo lxc profile device add dev-profile "mnt-$drive_letter" disk source="$mount_point" path="$mount_point"
         WSL_MOUNTS_FOUND=true
     fi
 done
@@ -100,26 +99,21 @@ if [ "$WSL_MOUNTS_FOUND" = false ]; then
     echo "No WSL drive mounts found in /mnt/"
 fi
 
-# Add home directory mount
-CURRENT_USER=$(whoami)
-HOME_DIR="/home/$CURRENT_USER"
-echo "Adding home directory mount: $HOME_DIR -> /mnt/$CURRENT_USER"
-lxc profile device add dev-profile "mnt-$CURRENT_USER" disk source="$HOME_DIR" path="/mnt/$CURRENT_USER" 
 
 # Set some sensible defaults for development
-lxc profile set dev-profile security.nesting true
-lxc profile set dev-profile security.privileged false
+sudo lxc profile set dev-profile security.nesting true
+sudo lxc profile set dev-profile security.privileged false
 
 # Create default Ubuntu 22.04 container
 echo "Creating default Ubuntu 22.04 container 'ubuntu-dev'..."
-lxc launch ubuntu:22.04 ubuntu-dev --profile dev-profile
+sudo lxc launch ubuntu:22.04 ubuntu-dev --profile dev-profile
 
 # Wait for container to be ready and configure permanent static IP
 echo "Configuring container network..."
 sleep 5
 
 # Create permanent network configuration using netplan
-lxc exec ubuntu-dev -- bash -c 'cat > /etc/netplan/10-lxc.yaml << EOF
+sudo lxc exec ubuntu-dev -- bash -c 'cat > /etc/netplan/10-lxc.yaml << EOF
 network:
   version: 2
   ethernets:
@@ -137,77 +131,75 @@ network:
 EOF'
 
 # Set proper permissions for netplan config file (600 = rw for owner only)
-lxc exec ubuntu-dev -- chmod 600 /etc/netplan/10-lxc.yaml
+sudo lxc exec ubuntu-dev -- chmod 600 /etc/netplan/10-lxc.yaml
 
 # Apply the netplan configuration
-lxc exec ubuntu-dev -- netplan apply
+sudo lxc exec ubuntu-dev -- netplan apply
 
 # Configure DNS to use Cloudflare (1.1.1.1)
 echo "Configuring DNS to use 1.1.1.1..."
-lxc exec ubuntu-dev -- bash -c 'echo "nameserver 1.1.1.1" > /etc/resolv.conf'
+sudo lxc exec ubuntu-dev -- bash -c 'echo "nameserver 1.1.1.1" > /etc/resolv.conf'
+
+# Fix hostname resolution for sudo
+echo "Fixing hostname resolution for sudo..."
+sudo lxc exec ubuntu-dev -- bash -c 'echo "127.0.1.1 ubuntu-dev" >> /etc/hosts'
 
 # Update the container
 echo "Updating container packages..."
-lxc exec ubuntu-dev -- apt update
-lxc exec ubuntu-dev -- apt upgrade -y
+sudo lxc exec ubuntu-dev -- apt update
+sudo lxc exec ubuntu-dev -- bash -c 'DEBIAN_FRONTEND=noninteractive apt upgrade -y -qq'
 
 # Install some useful packages
 echo "Installing useful packages..."
-lxc exec ubuntu-dev -- apt remove -y nano
-lxc exec ubuntu-dev -- bash -c 'DEBIAN_FRONTEND=noninteractive apt install -y -qq zsh curl wget git vim htop build-essential tmux rsync net-tools dnsutils nmap nmon autossh'
+sudo lxc exec ubuntu-dev -- apt remove -y nano
+sudo lxc exec ubuntu-dev -- bash -c 'DEBIAN_FRONTEND=noninteractive apt install -y -qq zsh curl wget git vim htop build-essential tmux rsync net-tools dnsutils nmap nmon autossh'
 
-# Create user with current username, specific UID, zsh shell, and no password
+# Delete the default ubuntu user (UID 1000) if it exists
+echo "Removing default ubuntu user..."
+sudo lxc exec ubuntu-dev -- userdel -r ubuntu 2>/dev/null || echo "Ubuntu user not found or already removed"
+
+# Create user with current username, current UID, zsh shell, and no password
 CURRENT_USER=$(whoami)
-echo "Creating user '$CURRENT_USER' with UID 1026..."
-lxc exec ubuntu-dev -- useradd -u 1026 -s /bin/zsh -m "$CURRENT_USER"
-lxc exec ubuntu-dev -- passwd -d "$CURRENT_USER"
+CURRENT_UID=$(id -u)
+echo "Creating user '$CURRENT_USER' with UID $CURRENT_UID..."
+sudo lxc exec ubuntu-dev -- useradd -u "$CURRENT_UID" -s /bin/zsh -m "$CURRENT_USER"
+sudo lxc exec ubuntu-dev -- passwd -d "$CURRENT_USER"
+
+# Add current user to admin/sudo group
+echo "Adding $CURRENT_USER to admin group..."
+sudo lxc exec ubuntu-dev -- usermod -aG admin "$CURRENT_USER"
 
 # Add current user to sudoers with no password required
 echo "Adding $CURRENT_USER to sudoers with no password..."
-lxc exec ubuntu-dev -- bash -c "echo \"$CURRENT_USER ALL=(ALL) NOPASSWD:ALL\" >> /etc/sudoers.d/$CURRENT_USER"
-lxc exec ubuntu-dev -- chmod 440 "/etc/sudoers.d/$CURRENT_USER"
+sudo lxc exec ubuntu-dev -- bash -c "echo \"$CURRENT_USER ALL=(ALL) NOPASSWD:ALL\" >> /etc/sudoers.d/$CURRENT_USER"
+sudo lxc exec ubuntu-dev -- chmod 440 "/etc/sudoers.d/$CURRENT_USER"
 
 # Ensure mount points exist and have proper permissions inside container
 echo "Setting up mount points inside container..."
-lxc exec ubuntu-dev -- mkdir -p /mnt
+sudo lxc exec ubuntu-dev -- mkdir -p /mnt
 for mount_point in /mnt/*; do
     if [ -d "$mount_point" ] && [ "$(basename "$mount_point")" != "wsl" ] && [ "$(basename "$mount_point")" != "wslg" ]; then
         drive_letter=$(basename "$mount_point")
         echo "Setting up /mnt/$drive_letter in container..."
-        lxc exec ubuntu-dev -- mkdir -p "/mnt/$drive_letter"
+        sudo lxc exec ubuntu-dev -- mkdir -p "/mnt/$drive_letter"
         
         # Add to /etc/fstab for persistence across container reboots
         echo "Adding /mnt/$drive_letter to /etc/fstab in container..."
-        lxc exec ubuntu-dev -- bash -c "echo '$mount_point /mnt/$drive_letter none bind,defaults 0 0' >> /etc/fstab"
+        sudo lxc exec ubuntu-dev -- bash -c "echo '$mount_point /mnt/$drive_letter none bind,defaults 0 0' >> /etc/fstab"
     fi
 done
 
-# Set up home directory mount point in container
-echo "Setting up home directory mount in container..."
-lxc exec ubuntu-dev -- mkdir -p "/mnt/$CURRENT_USER"
+# Set up /home mount point in container
+echo "Setting up /home mount in container..."
+sudo lxc exec ubuntu-dev -- mkdir -p /mnt/home
 
-# Add home directory to /etc/fstab for persistence
-echo "Adding home directory to /etc/fstab in container..."
-lxc exec ubuntu-dev -- bash -c "echo '$HOME_DIR /mnt/$CURRENT_USER none bind,defaults 0 0' >> /etc/fstab"
+# Add /home to /etc/fstab for persistence across container reboots
+echo "Adding /home to /etc/fstab in container..."
+sudo lxc exec ubuntu-dev -- bash -c 'echo "/home /mnt/home none bind,defaults 0 0" >> /etc/fstab'
 
-lxc exec ubuntu-dev -- bash -c 'echo "nameserver 1.1.1.1" > /etc/resolv.conf'
+sudo lxc exec ubuntu-dev -- bash -c 'echo "nameserver 1.1.1.1" > /etc/resolv.conf'
 
-echo
-echo "=== LXD Setup Complete ==="
-echo "Default container 'ubuntu-dev' created with:"
-echo "  - IP: 192.168.77.10"
-echo "  - /home mounted from host"
 
-# Show which WSL drives were mounted
-for mount_point in /mnt/*; do
-    if [ -d "$mount_point" ] && [ "$(basename "$mount_point")" != "wsl" ] && [ "$(basename "$mount_point")" != "wslg" ]; then
-        drive_letter=$(basename "$mount_point")
-        echo "  - $mount_point mounted from host (Windows $drive_letter: drive)"
-    fi
-done
-
-echo "  - Basic development tools installed"
-echo
 echo "To access the container:"
 echo "  lxc exec ubuntu-dev -- bash"
 echo
