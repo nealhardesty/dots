@@ -1,10 +1,14 @@
+" No "Thanks for flying Vim" message
+set shortmess+=I
+set notitle
+
 " Pathogen: https://github.com/tpope/vim-pathogen
-execute pathogen#infect()
+"execute pathogen#infect()
 
 " NERDtree: https://github.com/scrooloose/nerdtree
 "autocmd vimenter * NERDTree
-map <C-n> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+"map <C-n> :NERDTreeToggle<CR>
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " iMproved powers activate!
 set nocompatible
@@ -117,9 +121,6 @@ set wrap
 
 " Always show 3 lines of context around the cursor line
 set scrolloff=3
-
-" Set the terminal title
-set title
 
 " show the line where the cursor is
 set nocursorline
