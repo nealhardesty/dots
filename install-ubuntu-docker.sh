@@ -10,12 +10,29 @@ do
 done
 
 # Docker time
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+# Get Ubuntu codename (works for both Ubuntu and Linux Mint)
+UBUNTU_CODENAME=$(grep UBUNTU_CODENAME /etc/os-release | cut -d= -f2 || lsb_release -cs)
+
+# Remove any existing Docker repository entries
+sudo rm -f /etc/apt/sources.list.d/docker*.list
+for file in /etc/apt/sources.list.d/*.list; do
+  if [ -f "$file" ]; then
+    sudo sed -i '/download.docker.com\/linux\/ubuntu/d' "$file"
+  fi
+done
+
+# Install GPG key using modern method (replaces deprecated apt-key)
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo rm -f /etc/apt/keyrings/docker.gpg
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
 sudo add-apt-repository -y \
-  "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) \
+  "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  ${UBUNTU_CODENAME} \
   stable"
 
+sudo apt-get update
 sudo apt-get install -y docker-ce
 sudo usermod -aG docker ${USER}
 
