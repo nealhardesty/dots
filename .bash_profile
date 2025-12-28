@@ -11,3 +11,5 @@ stty -ixany
 export KUBECONFIG=~/.kube/config:~/.kube/config-staging-eks
 export PATH=/Users/neal/dev/ops_tools/bin:$PATH
 #source "$HOME/.cargo/env"
+
+. "$HOME/.local/bin/env"

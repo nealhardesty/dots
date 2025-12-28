@@ -254,3 +254,5 @@ if [ -f $HOME/.zshrc.local ]; then
   . $HOME/.zshrc.local
 fi
 
+
+. "$HOME/.local/bin/env"
