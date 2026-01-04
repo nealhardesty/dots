@@ -17,19 +17,21 @@ python --version
 
 if command -v nvidia-smi; then
   echo Using cuda pytorch
+  USE_CPU=""
   uv pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu124
 else
   echo Using cpu python ... will be slow...
+  USE_CPU="--cpu"
   uv pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu
 fi
 
 uv pip install -r requirements.txt
 
-cat > start.sh <<"MOOSE"
+cat > start.sh <<MOOSE
 #!/bin/bash
 set -ex
 source venv/bin/activate
-python3 main.py --listen 0.0.0.0
+python3 main.py --listen 0.0.0.0 ${USE_CPU}
 MOOSE
 chmod a+x start.sh
 
