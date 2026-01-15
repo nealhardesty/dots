@@ -22,12 +22,9 @@ choco install -y vlc
 #choco install -y spotify 
 #choco install -y dropbox
 #choco install -y microsoft-windows-terminal
-choco install -y powertoys
-#choco install -y lxrunoffline
 choco install -y autohotkey
 choco install -y autologon
 choco install -y python311
-choco install -y git.install
 #choco install -y wsl-ubuntu-2204
 
 #choco install -y flow-launcher
@@ -54,4 +51,4 @@ Invoke-Expression "cmd.exe /C start capsToEscape.reg"
 #Invoke-Expression "cmd.exe /C start https://aka.ms/wslstore"
 
 
-copy settings.json C:\Users\neal\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json
+#copy settings.json C:\Users\neal\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json
