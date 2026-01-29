@@ -29,16 +29,21 @@ Set-Service -Name sshd -StartupType Automatic
 
 # 3. Ensure firewall rule exists
 Write-Host "Ensuring firewall rule for SSH..." -ForegroundColor Green
-if (-not (Get-NetFirewallRule -Name 'OpenSSH-Server-In-TCP' -ErrorAction SilentlyContinue)) {
+$firewallRule = Get-NetFirewallRule -Name 'OpenSSH-Server-In-TCP' -ErrorAction SilentlyContinue
+if (-not $firewallRule) {
     New-NetFirewallRule -Name 'OpenSSH-Server-In-TCP' `
         -DisplayName 'OpenSSH SSH Server' `
         -Enabled True `
         -Direction Inbound `
         -Protocol TCP `
         -Action Allow `
-        -LocalPort 22
+        -LocalPort 22 `
+        -Profile Any
+    Write-Host "Firewall rule created for all network profiles." -ForegroundColor Green
 } else {
-    Write-Host "Firewall rule already present." -ForegroundColor Yellow
+    # Ensure the rule is enabled and applies to all profiles
+    Set-NetFirewallRule -Name 'OpenSSH-Server-In-TCP' -Enabled True -Profile Any
+    Write-Host "Firewall rule already present. Ensuring it's enabled for all profiles." -ForegroundColor Yellow
 }
 
 # 4. Detect first WSL distro name
