@@ -232,12 +232,12 @@ fi
 # Aliases:
 alias ls='ls -F'
 alias k=kubectl
-alias 'cd..= cd ..'
-alias '..= cd ..'
-alias '...= cd ...'
-alias '....= cd ....'
-alias '.....= cd .....'
-alias '......= cd ......'
+alias 'cd..'='cd ..'
+alias '..'='cd ..'
+alias '...'='cd ../..'
+alias '....'='cd ../../..'
+alias '.....'='cd ../../../..'
+alias '......'='cd ../../../../..'
 
 
 # Suffix Aliases
