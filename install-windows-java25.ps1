@@ -1,4 +1,4 @@
-# Run as administrator: powershell -ExecutionPolicy Bypass -File install-windows-java17.ps1
+# Run as administrator: powershell -ExecutionPolicy Bypass -File install-windows-java25.ps1
 
 # Check if running with admin privileges
 $currentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
@@ -11,17 +11,17 @@ if (-not $isAdmin) {
 
 Write-Host "SUCCESS: Running with administrator privileges" -ForegroundColor Green
 
-Write-Host "Installing OpenJDK 17 via winget..." -ForegroundColor Cyan
+Write-Host "Installing OpenJDK 25 via winget..." -ForegroundColor Cyan
 
-# Install Temurin JDK 17
-winget install --id EclipseAdoptium.Temurin.17.JDK --source winget --accept-package-agreements --accept-source-agreements
+# Install Temurin JDK 25
+winget install --id EclipseAdoptium.Temurin.25.JDK --source winget --accept-package-agreements --accept-source-agreements
 
 # Attempt to find the install directory
 $jdkRoot = "C:\Program Files\Eclipse Adoptium"
-$jdkDir = Get-ChildItem "$jdkRoot" -Directory | Where-Object { $_.Name -like "jdk-17*" } | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+$jdkDir = Get-ChildItem "$jdkRoot" -Directory | Where-Object { $_.Name -like "jdk-25*" } | Sort-Object LastWriteTime -Descending | Select-Object -First 1
 
 if (-not $jdkDir) {
-    Write-Host "ERROR: Failed to locate JDK 17 install directory." -ForegroundColor Red
+    Write-Host "ERROR: Failed to locate JDK 25 install directory." -ForegroundColor Red
     exit 1
 }
 
