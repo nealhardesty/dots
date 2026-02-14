@@ -232,12 +232,14 @@ fi
 # Aliases:
 alias ls='ls -F'
 alias k=kubectl
-alias 'cd..= cd ..'
-alias '..= cd ..'
-alias '...= cd ...'
-alias '....= cd ....'
-alias '.....= cd .....'
-alias '......= cd ......'
+alias 'cd..'='cd ..'
+alias '..'='cd ..'
+alias '...'='cd ../..'
+alias '....'='cd ../../..'
+alias '.....'='cd ../../../..'
+alias '......'='cd ../../../../..'
+
+alias gitpush='git add .; git commit -m "$(gitsum -s)" ; git push origin'
 
 
 # Suffix Aliases
@@ -255,4 +257,10 @@ if [ -f $HOME/.zshrc.local ]; then
 fi
 
 
-. "$HOME/.local/bin/env"
+[ -f "$HOME"/.local/bin/env ] && \. "$HOME/.local/bin/env"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
