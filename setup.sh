@@ -5,8 +5,11 @@ GITREPO=$(cd $(dirname $0); pwd)
 #find $GITREPO -maxdepth 1 \! -name .gitignore -type f -name '.*' -exec cp -rfv {} ~ \;
 find $GITREPO -maxdepth 1 \! -name .gitignore -type f -name '.*' -exec ln -sfv {} ~ \;
 
-mkdir -p ~/bin
-cp -rv bin/* ~/bin/
+if [ ! -e ~/bin ]; then
+  ln -sf $(pwd)/bin ~/bin
+else
+  echo ~/bin already exists, not linking
+fi
 
 
 #mkdir -p ~/.config
