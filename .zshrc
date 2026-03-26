@@ -3,12 +3,12 @@
 
 # Extra environment
 export AWS_PROFILE=default
-export GOROOT=/usr/local/go
+#export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
 export COMPOSE_PROFILES=all
 
 # Run after .zprofile for all interactive shells
-export PATH=${HOME}/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/snap/bin:$GOROOT/bin:$GOPATH/bin:$GOPATH:${HOME}/.local/bin
+export PATH=${HOME}/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/snap/bin:$GOROOT/bin:$GOPATH/bin:$GOPATH:${HOME}/.local/bin:/opt/homebrew/bin
 
 
 # Options follow - https://linux.die.net/man/1/zshoptions
@@ -258,9 +258,4 @@ fi
 
 
 [ -f "$HOME"/.local/bin/env ] && \. "$HOME/.local/bin/env"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 
