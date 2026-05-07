@@ -15,6 +15,9 @@ paru -S --noconfirm google-chrome
 
 $(dirname $0)/install-git-settings.sh
 
+# zsh is good
+sudo chsh -s /bin/zsh $USER
+
 
 
 # junk directories
