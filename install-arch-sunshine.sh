@@ -28,6 +28,18 @@ When = PostTransaction
 Exec = /usr/bin/setcap cap_sys_admin+p /usr/bin/sunshine
 EOF
 
+# Open UFW Ports
+# TCP	47984, 47989, 48010
+# UDP	47998, 47999, 48000, 48002, 48010
+sudo ufw allow 47984/tcp
+sudo ufw allow 47989/tcp
+sudo ufw allow 48010/tcp
+sudo ufw allow 47998/udp
+sudo ufw allow 47999/udp
+sudo ufw allow 48000/udp
+sudo ufw allow 48002/udp
+sudo ufw allow 48010/udp
+
 # 6. Enable and start the Sunshine service
 systemctl --user enable --now sunshine
 
