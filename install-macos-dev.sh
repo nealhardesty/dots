@@ -28,7 +28,7 @@ export PATH=$PATH:/opt/homebrew/bin
 
 ./install-macos-homebrew-amd64.sh
 
-brew install tmux yq wget rar socat python3 openssl go uv nvm coreutils autossh htop nmap gcc || echo some packages not installed
+brew install tmux yq wget rar socat python3 openssl go uv nvm coreutils autossh htop nmap gcc rsync || echo some packages not installed
 
 brew install --cask iterm2 || echo iterm2 did not install
 brew install --cask hammerspoon || echo hammerspoon did not install
