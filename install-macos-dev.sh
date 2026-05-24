@@ -7,6 +7,11 @@ cd $(dirname $0)
 # Add me to the sudoers explicitly
 sudo grep $(whoami) /etc/sudoers >> /dev/null || echo  $(whoami)'    ALL=(ALL) NOPASSWD:ALL' | sudo tee -a /etc/sudoers
 
+# Make finder show hidden files by default
+defaults write com.apple.finder AppleShowAllFiles TRUE
+killall Finder
+# defaults write com.apple.finder AppleShowAllFiles FALSE
+
 
 # Install the xcode cli tools
 echo Triggering xcode tools install...
