@@ -3,4 +3,4 @@
 set -ex
 
 brew update
-brew install -y azure-cli
+brew install azure-cli
