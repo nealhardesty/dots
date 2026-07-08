@@ -40,7 +40,7 @@ else
   #ls -1 ~/.ssh/id_rsa ~/.ssh/*.pem |xargs -I{} -n 1 echo IdentityFile={} | tee -a ~/.ssh/config.local
 fi
 
-mkdir -p ~/go/bin ~/go/src ~/go/internal ~/go/vendor
+#mkdir -p ~/go/bin ~/go/src ~/go/internal ~/go/vendor
 
 mkdir -p ~/.ssh
 #curl https://api.github.com/users/nealhardesty/keys |jq '.[].key'> ~/.ssh/authorized_keys
