@@ -15,10 +15,10 @@ source venv/bin/activate
 which python
 python --version
 
-if command -v nvidia-smi; then
+if command -v nvidia-smi || [ -x /usr/lib/wsl/lib/nvidia-smi ]; then
   echo Using cuda pytorch
   USE_CPU=""
-  uv pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu124
+  uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
 else
   echo Using cpu python ... will be slow...
   USE_CPU="--cpu"
