@@ -2,6 +2,4 @@
 
 set -e
 
-command -v brew &>/dev/null || { echo "Homebrew is not installed."; exit 1; }
-
-brew install --cask claude
+curl -fsSL https://claude.ai/install.sh | bash
