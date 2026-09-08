@@ -2,7 +2,7 @@
 set -e
 
 sudo apt update
-sudo apt install -y fuse3 curl unzip jq
+sudo apt install -y fuse3 curl unzip jq apparmor-utils
 
 ARCH="$(uname -m)"
 
@@ -40,5 +40,7 @@ sudo chmod +x "$BIN"
 sudo ln -sf "$BIN" /usr/local/bin/cryptomator-cli
 
 rm /tmp/cryptomator-cli.zip
+
+sudo aa-disable fusermount3
 
 cryptomator-cli --version
