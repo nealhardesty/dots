@@ -1,0 +1,31 @@
+#!/bin/bash
+set -e
+
+usage() {
+  echo "usage: $0 [ssh-key-path]"
+  echo
+  echo "sets this repo's core.sshCommand to use the given ssh key"
+  echo "if no ssh-key-path is given, defaults to ~/.ssh/id_rsa"
+  echo "example: $0 ~/.ssh/id_rsa"
+}
+
+if [ -z "$1" ]; then
+  CURRENT="$(git config --get core.sshCommand || true)"
+  if [ -n "$CURRENT" ]; then
+    usage
+    echo
+    echo "core.sshCommand is already set to: $CURRENT"
+    echo "leaving it unchanged"
+    exit 0
+  fi
+  usage
+  echo
+  KEY="$HOME/.ssh/id_rsa"
+  echo "no ssh-key-path provided and none currently set, defaulting to $KEY"
+else
+  KEY="$1"
+fi
+
+git config core.sshCommand "ssh -i $KEY"
+echo "set core.sshCommand to: ssh -i $KEY"
+echo "repo: $(git rev-parse --show-toplevel)"
