@@ -25,18 +25,12 @@ cp -rfv $GITREPO/.vim ~/.vim
 touch ~/.bashrc.local
 touch ~/.zshrc.local
 
-if [ $(uname) == "Darwin" ]; then
-  echo Must be a mac, installing hammerspoon config
-  #cp -rfv $GITREPO/.hammerspoon ~/.hammerspoon
-  [ -e ~/.hammerspoon ] || ln -fv $GITREPO/.hammerspoon ~/.hammerspoon
-fi
-
-
 mkdir -p ~/.ssh
 if [ -f ~/.ssh/config ]; then
   echo Cowardly refusing to overwrite .ssh/config
 else
-  cp -rfv $GITREPO/.ssh/config ~/.ssh/config
+  #cp -rfv $GITREPO/.ssh/config ~/.ssh/config
+  ln -sfv $GITREPO/.ssh/config ~/.ssh/config
   #ls -1 ~/.ssh/id_rsa ~/.ssh/*.pem |xargs -I{} -n 1 echo IdentityFile={} | tee -a ~/.ssh/config.local
 fi
 
