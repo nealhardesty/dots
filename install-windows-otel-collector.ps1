@@ -403,9 +403,13 @@ service:
     Write-Host "  service  $ServiceName"
     Write-Host "  logs     $LogPath (and the Application event log)"
     Write-Host ''
-    Write-Host "status:  .\install-windows-otel-collector.ps1 -Status"
-    Write-Host "stop:    .\install-windows-otel-collector.ps1 -Stop"
-    Write-Host "tail:    Get-Content -Wait '$LogPath'"
+    Write-Host "status:    .\install-windows-otel-collector.ps1 -Status"
+    Write-Host "stop:      .\install-windows-otel-collector.ps1 -Stop"
+    Write-Host "tail:      Get-Content -Wait '$LogPath'"
+    Write-Host "uninstall: .\install-windows-otel-collector.ps1 -Uninstall"
+    Write-Host "           removes the $ServiceName service and event log source,"
+    Write-Host "           $InstallDir and $DataDir"
+    Write-Host "           (certs, private key, state and logs all live under $DataDir)"
 }
 finally {
     if (Test-Path -LiteralPath $Work) { Remove-Item -LiteralPath $Work -Recurse -Force -ErrorAction SilentlyContinue }
