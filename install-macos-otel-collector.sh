@@ -36,9 +36,17 @@ ERR="/var/log/otelcol-contrib.err"
 DOCKER_SOCK="/var/run/docker.sock"
 REPO="open-telemetry/opentelemetry-collector-releases"
 
-# error-level unified log events, minus the two loudest sources on macos.
-# /kernel alone emits ~50/sec of IOSurface noise. tune with OTEL_LOG_PREDICATE.
-DEFAULT_LOG_PREDICATE='eventType == "logEvent" AND logType == "error" AND processImagePath != "/kernel" AND processImagePath != "/Applications/Parsec.app/Contents/MacOS/parsecd" AND NOT (subsystem BEGINSWITH "com.apple.icloud.searchpartyd")'
+# error-level unified log events, minus the loudest sources measured on this mac:
+#   /kernel                        ~50/sec of IOSurface noise
+#   parsecd                        bursty screen-capture errors
+# measured over one 150s window, as a share of what was left after the above:
+#   runningboardd                  ~29%
+#   com.apple.icloud.searchpartyd  ~20%
+#   cloudd                         ~3.5%
+# cloudd is matched on its full path, so itunescloudd is a different process and
+# is not excluded. volume is bursty, so short samples vary by an order of
+# magnitude; these are one window. tune the whole thing with OTEL_LOG_PREDICATE.
+DEFAULT_LOG_PREDICATE='eventType == "logEvent" AND logType == "error" AND processImagePath != "/kernel" AND processImagePath != "/Applications/Parsec.app/Contents/MacOS/parsecd" AND NOT (subsystem BEGINSWITH "com.apple.icloud.searchpartyd") AND processImagePath != "/System/Library/PrivateFrameworks/CloudKitDaemon.framework/Support/cloudd" AND processImagePath != "/usr/libexec/runningboardd"'
 LOG_PREDICATE="${OTEL_LOG_PREDICATE:-$DEFAULT_LOG_PREDICATE}"
 
 usage() {
