@@ -38,7 +38,7 @@ REPO="open-telemetry/opentelemetry-collector-releases"
 
 # error-level unified log events, minus the two loudest sources on macos.
 # /kernel alone emits ~50/sec of IOSurface noise. tune with OTEL_LOG_PREDICATE.
-DEFAULT_LOG_PREDICATE='eventType == "logEvent" AND logType == "error" AND processImagePath != "/kernel" AND processImagePath != "/Applications/Parsec.app/Contents/MacOS/parsecd"'
+DEFAULT_LOG_PREDICATE='eventType == "logEvent" AND logType == "error" AND processImagePath != "/kernel" AND processImagePath != "/Applications/Parsec.app/Contents/MacOS/parsecd" AND NOT (subsystem BEGINSWITH "com.apple.icloud.searchpartyd")'
 LOG_PREDICATE="${OTEL_LOG_PREDICATE:-$DEFAULT_LOG_PREDICATE}"
 
 usage() {
@@ -159,11 +159,17 @@ sudo install -m 0644 -o root -g wheel "${WORK}/config.yaml" "${CONF_DIR}/config.
 # the macos unified log receiver replays the previous 24h on every start, so it is
 # easy to turn off entirely. the receiver exposes no lookback setting.
 UNIFIED_LOG_RECEIVER=""
-UNIFIED_LOG_PIPELINE=""
+UNIFIED_LOG_PIPELINE_BLOCK=""
 if [ "${OTEL_UNIFIED_LOG:-1}" != "0" ]; then
   UNIFIED_LOG_RECEIVER="  macos_unified_logging:
     predicate: '${LOG_PREDICATE}'"
-  UNIFIED_LOG_PIPELINE=", macos_unified_logging"
+  # its own pipeline, so the backfill filter applies only to the unified log and
+  # cannot drop legitimately older records arriving over otlp or from file_log
+  UNIFIED_LOG_PIPELINE_BLOCK="    logs/unified:
+      receivers: [macos_unified_logging]
+      processors: [memory_limiter, filter/backfill, resource_detection, batch]
+      exporters: [otlp_grpc]
+"
 fi
 
 sudo tee "$CONF" >/dev/null <<EOF
@@ -217,6 +223,15 @@ ${UNIFIED_LOG_RECEIVER}
         endpoint: 127.0.0.1:4318
 
 processors:
+  # the macos unified log receiver replays the previous 24h on every start and has
+  # no lookback setting, which is what saturated the exporter queue and dropped
+  # data during an endpoint outage. records carry real timestamps, so drop anything
+  # that is not recent. the receiver still reads the backlog, it just never leaves.
+  filter/backfill:
+    error_mode: ignore
+    logs:
+      log_record:
+        - 'time < Now() - Duration("10m")'
   memory_limiter:
     limit_mib: 512
     spike_limit_mib: 128
@@ -270,10 +285,10 @@ service:
       processors: [memory_limiter, resource_detection, batch]
       exporters: [otlp_grpc]
     logs:
-      receivers: [file_log, otlp${UNIFIED_LOG_PIPELINE}]
+      receivers: [file_log, otlp]
       processors: [memory_limiter, resource_detection, batch]
       exporters: [otlp_grpc]
-    traces:
+${UNIFIED_LOG_PIPELINE_BLOCK}    traces:
       receivers: [otlp]
       processors: [memory_limiter, resource_detection, batch]
       exporters: [otlp_grpc]
