@@ -1,5 +1,6 @@
 # Rules To Live By
 
+
 ## Think Hard
 **CRITICAL: Think deeply before taking action**
 - STOP and THINK before making any changes or writing any code

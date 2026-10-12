@@ -6,7 +6,7 @@ export AWS_PROFILE=default
 export COMPOSE_PROFILES=all
 
 # Run after .zprofile for all interactive shells
-export PATH=~/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/snap/bin:/usr/local/go/bin:~/go/bin:~/.local/bin:/opt/homebrew/bin
+export PATH=~/.local/bin:~/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/snap/bin:/usr/local/go/bin:~/go/bin:~/.local/bin:/opt/homebrew/bin
 
 
 # Options follow - https://linux.die.net/man/1/zshoptions
@@ -124,7 +124,7 @@ function setHostPrompt {
     moose*)
       HOSTPROMPT="🦌"
       ;;
-    (#i)otter*)
+    otter*)
       HOSTPROMPT="🦦"
       ;;
     marmot*)
@@ -202,7 +202,11 @@ precmd() {
   HOSTPROMPT=$(echo "${HOSTPROMPT}" | tr '[:upper:]' '[:lower:]')
 	#export PS1='%F{magenta}%n%f@%B%F{blue}%m%b %F{green}%~%(!.%F{red}#.%F{white}>)%f '
 	export PS1='%B%F{blue}'${HOSTPROMPT}'%b %F{green}%~%(!.%F{red}#.%F{white}>)%f '
-	export RPS1="%(?..%F{grey}[%B%F{red}${last_exit}%b%F{grey}]%f )${GIT_CURRENT_BRANCH} ${KUBERNETES_CURRENT_NAMESPACE}"
+	local EXIT_STATUS=""
+	if [[ ${last_exit} -ne 0 ]]; then
+		EXIT_STATUS="%F{grey}[%f💥%B%F{red}${last_exit}%b%F{grey}]%f "
+	fi
+	export RPS1="${EXIT_STATUS}${GIT_CURRENT_BRANCH} ${KUBERNETES_CURRENT_NAMESPACE}"
 }
 
 # Change terminal title
